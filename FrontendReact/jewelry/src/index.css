@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+
+* {
+  box-sizing: border-box;
+}
+body {
+  /*background-image: url("./wallpaper2.jpg");
+  background-repeat: no-repeat;
+ 
+  background-attachment: fixed;
+  background-position:center; 
+*/
+  background-color: #ffffff;
+
+  display: flex;
+  font-weight: 400;
+  font-family: "Fira Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+span {
+  font-weight: 500;
+  font-family: "Fira Sans", sans-serif;
+}
+
+body,
+html,
+.App,
+#root,
+.auth-wrapper {
+  width: 100%;
+
+  background-color: #fafafa;
+}
+
+.navbar-light {
+  background-color: transparent;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+/*
+.auth-inner {
+  width: 500px;
+  margin:auto;
+  margin-top: 5%;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+*/
+
+.loginStyle {
+  width: 500px;
+  margin: auto;
+  margin-top: 5%;
+
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.registerStyle {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 5%;
+
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+.addproductStyle {
+  width: 500px;
+  margin: auto;
+  margin-top: 5%;
+
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.divcreateacc {
+  text-align: center;
+  margin-top: 5%;
+}
+#createaccountlink {
+  margin: auto;
+  text-align: center;
+  font-size: 14px;
+  color: dimgray;
+  text-decoration: underline;
+}
+
+.errorColor {
+  color: red;
+}
+
+.ProductCard {
+  margin-top: 100px;
+  height: 400px !important;
+  cursor: pointer;
+}
+
+
+
+.col-4 {
+  width: 420px !important;
+  margin-left: 110px;
+  margin-right:50px;
+  margin-top: 130px !important;
+}
+
+.ProductListImages {
+  height: 100%;
+  width: 100%;
+
+}
+
+.ProductListImages:hover {
+  border-color: #e7c507;
+  border-style: groove;
+  border-width: 5px;
+  
+}
+
+/*
+height: 450px;
+  width: 450px;
+  margin-left: -25px;
+  margin-top:-20px
+  box-shadow: 0px 0px  55px  1rem rgb(135, 134, 132);*/
+
+.SelectedProductCard {
+  margin: auto !important;
+  margin-top: 2% !important;
+  height: 755px !important;
+  width: 90% !important;
+  border:double;
+
+}
+.selectedProdImage {
+  margin-top:5%;
+  height: 750px;
+  width: 750px ;
+  cursor: pointer;
+ 
+}
+
+
+
+.titleProd {
+  font-family: monospace;
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: large;
+  margin-top: 10px !important;
+}
+
+.priceProd {
+  font-family: monospace;
+  font-size: medium;
+}
+
+.searchBarDiv {
+  text-align: center !important;
+  margin: auto !important;
+  background-color: white;
+  border-top: solid;
+  border-color: black;
+  border-bottom: solid;
+  border-width: 1px;
+}
+
+.searchBar {
+  margin: auto !important;
+  text-align: center !important;
+  margin-top: 5px !important;
+  width: 600px !important;
+  font-family: monospace;
+  font-size: larger;
+  font-weight: bold;
+  text-transform:uppercase;
+  margin-bottom: 5px !important;
+  border-top:none !important;
+  border-bottom:none !important;
+  border-radius: 0 !important;
+}
+.form-control:focus{
+  border-color: #e7c507 !important;
+
+}
+
+.Carousel {
+  margin: auto;
+  margin-top: 5%;
+  width: 600px !important;
+  height: 600px !important;
+  border-style: double;
+}
+
+.imgCarousel {
+  margin: auto;
+
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+.ProductDetails{
+
+  font-family: monospace;
+  color:rgb(29, 29, 29);
+  margin:auto;
+}
+
+.btn-warning{
+  border-radius: 0 !important;
+}
+
+
+.paginationNav{
+
+  margin-top: 7%;
+}

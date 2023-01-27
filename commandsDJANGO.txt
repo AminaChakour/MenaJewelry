@@ -1,0 +1,47 @@
+django commands :
+
+
+
+py -m venv venv
+
+venv\Scripts\activate
+
+pip install django
+
+django-admin startproject core .
+
+py manage.py startapp amtranspo
+
+
+add amtranspo in cors/settings.py
+
+
+pip install djongo
+pip instal djangorestframework
+pip install django-cors-headers
+pip install pymongo==3.12.3
+pip install dnspython
+
+ python manage.py makemigrations amtranspo
+
+ python manage.py migrate amtranspo
+
+
+
+////////////////////////
+
+venv\Scripts\activate
+python manage.py runserver
+
+ Diplôme en Conception de bases de données ;
+ Diplômée en Ingénierie et Mathématiques ;
+ Grandes capacités en exploitation de bases de données et en création des requêtes SQL ;
+ Connaissance en programmation C#, Java, Python et P/SQL ;
+ Aptitude en développement et en gestion des données ;
+ Fortes connaissances dans la visualisation, la modélisation et l’intégration des données ;
+ Compétences dans l’utilisation de Salesforce, Apex, MS Power BI et Excel ;
+ Fortes facultés techniques, analytiques et informatiques ;
+ Aptitude à déceler les problèmes, les analyser et apporter des solutions appropriées ;
+ Grande capacité à travailler sous pression, intégrer une équipe et apprendre sur le tas ;
+ Ingéniosité, organisation, efficacité, adaptabilité et entregent.
+ Parfaitement bilingue.
