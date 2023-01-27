@@ -45,7 +45,7 @@ const Navbar = () => {
             PRODUCTS
           </NavLink>
 
-          {ReactSession.get("fullname") !== "" &&
+          {ReactSession.get("fullname") !== null &&
             ReactSession.get("userEmail") !== "admin@gmail.com" && (
               <NavBtn>
                 <NavBtnLink to="/editprofile"> EDIT PROFILE</NavBtnLink>

@@ -4,10 +4,14 @@ import React from "react";
 import { ReactSession } from "react-client-session";
 import { CiSearch } from "react-icons/ci";
 import Carousel from "react-bootstrap/Carousel";
+import ReactLoading from "react-loading";
+
 const Home = () => {
+  const [loading, setLoading] = useState(false);
   const [Images, setImages] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     axios.get("http://127.0.0.1:8000/product").then((res) => {
       const data = res.data;
       var images = [];
@@ -18,24 +22,24 @@ const Home = () => {
       setImages(shuffle(images));
 
       console.log("result : ", images);
+      setLoading(false);
     });
   }, []);
 
-
-
-
   function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length,
+      randomIndex;
 
     while (currentIndex != 0) {
-
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
       [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+        array[randomIndex],
+        array[currentIndex],
+      ];
     }
-  
+
     return array;
   }
 
@@ -46,58 +50,73 @@ const Home = () => {
       setIndex(selectedIndex);
     };
 
+    //spinningBubbles cylon cubes spin bubbles
     return (
-      <Carousel
-        className="Carousel"
-        activeIndex={index}
-        onSelect={handleSelect}
-     >
-        <Carousel.Item interval={2000}>
-          <img
-            className="imgCarousel d-block w-100"
-            src={Images[0]}
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+      <>
+        {loading ? (
+          <div className="loader">
+            <ReactLoading
+              className="loader"
+              type="cylon"
+              color="gray"
+              height={667}
+              width={400}
+            />
+          </div>
+        ) : (
+          <Carousel
+            className="Carousel"
+            activeIndex={index}
+            onSelect={handleSelect}
+            fade
+          >
+            <Carousel.Item interval={2000}>
+              <img
+                className="imgCarousel d-block w-100"
+                src={Images[0]}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
+              </Carousel.Caption>
+            </Carousel.Item>
 
-        <Carousel.Item interval={2000}>
-          <img
-            className=" imgCarousel d-block w-100"
-            src={Images[1]}
-            alt="Second slide"
-          />
+            <Carousel.Item interval={2000}>
+              <img
+                className=" imgCarousel d-block w-100"
+                src={Images[1]}
+                alt="Second slide"
+              />
 
-          <Carousel.Caption>
-            <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+              <Carousel.Caption>
+                <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
+              </Carousel.Caption>
+            </Carousel.Item>
 
-        <Carousel.Item interval={2000}>
-          <img
-            className="imgCarousel d-block w-100"
-            src={Images[2]}
-            alt="Third slide"
-          />
-          <Carousel.Caption>
-            <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+            <Carousel.Item interval={2000}>
+              <img
+                className="imgCarousel d-block w-100"
+                src={Images[2]}
+                alt="Third slide"
+              />
+              <Carousel.Caption>
+                <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
+              </Carousel.Caption>
+            </Carousel.Item>
 
-        <Carousel.Item interval={2000}>
-          <img
-            className="imgCarousel d-block w-100"
-            src={Images[3]}
-            alt="Fourth slide"
-          />
-          <Carousel.Caption>
-            <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-
-      </Carousel>
+            <Carousel.Item interval={2000}>
+              <img
+                className="imgCarousel d-block w-100"
+                src={Images[3]}
+                alt="Fourth slide"
+              />
+              <Carousel.Caption>
+                <p>K A I &nbsp; &nbsp; J E W E L R Y</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        )}
+      </>
     );
   }
 

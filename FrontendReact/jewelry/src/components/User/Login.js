@@ -90,7 +90,7 @@ const LogIn = () => {
   return (
     <div className="loginStyle">
       <form onSubmit={handleSubmit}>
-        <h3>Login</h3>
+ 
 
         <div className={`mb-3 ${errorClass(formErrors.email)}`}>
           <input
@@ -124,12 +124,12 @@ const LogIn = () => {
             type="submit"
             className="btn btn-warning"
           >
-            LogIn
+            LOG IN
           </button>
         </div>
         <div className="mb-3 divcreateacc">
           <a id="createaccountlink" href="/signup">
-            Create an account
+            CREATE AN ACCOUNT
           </a>
         </div>
       </form>

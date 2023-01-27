@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
 import { ReactSession } from "react-client-session";
+import ReactLoading from "react-loading";
 
 const ListProducts = (props) => {
+  const [loading, setLoading] = useState(false);
   const [Products, setProducts] = useState([]);
   const [SearchText, SetSearchText] = useState("");
   const [SearchedProducts, SetSearchedProducts] = useState([]);
@@ -20,6 +22,7 @@ const ListProducts = (props) => {
   );
 
   useEffect(() => {
+    setLoading(true);
     axios.get("http://127.0.0.1:8000/product").then((res) => {
       setProducts(res.data);
       console.log("result : ", Products);
@@ -43,9 +46,11 @@ const ListProducts = (props) => {
         ].slice(1)
       );
     });
+    setLoading(false);
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     setLastRec(currentPage * recordsPerPage);
     setFirstRec(currentPage * recordsPerPage - recordsPerPage);
     setCurrentRecords(
@@ -55,9 +60,11 @@ const ListProducts = (props) => {
       )
     );
     console.log("current", currentRecords);
+    setLoading(false);
   }, [currentPage]);
 
   useEffect(() => {
+    setLoading(true);
     console.log("search submitted");
 
     SetSearchedProducts(
@@ -67,6 +74,7 @@ const ListProducts = (props) => {
           .includes(SearchText.toLowerCase().trim())
       )
     );
+    setLoading(false);
   }, [SearchText]);
 
   function redirectToSelected(id) {
@@ -85,107 +93,118 @@ const ListProducts = (props) => {
   };
 
   return (
-    <div>
-      <div className="row searchBarDiv">
-        <input
-          value={SearchText}
-          placeholder="SEARCH"
-          onChange={(e) => SetSearchText(e.target.value)}
-          type="search"
-          id="form1"
-          className="searchBar form-control"
-        />
-      </div>
+    <>
+      {loading ? (
+        <div className="loader">
+          <ReactLoading type="cylon" color="gray" height={667} width={400} />
+        </div>
+      ) : (
+        <div>
+          <div className="row searchBarDiv">
+            <input
+              value={SearchText}
+              placeholder="SEARCH"
+              onChange={(e) => SetSearchText(e.target.value)}
+              type="search"
+              id="form1"
+              className="searchBar form-control"
+            />
+          </div>
 
-      <div className="row align-items-center">
-        {SearchText.length === 0
-          ? currentRecords.map((currentProd) => {
-              return (
-                <>
-                  <div
-                    onClick={() => {
-                      redirectToSelected(currentProd.ProductId);
-                    }}
-                    className="col-4 ProductCard"
+          <div className="row align-items-center">
+            {SearchText.length === 0
+              ? currentRecords.map((currentProd) => {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          redirectToSelected(currentProd.ProductId);
+                        }}
+                        className="col-4 ProductCard"
+                      >
+                        <img
+                          className="ProductListImages"
+                          alt="y"
+                          src={currentProd.Image}
+                        />
+                        <br />
+
+                        <h3 className="titleProd align-items-center">
+                          {currentProd.Title}
+                        </h3>
+
+                        <h3 className="priceProd align-items-center">
+                          {currentProd.Price}$
+                        </h3>
+                      </div>
+                    </>
+                  );
+                })
+              : SearchedProducts.map((currentProd) => {
+                  return (
+                    <>
+                      <div
+                        onClick={() => {
+                          redirectToSelected(currentProd.ProductId);
+                        }}
+                        className="col-4 ProductCard"
+                      >
+                        <img
+                          className="ProductListImages"
+                          alt="y"
+                          src={currentProd.Image}
+                        />
+                        <br />
+
+                        <h3 className="titleProd align-items-center">
+                          {currentProd.Title}
+                        </h3>
+
+                        <h3 className="priceProd align-items-center">
+                          {currentProd.Price}$
+                        </h3>
+                      </div>
+                    </>
+                  );
+                })}
+          </div>
+
+          {SearchText.length === 0 && (
+            <nav className="paginationNav" aria-label="Page navigation example">
+              <ul className="pagination justify-content-center">
+                <li className="page-item">
+                  <a className="page-link" href="#" onClick={prevPage}>
+                    Previous
+                  </a>
+                </li>
+                {pageNumbers.map((pgNumber) => (
+                  <li
+                    key={pgNumber}
+                    className={`page-item ${
+                      currentPage === pgNumber ? "active" : ""
+                    }`}
                   >
-                    <img
-                      className="ProductListImages"
-                      alt="y"
-                      src={currentProd.Image}
-                    />
-                    <br />
+                    <a
+                      onClick={() => setCurrentPage(pgNumber)}
+                      className="page-link"
+                      href="#"
+                    >
+                      {pgNumber}
+                    </a>
+                  </li>
+                ))}
 
-                    <h3 className="titleProd align-items-center">
-                      {currentProd.Title}
-                    </h3>
-
-                    <h3 className="priceProd align-items-center">
-                      {currentProd.Price}$
-                    </h3>
-                  </div>
-                </>
-              );
-            })
-          : SearchedProducts.map((currentProd) => {
-              return (
-                <>
-                  <div
-                    onClick={() => {
-                      redirectToSelected(currentProd.ProductId);
-                    }}
-                    className="col-4 ProductCard"
-                  >
-                    <img
-                      className="ProductListImages"
-                      alt="y"
-                      src={currentProd.Image}
-                    />
-                    <br />
-
-                    <h3 className="titleProd align-items-center">
-                      {currentProd.Title}
-                    </h3>
-
-                    <h3 className="priceProd align-items-center">
-                      {currentProd.Price}$
-                    </h3>
-                  </div>
-                </>
-              );
-            })}
-      </div>
-      {SearchText.length === 0
-          && (
-      <nav className="paginationNav" aria-label="Page navigation example">
-        <ul className="pagination justify-content-center">
-          <li className="page-item">
-            <a className="page-link" href="#" onClick={prevPage}>
-              Previous
-            </a>
-          </li>
-          {pageNumbers.map((pgNumber) => (
-            <li
-              key={pgNumber}
-              className={`page-item ${currentPage == pgNumber ? "active" : ""}`}
-            >
-              <a
-                onClick={() => setCurrentPage(pgNumber)}
-                className="page-link"
-                href="#"
-              >
-                {pgNumber}
-              </a>
-            </li>
-          ))}
-
-          <li className="page-item">
-            <a className="page-link" onClick={nextPage} href="#">
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>)}
-    </div>
+                <li className="page-item">
+                  <a className="page-link" onClick={nextPage} href="#">
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

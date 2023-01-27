@@ -3,6 +3,8 @@
 * {
   box-sizing: border-box;
 }
+
+
 body {
   /*background-image: url("./wallpaper2.jpg");
   background-repeat: no-repeat;
@@ -11,7 +13,7 @@ body {
   background-position:center; 
 */
   background-color: #ffffff;
-
+  max-width: 100%;
   display: flex;
   font-weight: 400;
   font-family: "Fira Sans", sans-serif;
@@ -261,7 +263,7 @@ height: 450px;
 
 .paginationNav{
 
-  margin-top: 7%;
+  margin-top: 10%;
 }
 
 .pagination > li > a
@@ -292,4 +294,12 @@ height: 450px;
 {
     background-color: #5A4181 !Important;
     border: solid 1px #5A4181;
+}
+
+.loader{
+
+  margin:auto !important;
+  margin-top: 5% !important;
+  text-align: center !important;
+  justify-content: center !important;
 }

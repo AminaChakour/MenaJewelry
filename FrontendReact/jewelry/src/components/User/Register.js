@@ -231,8 +231,7 @@ const SignUp = () => {
   return (
     <div className="registerStyle">
       <form onSubmit={handleSubmit}>
-        <h3>Sign Up</h3>
-
+      
         <div className="row">
           <div className="mb-3 col-6">
             <input
@@ -381,7 +380,7 @@ const SignUp = () => {
             type="submit"
             className="btn btn-warning"
           >
-            Sign Up
+            SIGN UP
           </button>
         </div>
       </form>
