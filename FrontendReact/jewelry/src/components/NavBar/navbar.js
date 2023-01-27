@@ -12,17 +12,18 @@ export const Nav = styled.nav`
 `
 
 export const NavLink = styled(Link)`
-    color: #101010;
+    color: gray;
     display: flex;
     align-items: center;
-    font-family: 'Times New Roman', serif;
+    font-family: monospace;
     text-decoration: none;
     border:none;
     padding: 0 1.5rem;
     height: 100%;
     cursor: pointer;
     &.active{
-        color:#fcb315;
+        color:#5A4181;
+        font-weight:bold;
      
 
     }

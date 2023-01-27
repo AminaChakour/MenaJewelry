@@ -98,7 +98,7 @@ const ListProducts = (props) => {
       </div>
 
       <div className="row align-items-center">
-        {SearchedProducts.length === 0
+        {SearchText.length === 0
           ? currentRecords.map((currentProd) => {
               return (
                 <>
@@ -126,7 +126,7 @@ const ListProducts = (props) => {
                 </>
               );
             })
-          : currentRecords.map((currentProd) => {
+          : SearchedProducts.map((currentProd) => {
               return (
                 <>
                   <div
@@ -154,10 +154,10 @@ const ListProducts = (props) => {
               );
             })}
       </div>
-
+      {SearchText.length === 0
+          && (
       <nav className="paginationNav" aria-label="Page navigation example">
         <ul className="pagination justify-content-center">
-          {/* <li className="page-item disabled"></li>*/}
           <li className="page-item">
             <a className="page-link" href="#" onClick={prevPage}>
               Previous
@@ -184,7 +184,7 @@ const ListProducts = (props) => {
             </a>
           </li>
         </ul>
-      </nav>
+      </nav>)}
     </div>
   );
 };
