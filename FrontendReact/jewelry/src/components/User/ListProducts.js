@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
+import Swal from "sweetalert2";
+
 import { ReactSession } from "react-client-session";
 import ReactLoading from "react-loading";
 

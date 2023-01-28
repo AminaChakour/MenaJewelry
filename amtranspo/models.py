@@ -26,7 +26,9 @@ class Product(models.Model):
     Image = models.CharField(max_length=1000)
 
 
-class Admin(models.Model):
-    AdminId = models.AutoField(primary_key=True)
-    email = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
+
+class Cart(models.Model):
+    CartId = models.AutoField(primary_key=True)
+    UserId = models.CharField(max_length=10)
+    ProductId = models.CharField(max_length=10)
+    Quantity = models.CharField(max_length=2)

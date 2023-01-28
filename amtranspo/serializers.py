@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from amtranspo.models import User,Product,Admin
+from amtranspo.models import User,Product,Cart
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -28,10 +28,14 @@ class ProductSerializer(serializers.ModelSerializer):
                 'Stock',
                 'Image')
 
-class AdminSerializer(serializers.ModelSerializer):
+
+
+class CartSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Admin
+        model= Cart
         fields=(
-            'AdminId',
-             'email',
-             'password')
+            'CartId',
+            'UserId',
+            'ProductId',
+            'Quantity'
+            )

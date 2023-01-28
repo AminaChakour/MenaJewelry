@@ -7,7 +7,8 @@ urlpatterns=[
     url(r'^login$',views.loginApi),
     url(r'^signup$',views.userApi),
     url(r'^editprofile$',views.userApi),
-    url(r'^edit$',views.AdminApi)
+    url(r'^cart$',views.CartApi)
+
 
 
 

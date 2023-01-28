@@ -3,8 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from amtranspo.models import User,Product,Admin
-from amtranspo.serializers import UserSerializer,ProductSerializer,AdminSerializer
+from amtranspo.models import User,Product,Cart
+from amtranspo.serializers import UserSerializer,ProductSerializer,CartSerializer
 # Create your views here.
 
 
@@ -96,40 +96,40 @@ def userApi(request,id=0):
         return JsonResponse("Deleted successfully",safe=False)
 
 @csrf_exempt
-def AdminApi(request,id=0):
+def CartApi(request,id=0):
     if request.method=='GET':
-        admins= Admin.objects.all()
-        admin_serializer = AdminSerializer(admins,many=True)
-        return JsonResponse(admin_serializer.data,safe=False)
+        carts= Cart.objects.get(UserId=['UserId'])
+        cart_serializer = CartSerializer(carts,many=True)
+        return JsonResponse(cart_serializer.data,safe=False)
     
     elif request.method=='POST':
-        admin_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
-        admin_serializer = AdminSerializer(data=admin_data)
-        adminExists = Admin.objects.filter(email=admin_data['email'])  #check if there is a user with this email in the db
+        cart_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
+        cart_serializer = CartSerializer(data=cart_data)
+        #cartExists = Cart.objects.filter(email=cart_data['email'])  #check if there is a user with this email in the db
 
-        if len(adminExists)>0 :
-            data = {"status": "exists" }
-            return JsonResponse(data,safe=False)
+        #if len(cartExists)>0 :
+            #data = {"status": "exists" }
+           # return JsonResponse(data,safe=False)
 
-        if admin_serializer.is_valid() :
-            admin_serializer.save()         # save to mongodb
-            data = {"status": "success" , "info": admin_data}
+        if cart_serializer.is_valid() :
+            cart_serializer.save()         # save to mongodb
+            data = {"status": "success" , "info": cart_data}
             return JsonResponse(data,safe=False)
 
         data = {"status": "error" }
         return JsonResponse(data,safe=False)
 
     elif request.method=='PUT':
-        admin_data=JSONParser().parse(request)
-        admin=Admin.objects.get(AdminId=admin_data['AdminId'])
-        admin_serializer=AdminSerializer(admin,data=admin_data)
-        if admin_serializer.is_valid():
-            admin_serializer.save()
+        cart_data=JSONParser().parse(request)
+        cart=Cart.objects.get(CartId=cart_data['CartId'])
+        cart_serializer=CartSerializer(cart,data=cart_data)
+        if cart_serializer.is_valid():
+            cart_serializer.save()
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("Failed to Update",safe=False)
 
     elif request.method=='DELETE':
-        admin=Admin.objects.get(AdminId=id)
-        admin.delete()
+        cart=Cart.objects.get(CartId=id)
+        cart.delete()
         return JsonResponse("Deleted successfully",safe=False)
 
