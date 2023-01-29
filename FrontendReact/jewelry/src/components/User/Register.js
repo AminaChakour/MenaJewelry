@@ -41,7 +41,7 @@ const SignUp = () => {
   function handleUserInput(e, name) {
     const val = e.target.value;
 
-    switch(name){
+    switch (name) {
       case "lastname":
         setLastname(val);
         break;
@@ -73,8 +73,7 @@ const SignUp = () => {
         setProvince(val);
         break;
       default:
-      break;
-    
+        break;
     }
     validateField(name, e.target.value);
   }
@@ -119,7 +118,7 @@ const SignUp = () => {
           value.length > 2 && value.match(/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/i);
         fieldValidationErrors.city = cityValid1 ? "" : " is required";
         break;
- 
+
       case "phone":
         phoneValid1 = value.match(
           /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i
@@ -143,11 +142,9 @@ const SignUp = () => {
 
       default:
         break;
-
-    
     }
     setFormErrors(fieldValidationErrors);
- 
+
     setPasswordValid(passwordValid1);
     setFirstnameValid(firstnameValid1);
     setAddressValid(addressValid1);
@@ -174,7 +171,6 @@ const SignUp = () => {
     );
   }
 
-
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -194,8 +190,7 @@ const SignUp = () => {
           password,
         })
       )
-      .then((res) =>{
-      
+      .then((res) => {
         const data = res.data;
 
         if (data.status === "success") {
@@ -205,18 +200,14 @@ const SignUp = () => {
             icon: "success",
             confirmButtonText: "Ok",
           });
-
-         
-        } else if (data.status === "error") 
-        {
+        } else if (data.status === "error") {
           Swal.fire({
             title: "Error !",
             text: "Try again",
             icon: "error",
             confirmButtonText: "Ok",
           });
-        } else if (data.status === "exists") 
-        {
+        } else if (data.status === "exists") {
           Swal.fire({
             title: "Email/User already exists !",
             text: "Try using a different email.",
@@ -224,14 +215,13 @@ const SignUp = () => {
             confirmButtonText: "Ok",
           });
         }
-        
       });
   }
 
   return (
+    <>
     <div className="registerStyle">
       <form onSubmit={handleSubmit}>
-      
         <div className="row">
           <div className="mb-3 col-6">
             <input
@@ -384,7 +374,17 @@ const SignUp = () => {
           </button>
         </div>
       </form>
+     
     </div>
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+    </>
   );
 };
 

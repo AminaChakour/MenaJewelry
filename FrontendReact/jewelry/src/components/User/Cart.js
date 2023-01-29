@@ -70,15 +70,11 @@ const Cart = () => {
                   </div>
 
                   <div className="CartIconsDiv col-xs-4 col-lg-4 col-md-4  col-xl-4 col-sm-4 ">
-             
-          
                     <RiDeleteBin3Fill
                       size={50}
                       color="gray"
                       className="CartIcons"
                     />
-
-                 
                   </div>
                 </div>
               </>
@@ -86,6 +82,14 @@ const Cart = () => {
           })}
         </div>
       )}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 };

@@ -21,6 +21,7 @@ import SelectedProd from './components/User/SelectedProd.js';
 import Home from './components/General/Home.js';
 import LogOut from './components/General/LogOut.js';
 import Cart from './components/User/Cart.js';
+import Footer from './components/General/Footer'
 
 import { ReactSession } from "react-client-session";  
 
@@ -59,7 +60,9 @@ function App() {
     
 
       </div>
+
     </div>
+       <Footer/>
   </BrowserRouter>
   
   );

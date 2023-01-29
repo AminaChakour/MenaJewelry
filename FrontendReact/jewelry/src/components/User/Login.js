@@ -60,7 +60,7 @@ const LogIn = () => {
 */
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     axios
       .post(
         "http://127.0.0.1:8000/login",
@@ -71,12 +71,12 @@ const LogIn = () => {
       )
       .then((res) => {
         const data = res.data;
-        console.log(data)
-        ReactSession.set("idUser", data.UserId )
-        ReactSession.set("userEmail", data.email )
-        ReactSession.set("fullname", data.firstname + " " + data.lastname )
+        console.log(data);
+        ReactSession.set("idUser", data.UserId);
+        ReactSession.set("userEmail", data.email);
+        ReactSession.set("fullname", data.firstname + " " + data.lastname);
 
-        console.log(ReactSession.get('userEmail'))
+        console.log(ReactSession.get("userEmail"));
         Swal.fire({
           title: "Success",
           text: "Welcome " + data.firstname + ".",
@@ -84,14 +84,12 @@ const LogIn = () => {
           timer: 3000,
         });
       });
-
   }
 
   return (
+    <>
     <div className="loginStyle">
       <form onSubmit={handleSubmit}>
- 
-
         <div className={`mb-3 ${errorClass(formErrors.email)}`}>
           <input
             type="email"
@@ -99,7 +97,9 @@ const LogIn = () => {
             placeholder="Email..."
             value={email}
             name="email"
-            onChange={(e) => { handleUserInput(e,"email")}}
+            onChange={(e) => {
+              handleUserInput(e, "email");
+            }}
           />
         </div>
 
@@ -110,7 +110,9 @@ const LogIn = () => {
             placeholder="Password..."
             name="password"
             value={password}
-            onChange={(e) => {handleUserInput(e,"password")}}
+            onChange={(e) => {
+              handleUserInput(e, "password");
+            }}
           />
         </div>
 
@@ -133,7 +135,25 @@ const LogIn = () => {
           </a>
         </div>
       </form>
+     
     </div>
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+    </>
   );
 };
 

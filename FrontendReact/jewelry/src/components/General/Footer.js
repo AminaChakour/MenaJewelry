@@ -3,7 +3,7 @@ import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-k
 
 export default function App() {
   return (
-
+  
   
     <MDBFooter bgColor='light' className='mt-20 text-center text-lg-start text-muted'>
     
@@ -19,13 +19,10 @@ export default function App() {
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
                 <MDBIcon icon="gem" className="me-3" />
-                Ez Highways
+                KAI J E W E L S
               </h6>
               <p>
-              We have thought of everything for your comfort: individual lighting,
-            air conditioning in summer and heating in winter, footrest … Embark
-            on our ultra-modern coaches, relax and arrive at your destination in
-            great shape!
+            Kai Jewelry
               </p>
             </MDBCol>
 
@@ -43,8 +40,8 @@ export default function App() {
                 </a>
               </p>
               <p>
-                <a href='/ticket' className='text-reset'>
-                  My Tickets
+                <a href='/products' className='text-reset'>
+                  Necklaces
                 </a>
               </p>
               <p>
@@ -62,7 +59,7 @@ export default function App() {
               </p>
               <p>
                 <MDBIcon icon="envelope" className="me-3" />
-                ezhighways@contact.com
+                kaijewelry@contact.com
               </p>
               <p>
                 <MDBIcon icon="phone" className="me-3" /> + 1 514 222 4455
@@ -76,9 +73,9 @@ export default function App() {
       </section>
 
       <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © 2022 Copyright:
-        <a className='text-reset fw-bold' href='https://localhost:3000/home'>
-          Ez Highways
+        © 2023 Copyright:
+        <a className='text-reset fw-bold' href='/home'>
+          Kai
         </a>
       </div>
     </MDBFooter>
