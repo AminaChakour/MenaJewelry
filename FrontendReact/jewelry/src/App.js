@@ -20,6 +20,7 @@ import EditProfile from './components/User/EditProfile.js';
 import SelectedProd from './components/User/SelectedProd.js';
 import Home from './components/General/Home.js';
 import LogOut from './components/General/LogOut.js';
+import Cart from './components/User/Cart.js';
 
 import { ReactSession } from "react-client-session";  
 
@@ -45,6 +46,9 @@ function App() {
             <Route exact path="/editprofile" element={<EditProfile/>} />
             <Route exact path="/productDetails" element={<SelectedProd/>} />
             <Route exact path="/logout" element={<LogOut/>} />
+            <Route exact path="/cart" element={<Cart/>} />
+
+
  
 
    

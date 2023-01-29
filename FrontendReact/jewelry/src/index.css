@@ -303,3 +303,41 @@ height: 450px;
   text-align: center !important;
   justify-content: center !important;
 }
+
+.CartCard{
+  margin-left:2% !important;
+  width:95%;
+  background-color: white;
+  margin-top:2% !important;
+  border-style: solid;
+  border-color:gray;
+  border-width: 1px;
+  height:300px !important;
+}
+
+.CartImage{
+
+  height:100%;
+  margin-top:0% !important;
+  width:350px !important;
+
+}
+
+.CartIconsDiv{
+
+  clear:right !important;
+  float:right;
+}
+
+.CartIcons{
+
+  clear: right !important;
+  float:right;
+}
+
+.CartIcons:hover{
+
+ 
+  cursor: pointer;
+  color:red !important;
+}

@@ -98,7 +98,8 @@ def userApi(request,id=0):
 @csrf_exempt
 def CartApi(request,id=0):
     if request.method=='GET':
-        carts= Cart.objects.get(UserId=['UserId'])
+
+        carts= Cart.objects.filter(UserId__in =id)
         cart_serializer = CartSerializer(carts,many=True)
         return JsonResponse(cart_serializer.data,safe=False)
     
@@ -133,3 +134,13 @@ def CartApi(request,id=0):
         cart.delete()
         return JsonResponse("Deleted successfully",safe=False)
 
+@csrf_exempt
+def ProductsByIdsApi(request):
+     if request.method=='POST':
+        print(request)
+        ids_data=JSONParser().parse(request)
+        ids = ids_data['ids']
+        ids = ids.split()
+        products= Product.objects.filter(ProductId__in =ids)
+        product_serializer = ProductSerializer(products,many=True)
+        return JsonResponse(product_serializer.data,safe=False)
