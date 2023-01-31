@@ -53,11 +53,11 @@ const LogIn = () => {
   function errorClass(error) {
     return error.length === 0 ? "" : "has-error";
   }
-  /*
+  
   function sleep(milliseconds) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
-*/
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -81,8 +81,23 @@ const LogIn = () => {
           title: "Success",
           text: "Welcome " + data.firstname + ".",
           icon: "success",
-          timer: 3000,
+          timer: 3000
         });
+        if (ReactSession.get("userEmail") === "admin@gmail.com") {
+          sleep(2000).then((r) => {
+            window.location.href = "/editproducts";
+          });
+          
+        }
+        else
+        {
+          sleep(2000).then((r) => {
+            window.location.href = "/products";
+          });
+        }
+
+        
+        
       });
   }
 

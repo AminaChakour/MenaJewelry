@@ -75,7 +75,6 @@ const SelectedProd = () => {
           }}
           className="btn btn-warning"
         >
-          {" "}
           ADD TO CART
         </button>
       </div>

@@ -22,7 +22,7 @@ export const NavLink = styled(Link)`
     height: 100%;
     cursor: pointer;
     &.active{
-        color:#5A4181;
+        color:#948D48;
         font-weight:bold;
      
 
@@ -30,7 +30,7 @@ export const NavLink = styled(Link)`
     &:hover{
         transition:all 0.2s ease-in-out;
         
-        color:#fcb315;
+        color:#948D48 ;
     }
 
 
@@ -52,7 +52,7 @@ export const NavImg=styled.div`
 display:flex;
 align-items:center;
 
-@media screen and (max-width:768px){
+@media screen and (max-width:750px){
     
     display:none;
 }
@@ -76,34 +76,15 @@ margin-left:-100px;
 margin-right:30px;
 width:40px;
 height:40px;
-background-color:wheat;
 text-decoration:none;
-color:black;
+color:#AEAA80;
 border-radius:100%;
 margin-top:20px;
 &:hover{
     transition:all 0.2s ease-in-out;
     background:aliceblue;
-    color:#010606;
-}
+    color:#948D48;
 
-
-`
-
-export const NavBtnLink=styled(Link)`
-border-radius:4px;
-background:#fcb315;
-padding:10px 22px;
-color:#fff;
-border:none;
-outline:none;
-cursor:pointer;
-transition:all 0.2s ease-in-out;
-text-decoration:none;
-&:hover{
-    transition:all 0.2s ease-in-out;
-    background:#fff;
-    color:#010606;
 }
 
 

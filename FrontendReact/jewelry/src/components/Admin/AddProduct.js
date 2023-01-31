@@ -122,9 +122,7 @@ const AddProduct = () => {
             placeholder="Image"
             onChange={(e) => setImageUpload(e.target.files[0])}
           />
-          {imageList.map((url) => {
-            return <img alt="y" src={url} />;
-          })}
+          
         </div>
 
         <div className="d-grid">

@@ -101,7 +101,7 @@ html,
   transition: all 0.3s;
 }
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: #cfc592;
   box-shadow: none;
 }
 
@@ -118,8 +118,9 @@ html,
 
 .btn-warning{
 color:white !important;
-background-color:#5A4181 !important;
-border:none !important;
+background-color:#a39f69 !important;
+border:inset !important;
+border-color: #a39f69 !important ;
 }
 
 .divcreateacc {
@@ -130,12 +131,12 @@ border:none !important;
   margin: auto;
   text-align: center;
   font-size: 14px;
-  color: dimgray;
+  color: rgb(190, 176, 132);
   text-decoration: underline;
 }
 
 .errorColor {
-  color: red;
+  color: rgb(143, 101, 101);
 }
 
 .ProductCard {
@@ -160,8 +161,8 @@ border:none !important;
 }
 
 .ProductListImages:hover {
-  border-color: #e7c507;
-  border-style: groove;
+  border-color: #b5ad7f;
+  border-style: inset;
   border-width: 5px;
   
 }
@@ -229,7 +230,7 @@ height: 450px;
   border-radius: 0 !important;
 }
 .form-control:focus{
-  border-color: #e7c507 !important;
+  border-color: #bdb37a !important;
 
 }
 
@@ -252,7 +253,7 @@ height: 450px;
 .ProductDetails{
 
   font-family: monospace;
-  color:rgb(29, 29, 29);
+  color:rgb(150, 143, 87);
   margin:auto;
 }
 
@@ -269,7 +270,7 @@ height: 450px;
 .pagination > li > a
 {
     background-color: white;
-    color: #5A4181;
+    color: #b9b187;
     border-radius: 0 !important;
 }
 
@@ -278,7 +279,7 @@ height: 450px;
 .pagination > li > span:focus,
 .pagination > li > span:hover
 {
-    color: #5a5a5a;
+    color: #c7c392;
     background-color: #eee;
     border-color: #ddd;
 }
@@ -286,14 +287,14 @@ height: 450px;
 .pagination > .active > a
 {
     color: white;
-    background-color: #5A4181 !Important;
-    border: solid 1px #5A4181 !Important;
+    background-color: #d8d3a6 !Important;
+    border: solid 1px #aba675 !Important;
 }
 
 .pagination > .active > a:hover
 {
-    background-color: #5A4181 !Important;
-    border: solid 1px #5A4181;
+    background-color: #d8d3a6 !Important;
+    border: solid 1px #aba675;
 }
 
 .loader{
@@ -310,7 +311,7 @@ height: 450px;
   background-color: rgb(252, 248, 242);
   margin-top:2% !important;
   border-style: solid;
-  border-color:gray;
+  border-color:rgb(194, 179, 134) !important;
   border-width: 1px;
   height:300px !important;
 }
@@ -339,5 +340,143 @@ height: 450px;
 
  
   cursor: pointer;
-  color:red !important;
+  color:rgb(108, 97, 97) !important;
+}
+
+.btnEditProd{
+  width:100% !important;
+  margin:auto !important;
+
+  background-color: rgb(178, 171, 142) !important;
+  border:none;
+  color: whitesmoke;
+
+}
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* Modal */
+.overlay {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.modalContainer {
+  max-width: 900px;
+  width: 100%;
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10000px 0px rgba(255, 255, 255, 0.75);
+  border-radius: 30px;
+  border:solid;
+  border-color: #aba675;
+  border-width: 1px;
+  cursor: default;
+}
+
+img {
+  object-fit: cover;
+
+}
+
+.modalRight {
+  width: 100%;
+  top: 0%;
+}
+
+.closeBtn {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+  padding: 1rem 1rem;
+}
+.btnContainer button {
+  width: 100%;
+  margin: .5rem;
+  padding: 16px 0;
+  /* border: none; */
+  border: 1px solid #411b57;
+  /* color: #ffffff; */
+}
+
+.btnPrimary {
+  background-color: rgb(178, 171, 142);
+  color: white;
+  
+  border:solid;
+  border-color:rgb(178, 171, 142) !important;
+  border-radius: 40px;
+
+}
+
+.btnOutline {
+  /* background-color: #a76a99; */
+  background-color: white;
+  color: rgb(178, 171, 142);
+
+  border:solid;
+  border-color:rgb(178, 171, 142) !important;
+  border-radius: 40px;
+}
+
+.bold {
+  font-weight: 600;
+}
+@media screen and (max-width: 500px) {
+  .modalContainer {
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100vh;
+  }
+  img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+  }
+
+  .heading {
+    margin: 1rem;
+  }
+}
+
+
+.ModalImage{
+
+  height:100%;
+  margin-top:2% !important;
+  padding: 1rem;
+  width:350px !important;
+  border-radius: 50%;
+
 }

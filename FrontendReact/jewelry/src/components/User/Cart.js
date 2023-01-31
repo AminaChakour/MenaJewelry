@@ -6,9 +6,11 @@ import ReactLoading from "react-loading";
 import Swal from "sweetalert2";
 import { RiDeleteBin3Fill } from "react-icons/ri";
 
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 const Cart = () => {
+  if (ReactSession.get("idUser") === null) {
+    window.location.href = "/login";
+  }
   const [cartItems, setCartItems] = useState([]);
   const [prods, setProds] = useState([]);
   const [loading, setLoading] = useState(false);

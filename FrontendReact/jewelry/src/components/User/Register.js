@@ -3,8 +3,13 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import axios from "axios";
 import { FormErrors } from "./FormErrors";
+import { ReactSession } from "react-client-session";
+
 
 const SignUp = () => {
+  if (ReactSession.get("userEmail") === "admin@gmail.com") {
+    window.location.href = "/home";
+  }
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -170,7 +175,9 @@ const SignUp = () => {
         birthdayValid
     );
   }
-
+  function wait(ms) {
+    return new Promise((rsv) => setTimeout(rsv, ms));
+  }
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -199,6 +206,9 @@ const SignUp = () => {
             text: data.info.firstname + " registered !",
             icon: "success",
             confirmButtonText: "Ok",
+          });
+          wait(2000).then(() => {
+            window.location.href = "/login";
           });
         } else if (data.status === "error") {
           Swal.fire({

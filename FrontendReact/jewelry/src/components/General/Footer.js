@@ -19,10 +19,10 @@ export default function App() {
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
                 <MDBIcon icon="gem" className="me-3" />
-                KAI J E W E L S
+                K A I - J E W E L S
               </h6>
               <p>
-            Kai Jewelry
+              Kai Jewelry
               </p>
             </MDBCol>
 
@@ -72,10 +72,10 @@ export default function App() {
         </MDBContainer>
       </section>
 
-      <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © 2023 Copyright:
+      <div className='text-center p-4' style={{ backgroundColor: '#F1F1E9' }}>
+        © 2023 Copyright<h1></h1>
         <a className='text-reset fw-bold' href='/home'>
-          Kai
+             K A I
         </a>
       </div>
     </MDBFooter>

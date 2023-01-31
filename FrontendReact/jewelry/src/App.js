@@ -21,6 +21,8 @@ import SelectedProd from './components/User/SelectedProd.js';
 import Home from './components/General/Home.js';
 import LogOut from './components/General/LogOut.js';
 import Cart from './components/User/Cart.js';
+import EditProducts from './components/Admin/EditProduct';
+
 import Footer from './components/General/Footer'
 
 import { ReactSession } from "react-client-session";  
@@ -49,6 +51,7 @@ function App() {
             <Route exact path="/logout" element={<LogOut/>} />
             <Route exact path="/cart" element={<Cart/>} />
 
+            <Route exact path="/editproducts" element={<EditProducts/>} />
 
  
 

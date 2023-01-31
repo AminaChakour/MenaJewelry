@@ -38,7 +38,9 @@ def productsApi(request,id=0):
         product_serializer=ProductSerializer(product,data=product_data)
         if product_serializer.is_valid():
             product_serializer.save()
-            return JsonResponse("Updated Successfully",safe=False)
+            data = {"status": "success" , "info": product_data}
+            return JsonResponse(data,safe=False)
+        data = {"status": "error"}
         return JsonResponse("Failed to Update",safe=False)
 
     elif request.method=='DELETE':

@@ -2,10 +2,14 @@ import React from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useState } from "react";
+import { ReactSession } from "react-client-session";
 
 import { FormErrors } from "./FormErrors";
 
 const EditProfile = () => {
+  if (ReactSession.get("idUser") === null) {
+    window.location.href = "/home";
+  }
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -17,6 +21,7 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  
   const [formErrors, setFormErrors] = useState({
     lastname: "",
     firstname: "",
@@ -220,6 +225,7 @@ const EditProfile = () => {
   }
 
   return (
+    <>
     <div className="registerStyle">
       <form onSubmit={handleSubmit}>
         <h3>Edit your profile</h3>
@@ -376,15 +382,17 @@ const EditProfile = () => {
           </button>
         </div>
       </form>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
     </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          </>
   );
 };
 export default EditProfile;

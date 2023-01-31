@@ -30,8 +30,15 @@ const Navbar = () => {
             <NavLink to="/addProd" activeStyle>
               ADD PRODUCT
             </NavLink>
-          )}
-
+          )} 
+      
+      {ReactSession.get("fullname") !== null &&
+            ReactSession.get("userEmail") !== "admin@gmail.com" && (
+              <NavLink to="/editprofile" activeStyle> 
+              EDIT PROFILE
+               
+              </NavLink>
+            )}
           <NavImg>
             <img src="Logo.png" alt="Logo image" />
           </NavImg>
@@ -41,16 +48,22 @@ const Navbar = () => {
             </NavLink>
           )}
 
+
+{ReactSession.get("userEmail") === "admin@gmail.com" && (
+            <NavLink to="/editproducts" activeStyle>
+              EDIT PRODUCTS
+            </NavLink>
+          )}
+          
+
+          {ReactSession.get("userEmail") !== "admin@gmail.com" && (
           <NavLink to="/products" activeStyle>
             PRODUCTS
           </NavLink>
+          )}
 
-          {ReactSession.get("fullname") !== null &&
-            ReactSession.get("userEmail") !== "admin@gmail.com" && (
-              <NavBtn>
-                <NavBtnLink to="/editprofile"> EDIT PROFILE</NavBtnLink>
-              </NavBtn>
-            )}
+
+          
 
           {ReactSession.get("fullname") !== null && (
             <NavLink to="/logout" activeStyle>
@@ -59,9 +72,12 @@ const Navbar = () => {
           )}
         </NavMenu>
 
+
+        {ReactSession.get("userEmail") !== "admin@gmail.com" &&  ReactSession.get("idUser") !== null && (
         <NavCart to="/cart" activeStyle>
           <HiOutlineShoppingBag size={35} />
         </NavCart>
+        )}
       </Nav>
     </div>
   );
