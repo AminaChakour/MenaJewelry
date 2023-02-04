@@ -314,14 +314,15 @@ height: 450px;
   border-color:rgb(194, 179, 134) !important;
   border-width: 1px;
   height:300px !important;
+  border-radius: 50px;
 }
 
 .CartImage{
 
   height:100%;
-  margin-top:0% !important;
   width:350px !important;
-
+  padding: 0.5rem;
+  border-radius: 50px;
 }
 
 .CartIconsDiv{

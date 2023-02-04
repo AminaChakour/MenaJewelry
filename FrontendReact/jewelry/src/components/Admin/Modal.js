@@ -7,7 +7,6 @@ const Modal = ({ open, onClose, onSave, prod }) => {
   const [Title, setTitle] = useState("");
   const [Price, setPrice] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
-
   const [Description, setDescription] = useState("");
   const [ProductId, setProductId] = useState("");
   const [Image, setImage] = useState("");

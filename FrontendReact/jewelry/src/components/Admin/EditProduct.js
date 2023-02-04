@@ -196,7 +196,7 @@ const ListProducts = (props) => {
                           onClose={() => setOpenModal(false)}
                           onSave={(newProd) => handleUpdate(newProd)}
                           prod={prodToEdit}
-                       
+                                                
                         />
                       </div>
                     </>

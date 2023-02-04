@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from amtranspo.models import User,Product,Cart
+from amtranspo.models import User,Product,SCart
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -32,7 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
-        model= Cart
+        model= SCart
         fields=(
             'CartId',
             'UserId',

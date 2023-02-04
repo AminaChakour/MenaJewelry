@@ -6,6 +6,7 @@ import { ReactSession } from "react-client-session";
 
 const SelectedProd = () => {
   const [Product, setProduct] = useState([]);
+  const [Quantity,setQuantity] = useState(1);
 
   useEffect(() => {
     axios
@@ -14,12 +15,13 @@ const SelectedProd = () => {
       )
       .then((res) => {
         setProduct(res.data);
-        console.log("result : ", res.data);
+        console.log(res.data)
+        console.log( ReactSession.get("SelectedProductId"))
+  
       });
   }, []);
 
   function addToCart(ProductId) {
-    const Quantity = "1";
     const UserId = ReactSession.get("idUser");
     if (UserId === null) {
       window.location.href = "/login";
@@ -30,7 +32,7 @@ const SelectedProd = () => {
         JSON.stringify({
           UserId,
           ProductId,
-          Quantity,
+          Quantity
         })
       )
       .then((res) => {
@@ -68,6 +70,14 @@ const SelectedProd = () => {
         <br />
         <h4 className="ProductDetails">{Product.Price}$</h4>
         <br />
+        <h4> Quantity</h4>
+        <select onChange={(e)=>setQuantity(e.target.value)}>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
         <br />
         <button
           onClick={() => {

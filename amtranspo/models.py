@@ -27,7 +27,7 @@ class Product(models.Model):
 
 
 
-class Cart(models.Model):
+class SCart(models.Model):
     CartId = models.AutoField(primary_key=True)
     UserId = models.CharField(max_length=10)
     ProductId = models.CharField(max_length=10)

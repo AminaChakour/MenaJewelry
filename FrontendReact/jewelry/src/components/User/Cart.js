@@ -16,23 +16,32 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get("http://127.0.0.1:8000/cart/" + ReactSession.get("idUser"))
       .then((res) => {
         const data = res.data;
         setCartItems(data);
+        console.log('items',data)
         var productsIds = [];
+
+
         data.forEach((element) => {
           productsIds.push(element.ProductId);
         });
+
         var ids = productsIds.join(" "); //create strings from array
+        ReactSession.set("ids",ids)
 
         axios
           .post("http://127.0.0.1:8000/productsByIds", JSON.stringify({ ids }))
           .then((res) => {
             setProds(res.data);
+            console.log('prods',res.data)
           });
       });
+
+      setLoading(false)
   }, []);
 
   return (
@@ -59,9 +68,10 @@ const Cart = () => {
                     <h3 className="CartPrice">{currentProd.Price}$</h3>
 
                     <h3 className="CartQuantity">
-                      Qt &nbsp;
+                      Quantity &nbsp;
                       <select>
-                        <option>{cartItems[index].Quantity}</option>
+                        {console.log(String(currentProd.ProductId))}
+                        <option>{cartItems[cartItems.findIndex(p => p.ProductId == currentProd.ProductId)].Quantity}</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>

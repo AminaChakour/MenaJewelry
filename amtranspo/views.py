@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from amtranspo.models import User,Product,Cart
+from amtranspo.models import User,Product,SCart 
 from amtranspo.serializers import UserSerializer,ProductSerializer,CartSerializer
 # Create your views here.
 
@@ -100,31 +100,38 @@ def userApi(request,id=0):
 @csrf_exempt
 def CartApi(request,id=0):
     if request.method=='GET':
-
-        carts= Cart.objects.filter(UserId__in =id)
+        carts= SCart.objects.filter(UserId =id)
         cart_serializer = CartSerializer(carts,many=True)
         return JsonResponse(cart_serializer.data,safe=False)
     
     elif request.method=='POST':
-        cart_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
-        cart_serializer = CartSerializer(data=cart_data)
-        #cartExists = Cart.objects.filter(email=cart_data['email'])  #check if there is a user with this email in the db
-
-        #if len(cartExists)>0 :
-            #data = {"status": "exists" }
-           # return JsonResponse(data,safe=False)
-
-        if cart_serializer.is_valid() :
-            cart_serializer.save()         # save to mongodb
-            data = {"status": "success" , "info": cart_data}
-            return JsonResponse(data,safe=False)
+        cart_data=JSONParser().parse(request)  
+        try:
+            cart = SCart.objects.get(UserId=cart_data['UserId'],ProductId=cart_data['ProductId'])  
+            data = {"status": "success"}
+            print('tytyt')
+            oldQ = cart.Quantity
+            newQ = cart_data['Quantity']
+            totalQ = int(oldQ) + int(newQ)
+            updatedCart = {'UserId':cart_data['UserId'], 'ProductId':cart_data['ProductId'] ,'Quantity': totalQ}
+            cart_serializer=CartSerializer(cart,data=updatedCart)
+            if cart_serializer.is_valid():
+                cart.delete()
+                cart_serializer.save()
+                return JsonResponse(data,safe=False)
+        except SCart.DoesNotExist:
+            cart_serializer = CartSerializer(data=cart_data)
+            if cart_serializer.is_valid():
+                cart_serializer.save()         # save to mongodb
+                data = {"status": "success" , "info": cart_data}
+                return JsonResponse(data,safe=False)
 
         data = {"status": "error" }
         return JsonResponse(data,safe=False)
 
     elif request.method=='PUT':
         cart_data=JSONParser().parse(request)
-        cart=Cart.objects.get(CartId=cart_data['CartId'])
+        cart=SCart.objects.get(CartId=cart_data['CartId'])
         cart_serializer=CartSerializer(cart,data=cart_data)
         if cart_serializer.is_valid():
             cart_serializer.save()
@@ -132,7 +139,7 @@ def CartApi(request,id=0):
         return JsonResponse("Failed to Update",safe=False)
 
     elif request.method=='DELETE':
-        cart=Cart.objects.get(CartId=id)
+        cart=SCart.objects.get(CartId=id)
         cart.delete()
         return JsonResponse("Deleted successfully",safe=False)
 
