@@ -6,7 +6,6 @@ import ReactLoading from "react-loading";
 import Swal from "sweetalert2";
 import { RiDeleteBin3Fill } from "react-icons/ri";
 
-
 const Cart = () => {
   if (ReactSession.get("idUser") === null) {
     window.location.href = "/login";
@@ -16,10 +15,16 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [Subtotal, setSubtotal] = useState(0);
 
-
-
   useEffect(() => {
-    setLoading(true)
+
+    LoadData()
+
+  
+  }, []);
+
+  const LoadData = () =>{
+
+    setLoading(true);
 
     var carts = [];
     axios
@@ -30,71 +35,100 @@ const Cart = () => {
         carts = data;
         var productsIds = [];
 
-
         data.forEach((element) => {
           productsIds.push(element.ProductId);
         });
 
         var ids = productsIds.join(" "); //create strings from array
-        ReactSession.set("ids",ids)
+        ReactSession.set("ids", ids);
 
         axios
           .post("http://127.0.0.1:8000/productsByIds", JSON.stringify({ ids }))
           .then((res) => {
             const data = res.data;
             setProds(data);
-            var total=0;
-            
+            var total = 0;
+
             carts.forEach((c) => {
-                var qt= c.Quantity;
-                var price = data[data.findIndex(p=>p.ProductId == c.ProductId)].Price;
-                total = total + parseFloat(qt)*parseFloat(price);
-            })
-            setSubtotal(total)
+              var qt = c.Quantity;
+              var price =
+                data[data.findIndex((p) => p.ProductId == c.ProductId)].Price;
+              total = total + parseFloat(qt) * parseFloat(price);
+            });
+            setSubtotal(total);
           });
       });
 
-      setLoading(false)
-  }, []);
-
-  const checkOut= () => {
-
-
+    setLoading(false);
 
   }
 
-  const deleteCart =(CartId,prodId) =>  {
 
- axios.delete("http://127.0.0.1:8000/cart/" + CartId)
- .then((res) => {
+  const CheckOut = () => {};
 
-  setProds(prods.filter(p => p.ProductId !== prodId))
+  const DeleteCart = (CartId, prodId) => {
+    setLoading(true);
+    axios.delete("http://127.0.0.1:8000/cart/" + CartId).then((res) => {
+      setCartItems(cartItems.filter((p) => p.ProductId !== prodId));
+      setProds(prods.filter((p) => p.ProductId !== prodId));
+    });
+  };
 
+  useEffect(() => {
+    setLoading(true);
+    var total = 0;
 
- })
+    prods.forEach((p) => {
+      var price = p.Price;
+      var qt =
+        cartItems[cartItems.findIndex((c) => c.ProductId == p.ProductId)]
+          .Quantity;
+      total = total + parseFloat(qt) * parseFloat(price);
+    });
+    setSubtotal(total);
 
-  }
+    setLoading(false);
+  }, [prods]);
+
+  const QuantityChange = (NewQuantity, CurrentProduct) => {
+    setLoading(true);
+
+    var cart = cartItems[ cartItems.findIndex((p) => p.ProductId == CurrentProduct.ProductId)];
+    cart['Quantity'] = NewQuantity;
+    axios.put("http://127.0.0.1:8000/cart",cart).then((res)=>{
+
+    if(res.data === "success")
+    {
+       LoadData()
+    }
+
+    });
+
+  };
+
   return (
     <>
       {loading ? (
         <div className="loader">
-          <ReactLoading type="cylon" color="gray" height={667} width={400} />
+          <ReactLoading className="loader" type="cylon" color="#EADDCA" height={667} width={400} />
         </div>
       ) : (
         <div>
           <div className="row align-items-center CartHeader">
-    
-                <button className= "col-6 CartSubtotal" > SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${Subtotal} </button>
-                <button className= "col-6 CartCheckout" onClick={() => checkOut}> PROCEED TO CHECKOUT </button>
-              </div>
+            <button className="col-6 CartSubtotal">
+              SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${Subtotal}
+            </button>
+            <button className="col-6 CartCheckout" onClick={() => CheckOut}>
+              PROCEED TO CHECKOUT
+            </button>
+          </div>
           {prods.map((currentProd) => {
             return (
               <>
-            
                 <div className="row CartCard align-items-center">
                   <img
                     className="d-none d-md-block col-md-3 col-lg-4 col-xl-4 col-sm-1 CartImage"
-                    alt="image"
+                    alt="product"
                     src={currentProd.Image}
                   />
 
@@ -105,8 +139,20 @@ const Cart = () => {
 
                     <h3 className="CartQuantity">
                       Quantity &nbsp;
-                      <select>
-                        <option>{cartItems[cartItems.findIndex(p => p.ProductId == currentProd.ProductId)].Quantity}</option>
+                      <select
+                        onChange={(e) =>
+                          QuantityChange(e.target.value, currentProd)
+                        }
+                      >
+                        <option>
+                          {
+                            cartItems[
+                              cartItems.findIndex(
+                                (p) => p.ProductId == currentProd.ProductId
+                              )
+                            ].Quantity
+                          }
+                        </option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -118,7 +164,16 @@ const Cart = () => {
 
                   <div className="CartIconsDiv col-xs-4 col-lg-4 col-md-4  col-xl-4 col-sm-4 ">
                     <RiDeleteBin3Fill
-                    onClick={() => deleteCart(cartItems[cartItems.findIndex(p => p.ProductId == currentProd.ProductId)].CartId, currentProd.ProductId)}
+                      onClick={() =>
+                        DeleteCart(
+                          cartItems[
+                            cartItems.findIndex(
+                              (p) => p.ProductId == currentProd.ProductId
+                            )
+                          ].CartId,
+                          currentProd.ProductId
+                        )
+                      }
                       size={50}
                       color="gray"
                       className="CartIcons"
@@ -130,6 +185,17 @@ const Cart = () => {
           })}
         </div>
       )}
+      {prods.length == 0 && <h1>Empty cart</h1>}
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <br />
       <br />
       <br />

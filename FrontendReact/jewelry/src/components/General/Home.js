@@ -58,7 +58,7 @@ const Home = () => {
             <ReactLoading
               className="loader"
               type="cylon"
-              color="gray"
+              color="#EADDCA"
               height={667}
               width={400}
             />

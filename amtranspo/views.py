@@ -125,7 +125,6 @@ def CartApi(request,id=0):
                 cart_serializer.save()         # save to mongodb
                 data = {"status": "success" , "info": cart_data}
                 return JsonResponse(data,safe=False)
-
         data = {"status": "error" }
         return JsonResponse(data,safe=False)
 
@@ -135,8 +134,8 @@ def CartApi(request,id=0):
         cart_serializer=CartSerializer(cart,data=cart_data)
         if cart_serializer.is_valid():
             cart_serializer.save()
-            return JsonResponse("Updated Successfully",safe=False)
-        return JsonResponse("Failed to Update",safe=False)
+            return JsonResponse("success",safe=False)
+        return JsonResponse("error",safe=False)
 
     elif request.method=='DELETE':
         cart=SCart.objects.get(CartId=id)
