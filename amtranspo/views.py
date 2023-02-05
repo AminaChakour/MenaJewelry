@@ -146,10 +146,9 @@ def CartApi(request,id=0):
 @csrf_exempt
 def ProductsByIdsApi(request):
      if request.method=='POST':
-        print(request)
         ids_data=JSONParser().parse(request)
-        ids = ids_data['ids']
-        ids = ids.split()
+        ids = ids_data['ids'] #string
+        ids = ids.split()  #array
         products= Product.objects.filter(ProductId__in =ids)
         product_serializer = ProductSerializer(products,many=True)
         return JsonResponse(product_serializer.data,safe=False)

@@ -341,7 +341,7 @@ height: 450px;
 
  
   cursor: pointer;
-  color:rgb(108, 97, 97) !important;
+  color:rgb(231, 35, 35) !important;
 }
 
 .btnEditProd{
@@ -479,5 +479,39 @@ img {
   padding: 1rem;
   width:350px !important;
   border-radius: 50%;
+
+}
+
+.CartHeader{
+  margin-top: 1% !important;
+  background-color: rgb(142, 102, 102);
+  border-radius: 20px;
+  height:60px;
+  width:90%;
+  text-align: center;
+  margin: auto !important;
+  text-align: center !important;
+
+}
+.CartSubtotal{
+  cursor:text !important;
+  text-align: center;
+  background-color: rgb(142, 102, 102);
+  color: white;
+  height:100%;
+  border-radius: 20px;
+  border:none;
+
+}
+
+
+.CartCheckout{
+  background-color: rgb(144, 112, 112);
+  color: white;
+  height:100%;
+  border-radius: 20px;
+  border:none;
+  border-left: solid;
+
 
 }
