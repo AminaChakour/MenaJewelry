@@ -22,8 +22,9 @@ import Home from './components/General/Home.js';
 import LogOut from './components/General/LogOut.js';
 import Cart from './components/User/Cart.js';
 import EditProducts from './components/Admin/EditProduct';
-
+import PayPal from './components/User/PayPal';
 import Footer from './components/General/Footer'
+import Success from './components/User/Success'
 
 import { ReactSession } from "react-client-session";  
 
@@ -50,8 +51,9 @@ function App() {
             <Route exact path="/productDetails" element={<SelectedProd/>} />
             <Route exact path="/logout" element={<LogOut/>} />
             <Route exact path="/cart" element={<Cart/>} />
-
+            <Route exact path="/paypal" element={<PayPal />} />
             <Route exact path="/editproducts" element={<EditProducts/>} />
+            <Route exact path="/success" element={<Success/>} />
 
  
 

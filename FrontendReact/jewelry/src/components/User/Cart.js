@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, Navigate,useEffect } from "react";
 import React from "react";
 import { ReactSession } from "react-client-session";
 import ReactLoading from "react-loading";
@@ -64,7 +64,6 @@ const Cart = () => {
   }
 
 
-  const CheckOut = () => {};
 
   const DeleteCart = (CartId, prodId) => {
     setLoading(true);
@@ -106,6 +105,13 @@ const Cart = () => {
 
   };
 
+  
+  const CheckOut = () => {
+
+    ReactSession.set("Subtotal", Subtotal)
+    window.location.href = '/paypal';
+   };
+
   return (
     <>
       {loading ? (
@@ -118,7 +124,7 @@ const Cart = () => {
             <button className="col-6 CartSubtotal">
               SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${Subtotal}
             </button>
-            <button className="col-6 CartCheckout" onClick={() => CheckOut}>
+            <button className="col-6 CartCheckout" onClick={() => CheckOut()}>
               PROCEED TO CHECKOUT
             </button>
           </div>
@@ -185,7 +191,7 @@ const Cart = () => {
           })}
         </div>
       )}
-      {prods.length == 0 && <h1>Empty cart</h1>}
+      {prods.length == 0 && <div className="EmptyCart" >Empty cart</div>}
 
       <br />
       <br />

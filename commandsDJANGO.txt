@@ -33,6 +33,28 @@ pip install dnspython
 venv\Scripts\activate
 python manage.py runserver
 
+
+
+PAYPAL//
+Business:
+email : sb-0tvua23483973@business.example.com
+password : K?J^z01n
+
+client id : AfCvbSQAq2fL3w1SdaDamPswUmyFawQTwFcZGLxU22p6ndEVPVHyEXqP1d7TopBEP6kylNP6F822UJ-i
+
+Personal:
+sb-43pd47z23483972@personal.example.com
+W#7fY(J8
+
+
+
+
+
+
+
+
+
+
  Diplôme en Conception de bases de données ;
  Diplômée en Ingénierie et Mathématiques ;
  Grandes capacités en exploitation de bases de données et en création des requêtes SQL ;
