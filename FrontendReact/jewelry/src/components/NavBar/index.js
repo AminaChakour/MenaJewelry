@@ -62,12 +62,19 @@ const Navbar = () => {
           </NavLink>
           )}
 
+{ReactSession.get("fullname") !== null &&
+            ReactSession.get("userEmail") !== "admin@gmail.com" && (
+              <NavLink to="/orders" activeStyle> 
+              ORDERS
+               
+              </NavLink>
+            )}
 
           
 
           {ReactSession.get("fullname") !== null && (
             <NavLink to="/logout" activeStyle>
-              LOG OUT
+              LOGOUT
             </NavLink>
           )}
         </NavMenu>

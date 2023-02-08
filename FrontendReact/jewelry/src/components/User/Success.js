@@ -13,64 +13,54 @@ const Success = () => {
   const [cartItems, setCartItems] = useState([]);
   const [prods, setProds] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState("");
   const [orderTotal, setOrderTotal] = useState(0);
-  const [orderNumber, setOrderNumber] = useState('');
-  const [purchaseDate, setPurchaseDate] = useState('');
-  const [fullName, setFullName] = useState('')
+  const [orderNumber, setOrderNumber] = useState("");
+  const [purchaseDate, setPurchaseDate] = useState("");
+  const [fullName, setFullName] = useState("");
   const form = useRef();
-  
-
 
   useEffect(() => {
-    
-
-    setFullName(ReactSession.get('fullname'));
-    setOrderTotal(ReactSession.get('Total'));
+    setFullName(ReactSession.get("fullname"));
+    setOrderTotal(ReactSession.get("Total"));
     setPurchaseDate(new Date().toLocaleString().replace(",", ""));
     const dt = new Date().toLocaleString().replace(",", "");
-    setOrderNumber("KAI-" + ReactSession.get("fullname")[0] + ReactSession.get("fullname")[1] +'-'+ dt.replace("/", "-").replace("/", "-").replace(" ", "-"));
-    setUserEmail(ReactSession.get('userEmail'))
-
-
-  
-    
-    // LoadData()
+    setOrderNumber(
+      "KAI-" +
+        ReactSession.get("fullname")[0] +
+        ReactSession.get("fullname")[1] +
+        "-" +
+        dt.replace("/", "-").replace("/", "-").replace(" ", "-")
+    );
+    setUserEmail(ReactSession.get("userEmail"));
   }, []);
 
-
-
   useEffect(() => {
-
     //document.getElementById("btnSubmit").click();
     //reactsession true
+  }, [userEmail]);
 
-
-}, [userEmail]);
-
-
-useEffect(() => {
-
-  
-
-
-}, [prods]);
-
-
-
+  useEffect(() => {
+    prods.forEach((prod) => {});
+  }, [prods]);
 
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
         "service_pqtli1n", //service id
-        "template_ot7qkde",  //template id
-        form.current,   //form data
-        "1TgayAGfGkg-j8WHL"  //key
+        "template_ot7qkde", //template id
+        form.current, //form data
+        "1TgayAGfGkg-j8WHL" //key
       )
       .then(
         (result) => {
-          console.log(result.text);//LOAD DATA
+          console.log(result.text);
+
+
+
+
+          LoadData();
         },
         (error) => {
           console.log(error.text);
@@ -115,13 +105,20 @@ useEffect(() => {
           />
         </div>
       ) : (
+        <div>
         <form name="myForm" ref={form} onSubmit={sendEmail}>
           <input type="hidden" value={userEmail} name="toEmail" />
           <input type="hidden" value={fullName} name="fullName" />
           <input type="hidden" value={orderTotal} name="orderTotal" />
           <input type="hidden" value={orderNumber} name="orderNumber" />
-          <input type="submit" className="btnSubmit"  id="btnSubmit"  /> 
+          <input type="submit" className="btnSubmit" id="btnSubmit" />
         </form>
+
+
+        
+        <h3> Email sent successfully, check orders for order details. Thank you.</h3>
+        </div>
+      
       )}
 
       <br />
