@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import React from "react";
 import { ReactSession } from "react-client-session";
-import Success from "./Success";
+
 
 const PayPal = () => {
   if (ReactSession.get("userEmail") == null) {
@@ -17,21 +17,17 @@ const PayPal = () => {
     intent: "capture",
   };
 
-  const idVoyageur = ReactSession.get("idUser");
+ 
   const Subtotal = ReactSession.get("Subtotal");
 
 
-  const purchaseDate = new Date().toLocaleString().replace(",", "");
-  const numBillet =
-    "EZ" +      
-    ReactSession.get("fullname")[0] +
-    ReactSession.get("fullname")[1] +
-    purchaseDate.replace("/", "-").replace("/", "-").replace(" ", "-");
 
   const taxes = 1.15
   const prixTotal = (parseFloat(Subtotal) * taxes)
     .toFixed(2) //round
     .toString();
+
+
 
   const ButtonWrapper = () => {
 
@@ -53,7 +49,7 @@ const PayPal = () => {
         onApprove={(data, actions) => {
           return actions.order.capture().then((details) => {
             
-            
+            ReactSession.set('Total',prixTotal)
             ReactSession.set('Paid',true)
             window.location.href= '/success';
             /*axios

@@ -4,6 +4,7 @@ import React from "react";
 import { ReactSession } from "react-client-session";
 import ReactLoading from "react-loading";
 import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 
 const Success = () => {
   if (ReactSession.get("Paid") !== true) {
@@ -12,27 +13,64 @@ const Success = () => {
   const [cartItems, setCartItems] = useState([]);
   const [prods, setProds] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [useremail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [orderTotal, setOrderTotal] = useState(0);
+  const [orderNumber, setOrderNumber] = useState('');
+  const [purchaseDate, setPurchaseDate] = useState('');
+  const [fullName, setFullName] = useState('')
   const form = useRef();
+  
+
+
+  useEffect(() => {
+    
+
+    setFullName(ReactSession.get('fullname'));
+    setOrderTotal(ReactSession.get('Total'));
+    setPurchaseDate(new Date().toLocaleString().replace(",", ""));
+    const dt = new Date().toLocaleString().replace(",", "");
+    setOrderNumber("KAI-" + ReactSession.get("fullname")[0] + ReactSession.get("fullname")[1] +'-'+ dt.replace("/", "-").replace("/", "-").replace(" ", "-"));
+    setUserEmail(ReactSession.get('userEmail'))
+
+
+  
+    
+    // LoadData()
+  }, []);
+
+
 
   useEffect(() => {
 
-    setUserEmail('amina.chakour@hotmail.com')
-    // LoadData()
-  }, []);
+    //document.getElementById("btnSubmit").click();
+    //reactsession true
+
+
+}, [userEmail]);
+
+
+useEffect(() => {
+
+  
+
+
+}, [prods]);
+
+
+
 
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_pqtli1n",
-        "template_ot7qkde",
-        form.current,
-        "1TgayAGfGkg-j8WHL"
+        "service_pqtli1n", //service id
+        "template_ot7qkde",  //template id
+        form.current,   //form data
+        "1TgayAGfGkg-j8WHL"  //key
       )
       .then(
         (result) => {
-          console.log(result.text);
+          console.log(result.text);//LOAD DATA
         },
         (error) => {
           console.log(error.text);
@@ -77,9 +115,12 @@ const Success = () => {
           />
         </div>
       ) : (
-        <form ref={form} onSubmit={sendEmail}>
-          <input type="email" value={useremail} name="toEmail" />
-          <input type="submit" value="Receive order confirmation by email" />
+        <form name="myForm" ref={form} onSubmit={sendEmail}>
+          <input type="hidden" value={userEmail} name="toEmail" />
+          <input type="hidden" value={fullName} name="fullName" />
+          <input type="hidden" value={orderTotal} name="orderTotal" />
+          <input type="hidden" value={orderNumber} name="orderNumber" />
+          <input type="submit" className="btnSubmit"  id="btnSubmit"  /> 
         </form>
       )}
 
