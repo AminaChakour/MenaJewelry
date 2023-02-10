@@ -44,7 +44,7 @@ const Navbar = () => {
           </NavImg>
           {ReactSession.get("idUser") == null && (
             <NavLink to="/signup" activeStyle>
-              SIGN UP
+              SIGNUP
             </NavLink>
           )}
 
@@ -58,7 +58,7 @@ const Navbar = () => {
 
           {ReactSession.get("userEmail") !== "admin@gmail.com" && (
           <NavLink to="/products" activeStyle>
-            PRODUCTS
+            SHOP
           </NavLink>
           )}
 

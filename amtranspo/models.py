@@ -32,3 +32,20 @@ class SCart(models.Model):
     UserId = models.CharField(max_length=10)
     ProductId = models.CharField(max_length=10)
     Quantity = models.CharField(max_length=2)
+
+    
+class Order(models.Model):
+    OrderId = models.AutoField(primary_key=True)
+    UserId = models.CharField(max_length=10)
+    PurchaseDate = models.CharField(max_length=20)
+    Total = models.CharField(max_length=20)
+
+class OrderDetails(models.Model):
+    OrderDetailsId  = models.AutoField(primary_key=True) 
+    OrderId = models.CharField(max_length=10)
+    ProductId = models.CharField(max_length=10)
+    Title = models.CharField(max_length=50)
+    Description = models.CharField(max_length=500,blank=True) 
+    Price = models.CharField(max_length=10)
+    Image = models.CharField(max_length=1000)
+    Quantity = models.CharField(max_length=10)

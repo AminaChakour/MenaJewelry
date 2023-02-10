@@ -3,8 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from amtranspo.models import User,Product,SCart 
-from amtranspo.serializers import UserSerializer,ProductSerializer,CartSerializer
+from amtranspo.models import User,Product,SCart,Order
+from amtranspo.serializers import OrderSerializer,OrderDetailsSerializer,UserSerializer,ProductSerializer,CartSerializer
 # Create your views here.
 
 
@@ -151,3 +151,67 @@ def ProductsByIdsApi(request):
         products= Product.objects.filter(ProductId__in =ids)
         product_serializer = ProductSerializer(products,many=True)
         return JsonResponse(product_serializer.data,safe=False)
+
+
+
+@csrf_exempt
+def OrdersApi(request,id=0):
+    """
+     if request.method=='GET':
+        products= Product.objects.all()
+        product_serializer = ProductSerializer(products,many=True)
+        return JsonResponse(product_serializer.data,safe=False)
+    """
+   
+
+    if request.method=='POST':
+        order_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
+        order_serializer = OrderSerializer(data=order_data)
+        if order_serializer.is_valid():
+            order_serializer.save()   
+    
+            data = {"status": "success" , "info":order_serializer.data}
+        
+            return JsonResponse(data,safe=False)
+        data = {"status": "failed" }
+        return JsonResponse(data,safe=False)
+"""
+   elif request.method=='PUT':
+        product_data=JSONParser().parse(request)
+        product=Product.objects.get(ProductId=product_data['ProductId'])
+        product_serializer=ProductSerializer(product,data=product_data)
+        if product_serializer.is_valid():
+            product_serializer.save()
+            data = {"status": "success" , "info": product_data}
+            return JsonResponse(data,safe=False)
+        data = {"status": "error"}
+        return JsonResponse("Failed to Update",safe=False)
+
+    elif request.method=='DELETE':
+        product=Product.objects.get(ProductId=id)
+        product.delete()
+        return JsonResponse("Deleted successfully",safe=False)
+"""
+
+
+@csrf_exempt
+def OrderDetailsApi(request,id=0):
+    """
+     if request.method=='GET':
+        products= Product.objects.all()
+        product_serializer = ProductSerializer(products,many=True)
+        return JsonResponse(product_serializer.data,safe=False)
+    """
+   
+
+    if request.method=='POST':
+        orderdetails_data=JSONParser().parse(request) 
+        orderdetails_serializer = OrderDetailsSerializer(data=orderdetails_data)
+        if orderdetails_serializer.is_valid():
+            orderdetails_serializer.save()   
+    
+            data = {"status": "success" , "info":orderdetails_serializer.data}
+        
+            return JsonResponse(data,safe=False)
+        data = {"status": "failed" }
+        return JsonResponse(data,safe=False)

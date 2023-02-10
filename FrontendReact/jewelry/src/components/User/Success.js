@@ -7,6 +7,8 @@ import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 
 const Success = () => {
+
+
   if (ReactSession.get("Paid") !== true) {
     window.location.href = "/home";
   }
@@ -18,9 +20,11 @@ const Success = () => {
   const [orderNumber, setOrderNumber] = useState("");
   const [purchaseDate, setPurchaseDate] = useState("");
   const [fullName, setFullName] = useState("");
+  const [OrderId, setOrderId] = useState(0);
   const form = useRef();
 
-  useEffect(() => {
+  useEffect(() => {  //ON LOAD
+    
     setFullName(ReactSession.get("fullname"));
     setOrderTotal(ReactSession.get("Total"));
     setPurchaseDate(new Date().toLocaleString().replace(",", ""));
@@ -36,13 +40,49 @@ const Success = () => {
   }, []);
 
   useEffect(() => {
-    //document.getElementById("btnSubmit").click();
-    //reactsession true
+
+    axios.post("http://127.0.0.1:8000/orders",
+    {"UserId":ReactSession.get("idUser") , "PurchaseDate" : purchaseDate , "Total" : orderTotal})
+    .then((res) =>{
+        const data = res.data;
+        let status = data.status;
+        console.log("st",status)
+
+        if(status==="success"){
+
+            setOrderId(data.info.OrderId);
+            console.log('ff',data.info.OrderId)
+            document.getElementById("btnSubmit").click();
+            //reactsession true
+            LoadData();
+
+        }
+        else if(status==="failed")
+        {
+            console.log("error inserting order")
+        }
+
+    })
+   
   }, [userEmail]);
 
   useEffect(() => {
-    prods.forEach((prod) => {});
+    console.log('ordrid', OrderId)
+    prods.forEach((prod) => {
+        axios.post("http://127.0.0.1:8000/orderDetails",
+        {"OrderId":OrderId, "ProductId":prod.ProductId, "Title":prod.Title, "Description": prod.Description, "Price": prod.Price, "Image" :prod.Image, "Quantity":cartItems[cartItems.findIndex((p) => p.ProductId == prod.ProductId)].Quantity})
+        .then((res)=>
+        {
+            console.log("ok details",res.data)
+            //delete this user's cart 
+        })
+
+    });
   }, [prods]);
+
+
+
+
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -57,10 +97,7 @@ const Success = () => {
         (result) => {
           console.log(result.text);
 
-
-
-
-          LoadData();
+        
         },
         (error) => {
           console.log(error.text);

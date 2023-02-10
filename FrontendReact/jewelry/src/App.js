@@ -25,6 +25,7 @@ import EditProducts from './components/Admin/EditProduct';
 import PayPal from './components/User/PayPal';
 import Footer from './components/General/Footer'
 import Success from './components/User/Success'
+import Orders from './components/User/Orders'
 
 import { ReactSession } from "react-client-session";  
 
@@ -54,6 +55,7 @@ function App() {
             <Route exact path="/paypal" element={<PayPal />} />
             <Route exact path="/editproducts" element={<EditProducts/>} />
             <Route exact path="/success" element={<Success/>} />
+            <Route exact path="/orders" element={<Orders/>} />
 
  
 
