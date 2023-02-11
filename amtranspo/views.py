@@ -219,3 +219,12 @@ def OrderDetailsApi(request,id=0):
             return JsonResponse(data,safe=False)
         data = {"status": "failed" }
         return JsonResponse(data,safe=False)
+
+
+@csrf_exempt
+def OrderByIdApi(request,id=0):
+
+    if request.method=='GET':
+        orders= Order.objects.get(OrderId=id)
+        order_serializer = OrderSerializer(orders,many=False)
+        return JsonResponse(order_serializer.data,safe=False)

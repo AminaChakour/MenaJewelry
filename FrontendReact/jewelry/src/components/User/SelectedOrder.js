@@ -13,9 +13,19 @@ const SelectedOrder = () => {
 
   const [prods, setProds] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [purchaseDate, setPurchaseDate] = useState("");
+  const [total, setTotal] = useState("");
 
   useEffect(() => {
     setLoading(true);
+
+    axios.get("http://127.0.0.1:8000/GetOrderById/"+ ReactSession.get("SelectedOrderId")).then((res) => {
+        const data = res.data;
+        setTotal(data.Total)
+        setPurchaseDate(data.PurchaseDate)
+
+  })
+
 
     axios
       .get(
@@ -46,7 +56,7 @@ const SelectedOrder = () => {
         <div>
           <div className="row align-items-center CartSubtotal">
             <button className="col-12 CartSubtotal">
-              SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $
+             {purchaseDate}   <br/>  TOTAL &nbsp; ${total}   
             </button>
           </div>
           {prods.map((currentProd) => {
