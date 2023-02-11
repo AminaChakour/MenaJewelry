@@ -500,7 +500,7 @@ img {
   border-radius: 20px;
   border:none;
   font-weight: bolder;
-  height:60px;
+  height:50px;
   width:50%;
   color:rgb(72,72,72);
   text-align: center;
@@ -544,11 +544,9 @@ img {
   height:300px;
   text-align: justify;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 20%;
   text-align: center;
   font-size:xx-large;
-  border: double;
-  border-radius: 20px;
   color: rgb(63, 63, 63);
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
@@ -557,4 +555,76 @@ img {
 .btnSubmit{
 
   display: none;
+}
+
+
+.OrdersCard {
+  margin-top: 100px;
+  height: 150px !important;
+  cursor: pointer;
+  border:solid;
+  border-color: #b5ad7f;
+}
+
+.titleOrder {
+  font-family: monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: large;
+  height:8px;
+  width:100%;
+  margin-top: 30px !important;
+
+}
+.dateOrder {
+  font-family: monospace;
+  font-size: medium;
+}
+
+.totalOrder {
+  font-family: monospace;
+  font-size: large;
+  font-weight: bolder;
+  text-align: center;
+  height:8px;
+  background-color: #b5ad7f ;
+}
+
+
+
+.OrderDetailsCard{
+  margin:auto !important;
+   
+  
+  width:80%;
+  background-color: rgb(252, 248, 242);
+  margin-top:1% !important;
+  border-style: solid;
+  border-color:rgb(194, 179, 134) !important;
+  border-width: 1px;
+  height:150px !important;
+
+}
+
+.OrderDetailsImage{
+
+  height:100%;
+  width:150px !important;
+  padding: 0.5rem;
+}
+.OrderDetailsTitle{
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 1rem;
+}
+
+.OrderDetailsQuantity{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 1rem;
+
+}
+.OrderDetailsPrice{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 1rem;
+
 }

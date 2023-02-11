@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from amtranspo.models import User,Product,SCart,Order
+from amtranspo.models import User,Product,SCart,Order,OrderDetails
 from amtranspo.serializers import OrderSerializer,OrderDetailsSerializer,UserSerializer,ProductSerializer,CartSerializer
 # Create your views here.
 
@@ -163,15 +163,13 @@ def ProductsByIdsApi(request):
 
 @csrf_exempt
 def OrdersApi(request,id=0):
-    """
-     if request.method=='GET':
-        products= Product.objects.all()
-        product_serializer = ProductSerializer(products,many=True)
-        return JsonResponse(product_serializer.data,safe=False)
-    """
-   
 
-    if request.method=='POST':
+    if request.method=='GET':
+        orders= Order.objects.filter(UserId=id)
+        order_serializer = OrderSerializer(orders,many=True)
+        return JsonResponse(order_serializer.data,safe=False)
+
+    elif request.method=='POST':
         order_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
         order_serializer = OrderSerializer(data=order_data)
         if order_serializer.is_valid():
@@ -203,15 +201,14 @@ def OrdersApi(request,id=0):
 
 @csrf_exempt
 def OrderDetailsApi(request,id=0):
-    """
-     if request.method=='GET':
-        products= Product.objects.all()
-        product_serializer = ProductSerializer(products,many=True)
-        return JsonResponse(product_serializer.data,safe=False)
-    """
+    if request.method=='GET':
+        orders= OrderDetails.objects.filter(OrderId=id)
+        orders_serializer = OrderDetailsSerializer(orders,many=True)
+        return JsonResponse(orders_serializer.data,safe=False)
+
    
 
-    if request.method=='POST':
+    elif request.method=='POST':
         orderdetails_data=JSONParser().parse(request) 
         orderdetails_serializer = OrderDetailsSerializer(data=orderdetails_data)
         if orderdetails_serializer.is_valid():

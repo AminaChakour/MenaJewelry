@@ -11,8 +11,8 @@ urlpatterns=[
     url(r'^cart/([0-9]+)$',views.CartApi),
     url(r'^deletecartofuser/([0-9]+)$',views.DeleteUsersCartApi),
     url(r'^productsByIds$',views.ProductsByIdsApi),
-    url(r'^orders$',views.OrdersApi),
-    url(r'^orderDetails$',views.OrderDetailsApi)
+    url(r'^orders/([0-9]+)$',views.OrdersApi),
+    url(r'^orderDetails/([0-9]+)$',views.OrderDetailsApi)
 
 
 

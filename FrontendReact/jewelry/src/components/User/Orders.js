@@ -8,11 +8,11 @@ import ReactLoading from "react-loading";
 
 const Orders = (props) => {
   const [loading, setLoading] = useState(false);
-  const [Products, setProducts] = useState([]);
+  const [Orders, setOrders] = useState([]);
   const [SearchText, SetSearchText] = useState("");
-  const [SearchedProducts, SetSearchedProducts] = useState([]);
+  const [SearchedOrders, SetSearchedOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage] = useState(6);
+  const [recordsPerPage] = useState(9);
   const [nPages, setnPages] = useState(0);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [currentRecords, setCurrentRecords] = useState([]);
@@ -30,9 +30,9 @@ const Orders = (props) => {
     console.log(ReactSession.get("userEmail"));
     console.log(ReactSession.get("fullname"));
 
-    axios.get("http://127.0.0.1:8000/product").then((res) => {
-      setProducts(res.data);
-      console.log("result : ", Products);
+    axios.get("http://127.0.0.1:8000/orders/"+ ReactSession.get("idUser")).then((res) => {
+      setOrders(res.data);
+      console.log("result : ", Orders);
 
       setLastRec(currentPage * recordsPerPage);
       setFirstRec(currentPage * recordsPerPage - recordsPerPage);
@@ -45,7 +45,7 @@ const Orders = (props) => {
       );
       console.log("current", currentRecords);
 
-      setnPages(Math.ceil(Products.length / recordsPerPage));
+      setnPages(Math.ceil(Orders.length / recordsPerPage));
 
       setPageNumbers(
         [
@@ -61,7 +61,7 @@ const Orders = (props) => {
     setLastRec(currentPage * recordsPerPage);
     setFirstRec(currentPage * recordsPerPage - recordsPerPage);
     setCurrentRecords(
-      Products.slice(
+      Orders.slice(
         currentPage * recordsPerPage - recordsPerPage,
         currentPage * recordsPerPage
       )
@@ -74,9 +74,9 @@ const Orders = (props) => {
     setLoading(true);
     console.log("search submitted");
 
-    SetSearchedProducts(
-      Products.filter((prod) =>
-        prod.Title.toLowerCase()
+    SetSearchedOrders(
+      Orders.filter((ord) =>
+        ord.PurchaseDate.toLowerCase()
           .trim()
           .includes(SearchText.toLowerCase().trim())
       )
@@ -85,11 +85,10 @@ const Orders = (props) => {
   }, [SearchText]);
 
   function redirectToSelected(id) {
-    // setter localStorage.setItem('SelectedProductId', id);
-    // getter localStorage.getItem('SelectedProductId');
-    ReactSession.set("SelectedProductId", id);
-    console.log("ff", ReactSession.get("SelectedProductId"));
-    window.location.href = "./productDetails";
+
+    ReactSession.set("SelectedOrderId", id);
+
+    window.location.href = "/orderDetails";
   }
 
   const nextPage = () => {
@@ -120,55 +119,49 @@ const Orders = (props) => {
 
           <div className="row align-items-center">
             {SearchText.length === 0
-              ? currentRecords.map((currentProd) => {
+              ? currentRecords.map((currentOrder) => {
                   return (
                     <>
                       <div
                         onClick={() => {
-                          redirectToSelected(currentProd.ProductId);
+                          redirectToSelected(currentOrder.OrderId);
                         }}
-                        className="col-4 ProductCard"
+                        className="col-4 OrdersCard"
                       >
-                        <img
-                          className="ProductListImages"
-                          alt="y"
-                          src={currentProd.Image}
-                        />
-                        <br />
-
-                        <h3 className="titleProd align-items-center">
-                          {currentProd.Title}
+                       
+                       <h3 className="titleOrder align-items-center">
+                          Order ID #{currentOrder.OrderId}
+                        </h3>
+                        <h3 className="dateOrder align-items-center">
+                          {currentOrder.PurchaseDate}
                         </h3>
 
-                        <h3 className="priceProd align-items-center">
-                          {currentProd.Price}$
+                        <h3 className="totalOrder align-items-center">
+                          Total {currentOrder.Total}$
                         </h3>
                       </div>
                     </>
                   );
                 })
-              : SearchedProducts.map((currentProd) => {
+              : SearchedOrders.map((currentOrder) => {
                   return (
                     <>
                       <div
                         onClick={() => {
-                          redirectToSelected(currentProd.ProductId);
+                          redirectToSelected(currentOrder.OrderId);
                         }}
-                        className="col-4 ProductCard"
+                        className="col-4 OrdersCard"
                       >
-                        <img
-                          className="ProductListImages"
-                          alt="y"
-                          src={currentProd.Image}
-                        />
-                        <br />
-
-                        <h3 className="titleProd align-items-center">
-                          {currentProd.Title}
+                      
+                      <h3 className="titleOrder align-items-center">
+                          Order ID #{currentOrder.OrderId}
+                        </h3>
+                        <h3 className="dateOrder align-items-center">
+                        {currentOrder.PurchaseDate}
                         </h3>
 
-                        <h3 className="priceProd align-items-center">
-                          {currentProd.Price}$
+                        <h3 className="totalOrder align-items-center">
+                          {currentOrder.Total}$
                         </h3>
                       </div>
                     </>
