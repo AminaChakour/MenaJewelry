@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useState, Navigate,useEffect } from "react";
+import { useState, Navigate, useEffect } from "react";
 import React from "react";
 import { ReactSession } from "react-client-session";
 import ReactLoading from "react-loading";
 import Swal from "sweetalert2";
 import { RiDeleteBin3Fill } from "react-icons/ri";
+import { MdRemoveShoppingCart } from "react-icons/md";
+import {SiCashapp } from "react-icons/si";
 
 const Cart = () => {
   if (ReactSession.get("idUser") === null) {
@@ -16,14 +18,10 @@ const Cart = () => {
   const [Subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
-
-    LoadData()
-
-  
+    LoadData();
   }, []);
 
-  const LoadData = () =>{
-
+  const LoadData = () => {
     setLoading(true);
 
     var carts = [];
@@ -60,10 +58,7 @@ const Cart = () => {
       });
 
     setLoading(false);
-
-  }
-
-
+  };
 
   const DeleteCart = (CartId, prodId) => {
     setLoading(true);
@@ -71,6 +66,24 @@ const Cart = () => {
       setCartItems(cartItems.filter((p) => p.ProductId !== prodId));
       setProds(prods.filter((p) => p.ProductId !== prodId));
     });
+  };
+
+  const EmptyCart = () => {
+    setLoading(true);
+    axios
+      .delete(
+        "http://127.0.0.1:8000/deletecartofuser/" + ReactSession.get("idUser")
+      )
+      .then((res) => {
+        const data = res.data;
+        if (data.status === "success") {
+          setCartItems([]);
+          setProds([]);
+        } else {
+          console.log(res.status);
+        }
+      });
+      //setLoading(false);
   };
 
   useEffect(() => {
@@ -92,40 +105,48 @@ const Cart = () => {
   const QuantityChange = (NewQuantity, CurrentProduct) => {
     setLoading(true);
 
-    var cart = cartItems[ cartItems.findIndex((p) => p.ProductId == CurrentProduct.ProductId)];
-    cart['Quantity'] = NewQuantity;
-    axios.put("http://127.0.0.1:8000/cart",cart).then((res)=>{
-
-    if(res.data === "success")
-    {
-       LoadData()
-    }
-
+    var cart =
+      cartItems[
+        cartItems.findIndex((p) => p.ProductId == CurrentProduct.ProductId)
+      ];
+    cart["Quantity"] = NewQuantity;
+    axios.put("http://127.0.0.1:8000/cart", cart).then((res) => {
+      if (res.data === "success") {
+        LoadData();
+      }
     });
-
   };
 
-  
   const CheckOut = () => {
-
-    ReactSession.set("Subtotal", Subtotal)
-    window.location.href = '/paypal';
-   };
+    ReactSession.set("Subtotal", Subtotal);
+    window.location.href = "/paypal";
+  };
 
   return (
     <>
       {loading ? (
         <div className="loader">
-          <ReactLoading className="loader" type="cylon" color="#EADDCA" height={667} width={400} />
+          <ReactLoading
+            className="loader"
+            type="cylon"
+            color="#EADDCA"
+            height={667}
+            width={400}
+          />
         </div>
       ) : (
         <div>
           <div className="row align-items-center CartHeader">
-            <button className="col-6 CartSubtotal">
-              SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${Subtotal}
-            </button>
+            <button className="col-6 CartEmpty" onClick={() => EmptyCart()}>
+              EMPTY CART &nbsp;&nbsp;<MdRemoveShoppingCart size={25}/>
+              </button>
             <button className="col-6 CartCheckout" onClick={() => CheckOut()}>
-              PROCEED TO CHECKOUT
+              PROCEED TO CHECKOUT <SiCashapp size={25}/>
+            </button>
+          </div>
+          <div className="row align-items-center CartSubtotal">
+            <button className="col-12 CartSubtotal">
+              SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {Subtotal}
             </button>
           </div>
           {prods.map((currentProd) => {
@@ -191,7 +212,7 @@ const Cart = () => {
           })}
         </div>
       )}
-      {prods.length == 0 && <div className="EmptyCart" >Empty cart</div>}
+      {prods.length == 0 && <div className="EmptyCart">Empty cart</div>}
 
       <br />
       <br />

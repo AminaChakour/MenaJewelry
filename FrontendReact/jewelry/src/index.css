@@ -494,18 +494,33 @@ img {
 
 }
 .CartSubtotal{
-  cursor:text !important;
+  margin: auto !important;
+  margin-top: 1% !important;
+  background-color: wheat;
+  border-radius: 20px;
+  border:none;
+  font-weight: bolder;
+  height:60px;
+  width:50%;
+  color:rgb(72,72,72);
   text-align: center;
-  background-color: rgb(142, 102, 102);
+  text-align: center !important;
+
+}
+.CartEmpty{
+  text-align: center;
+  background-color: rgb(144, 112, 112);
   color: white;
   height:100%;
   border-radius: 20px;
+  font-weight: bolder;
   border:none;
 
 }
 
 
 .CartCheckout{
+  font-weight: bolder;
   background-color: rgb(144, 112, 112);
   color: white;
   height:100%;

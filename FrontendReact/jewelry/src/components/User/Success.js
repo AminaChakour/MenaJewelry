@@ -75,6 +75,9 @@ const Success = () => {
         {
             console.log("ok details",res.data)
             //delete this user's cart 
+            axios.delete("http://127.0.0.1:8000/deletecartofuser/" + ReactSession.get("idUser")).then((res) => {
+               console.log(res.data)
+              });
         })
 
     });

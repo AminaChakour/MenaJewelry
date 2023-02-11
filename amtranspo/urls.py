@@ -9,6 +9,7 @@ urlpatterns=[
     url(r'^editprofile$',views.userApi),
     url(r'^cart$',views.CartApi),
     url(r'^cart/([0-9]+)$',views.CartApi),
+    url(r'^deletecartofuser/([0-9]+)$',views.DeleteUsersCartApi),
     url(r'^productsByIds$',views.ProductsByIdsApi),
     url(r'^orders$',views.OrdersApi),
     url(r'^orderDetails$',views.OrderDetailsApi)

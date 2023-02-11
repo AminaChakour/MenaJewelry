@@ -143,6 +143,13 @@ def CartApi(request,id=0):
         return JsonResponse("Deleted successfully",safe=False)
 
 @csrf_exempt
+def DeleteUsersCartApi(request,id=0):
+     if request.method=='DELETE':
+        cart=SCart.objects.filter(UserId=id)
+        cart.delete()
+        return JsonResponse({"status":"success"},safe=False)
+
+@csrf_exempt
 def ProductsByIdsApi(request):
      if request.method=='POST':
         ids_data=JSONParser().parse(request)
