@@ -574,11 +574,13 @@ img {
   height:8px;
   width:100%;
   margin-top: 30px !important;
+  text-transform: uppercase;
 
 }
 .dateOrder {
   font-family: monospace;
   font-size: medium;
+  
 }
 
 .totalOrder {
@@ -588,6 +590,7 @@ img {
   text-align: center;
   height:8px;
   background-color: #b5ad7f ;
+  text-transform: uppercase;
 }
 
 
@@ -616,15 +619,18 @@ img {
 
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 1rem;
+  text-transform: uppercase;
 }
 
 .OrderDetailsQuantity{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 1rem;
+  text-transform: uppercase;
 
 }
 .OrderDetailsPrice{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 1rem;
+  text-transform: uppercase;
 
 }

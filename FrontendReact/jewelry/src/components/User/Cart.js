@@ -37,11 +37,8 @@ const Cart = () => {
           productsIds.push(element.ProductId);
         });
 
-        var ids = productsIds.join(" "); //create strings from array
-        ReactSession.set("ids", ids);
-
         axios
-          .post("http://127.0.0.1:8000/productsByIds", JSON.stringify({ ids }))
+          .post("http://127.0.0.1:8000/productsByIds", productsIds)
           .then((res) => {
             const data = res.data;
             setProds(data);
@@ -192,14 +189,7 @@ const Cart = () => {
                   <div className="CartIconsDiv col-xs-4 col-lg-4 col-md-4  col-xl-4 col-sm-4 ">
                     <RiDeleteBin3Fill
                       onClick={() =>
-                        DeleteCart(
-                          cartItems[
-                            cartItems.findIndex(
-                              (p) => p.ProductId == currentProd.ProductId
-                            )
-                          ].CartId,
-                          currentProd.ProductId
-                        )
+                        DeleteCart(cartItems[cartItems.findIndex((p) => p.ProductId == currentProd.ProductId)].CartId,  currentProd.ProductId)
                       }
                       size={50}
                       color="gray"

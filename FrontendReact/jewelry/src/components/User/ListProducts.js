@@ -76,9 +76,7 @@ const ListProducts = (props) => {
 
     SetSearchedProducts(
       Products.filter((prod) =>
-        prod.Title.toLowerCase()
-          .trim()
-          .includes(SearchText.toLowerCase().trim())
+        prod.Title.toLowerCase().trim().includes(SearchText.toLowerCase().trim())
       )
     );
     setLoading(false);

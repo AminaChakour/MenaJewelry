@@ -120,11 +120,9 @@ const Success = () => {
           productsIds.push(element.ProductId);
         });
 
-        var ids = productsIds.join(" "); //create strings from array
-        ReactSession.set("ids", ids);
-
+      
         axios
-          .post("http://127.0.0.1:8000/productsByIds", JSON.stringify({ ids }))
+          .post("http://127.0.0.1:8000/productsByIds", productsIds)
           .then((res) => {
             const data = res.data;
             setProds(data);

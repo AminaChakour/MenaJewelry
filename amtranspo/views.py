@@ -143,7 +143,7 @@ def CartApi(request,id=0):
         return JsonResponse("Deleted successfully",safe=False)
 
 @csrf_exempt
-def DeleteUsersCartApi(request,id=0):
+def DeleteUsersCartApi(request,id):
      if request.method=='DELETE':
         cart=SCart.objects.filter(UserId=id)
         cart.delete()
@@ -153,16 +153,14 @@ def DeleteUsersCartApi(request,id=0):
 def ProductsByIdsApi(request):
      if request.method=='POST':
         ids_data=JSONParser().parse(request)
-        ids = ids_data['ids'] #string
-        ids = ids.split()  #array
-        products= Product.objects.filter(ProductId__in =ids)
+        products= Product.objects.filter(ProductId__in =ids_data)
         product_serializer = ProductSerializer(products,many=True)
         return JsonResponse(product_serializer.data,safe=False)
 
 
 
 @csrf_exempt
-def OrdersApi(request,id=0):
+def OrdersApi(request,id):
 
     if request.method=='GET':
         orders= Order.objects.filter(UserId=id)
@@ -180,23 +178,7 @@ def OrdersApi(request,id=0):
             return JsonResponse(data,safe=False)
         data = {"status": "failed" }
         return JsonResponse(data,safe=False)
-"""
-   elif request.method=='PUT':
-        product_data=JSONParser().parse(request)
-        product=Product.objects.get(ProductId=product_data['ProductId'])
-        product_serializer=ProductSerializer(product,data=product_data)
-        if product_serializer.is_valid():
-            product_serializer.save()
-            data = {"status": "success" , "info": product_data}
-            return JsonResponse(data,safe=False)
-        data = {"status": "error"}
-        return JsonResponse("Failed to Update",safe=False)
 
-    elif request.method=='DELETE':
-        product=Product.objects.get(ProductId=id)
-        product.delete()
-        return JsonResponse("Deleted successfully",safe=False)
-"""
 
 
 @csrf_exempt

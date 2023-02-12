@@ -52,43 +52,7 @@ const PayPal = () => {
             ReactSession.set('Total',prixTotal)
             ReactSession.set('Paid',true)
             window.location.href= '/success';
-            /*axios
-              .post("http://localhost:5000/insertBillet", {
-                numBillet,
-                idVoyage,
-                idVoyageur,
-                prixTotal,
-                purchaseDate,
-              })
-              .then((response) => {
-                const data = response.data;
-                console.log(response);
-                if (data.status === "success") {
-                  Swal.fire({
-                    title: "Ticket purchased.",
-                    text:
-                      "Number: " +
-                      numBillet ,
-                    
-                    icon: "success",
-                    confirmButtonText: "See ticket",
-                  });
-                } else {
-                  Swal.fire({
-                    title: "Error",
-                    text: "Try again",
-                    icon: "error",
-                    confirmButtonText: "Ok",
-                  });
-                }
-              });
-             
-
-            new Promise((resolve) => setTimeout(resolve, 5000)).then((r) => {
-              window.location.href = "/ticket";
-            });
-             
-            */
+            
           });
         }}
       />

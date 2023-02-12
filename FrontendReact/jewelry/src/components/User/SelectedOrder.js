@@ -75,7 +75,7 @@ const SelectedOrder = () => {
                   </div>
 
                   <div className="col-1 col-sm-1 col-md-1 col-lg-2  col-xl-2 ">
-                    <h3 className="OrderDetailsPrice">{currentProd.Price}$</h3>
+                    <h3 className="OrderDetailsPrice">{currentProd.Price}$ x {currentProd.Quantity}</h3>
                   </div>
 
                   
