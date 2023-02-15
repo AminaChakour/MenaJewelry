@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ReactSession } from "react-client-session";
+import ReactLoading from "react-loading";
 
 export default class LogOut extends Component {
   
@@ -14,6 +15,8 @@ export default class LogOut extends Component {
   }
 
   render() {
-    return <div></div>;
+    return  <div className="loader">
+    <ReactLoading type="cylon" color="#EADDCA" height={667} width={400} />
+  </div>;
   }
 }

@@ -287,17 +287,23 @@ const SignUp = () => {
             />
           </div>
           <div className="mb-3 col-6">
-            <select className="form-control">
-              <option> QC</option>
-              <option> ON</option>
-              <option> AB</option>
-              <option> MB</option>
-              <option> SK</option>
-              <option> NL</option>
-              <option> NS</option>
-              <option> YT</option>
-              <option> BC</option>
-            </select>
+          <select
+                onChange={(e) => {
+                  setProvince(e.target.value);
+                }}
+                className="form-control"
+              >
+                <option> {province} </option>
+                <option> QC</option>
+                <option> ON</option>
+                <option> AB</option>
+                <option> MB</option>
+                <option> SK</option>
+                <option> NL</option>
+                <option> NS</option>
+                <option> YT</option>
+                <option> BC</option>
+              </select>
           </div>
         </div>
         <div className="row">

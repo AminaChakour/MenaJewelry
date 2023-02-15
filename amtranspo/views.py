@@ -56,14 +56,36 @@ def loginApi(request,id=0):
         user_serializer=UserSerializer(user,many=False)
         return JsonResponse(user_serializer.data,safe=False)
         
+
+
         
+
+@csrf_exempt
+def ProfileApi(request,id=0):
+    if request.method=='GET':
+        user=User.objects.get(UserId=id)
+        user_serializer = UserSerializer(user)
+        return JsonResponse(user_serializer.data,safe=False)
+    
+    elif request.method=='PUT':
+        user_data=JSONParser().parse(request)
+        user=User.objects.get(UserId=user_data['UserId'])
+        user_serializer=UserSerializer(user,data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            return JsonResponse("success",safe=False)
+        return JsonResponse("error",safe=False)
+
+
+
+
 
 
 @csrf_exempt
 def userApi(request,id=0):
     if request.method=='GET':
-        users= User.objects.all()
-        user_serializer = UserSerializer(users,many=True)
+        user=User.objects.get(UserId=user_data['UserId'])
+        user_serializer = UserSerializer(user)
         return JsonResponse(user_serializer.data,safe=False)
     
     elif request.method=='POST':

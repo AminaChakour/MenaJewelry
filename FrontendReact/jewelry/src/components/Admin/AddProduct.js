@@ -4,14 +4,13 @@ import axios from "axios";
 import { ReactSession } from "react-client-session";
 
 import { storage } from "../General/firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes,getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
 const AddProduct = () => {
   if (ReactSession.get("userEmail") !== "admin@gmail.com") {
     window.location.href = "/home";
   }
-  const [imageList, setImageList] = useState([]);
 
   const [Title, setTitle] = useState("");
   //const [ProductId, setProductId] = useState('')
@@ -32,17 +31,6 @@ const AddProduct = () => {
     });
   };
 
-  /* useEffect (() =>{
-      listAll(imageListRef).then((response) =>{ 
-        response.items.forEach((item) => {
-          getDownloadURL(item).then((url) => {
-            setImageList((prev) => [...prev, url]);
-
-          });
-        });
-      });
-    }, []);
-*/
 
   useEffect(() => {
     if (Image.length > 0)

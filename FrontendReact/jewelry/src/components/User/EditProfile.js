@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactSession } from "react-client-session";
 
 import { FormErrors } from "./FormErrors";
@@ -10,6 +10,7 @@ const EditProfile = () => {
   if (ReactSession.get("idUser") === null) {
     window.location.href = "/home";
   }
+  const [UserId, setUserId] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -21,7 +22,6 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  
   const [formErrors, setFormErrors] = useState({
     lastname: "",
     firstname: "",
@@ -43,6 +43,27 @@ const EditProfile = () => {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
   const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/editprofile/" + ReactSession.get("idUser"))
+      .then((res) => {
+        const data = res.data;
+        if (data) {
+          setUserId(data.UserId);
+          setLastname(data.lastname);
+          setFirstname(data.firstname);
+          setBirthday(data.birthday);
+          setCity(data.city);
+          setProvince(data.province);
+          setPostalcode(data.postalcode);
+          setAddress(data.address);
+          setEmail(data.email);
+          setPhone(data.phone);
+          setPassword(data.password);
+        }
+      });
+  }, []);
 
   function handleUserInput(e, name) {
     const val = e.target.value;
@@ -92,7 +113,6 @@ const EditProfile = () => {
     let addressValid1 = addressValid;
     let postalcodeValid1 = postalcodeValid;
     let cityValid1 = cityValid;
-
     let phoneValid1 = phoneValid;
     let emailValid1 = emailValid;
     let passwordValid1 = passwordValid;
@@ -181,9 +201,10 @@ const EditProfile = () => {
     e.preventDefault();
 
     axios
-      .post(
+      .put(
         "http://127.0.0.1:8000/editprofile",
         JSON.stringify({
+          UserId,
           lastname,
           firstname,
           birthday,
@@ -199,24 +220,17 @@ const EditProfile = () => {
       .then((res) => {
         const data = res.data;
 
-        if (data.status === "success") {
+        if (data === "success") {
           Swal.fire({
             title: "Success",
-            text: data.info.firstname + " registered !",
+            text: "Profile updated!",
             icon: "success",
             confirmButtonText: "Ok",
           });
-        } else if (data.status === "error") {
+        } else if (data === "error") {
           Swal.fire({
             title: "Error !",
             text: "Try again",
-            icon: "error",
-            confirmButtonText: "Ok",
-          });
-        } else if (data.status === "exists") {
-          Swal.fire({
-            title: "Email/User already exists !",
-            text: "Try using a different email.",
             icon: "error",
             confirmButtonText: "Ok",
           });
@@ -224,175 +238,190 @@ const EditProfile = () => {
       });
   }
 
+  const listProvinces = () =>{
+
+ 
+    var prvs = ["ON","QC","AB","MB","SK","NL","NB","YT","BC"];
+    return(
+      
+      prvs.map((current,index)=>{
+        if(index == 0){
+          if(current !== province){
+            return [<option> {province}</option>, <option> {current}</option>]
+           
+          }
+        }
+        if(current !== province){
+          return <option> {current}</option>
+        }
+
+      })
+      
+    )
+  }
+
   return (
     <>
-    <div className="registerStyle">
-      <form onSubmit={handleSubmit}>
-        <h3>Edit your profile</h3>
+      <div className="registerStyle">
+        <form onSubmit={handleSubmit}>
+          <h3>EDIT PROFILE</h3>
 
-        <div className="row">
-          <div className="mb-3 col-6">
+          <div className="row">
+            <div className="mb-3 col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="First name"
+                name="firstname"
+                value={firstname}
+                onChange={(e) => {
+                  handleUserInput(e, "firstname");
+                }}
+              />
+            </div>
+
+            <div className="mb-3 col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Last name"
+                name="lastname"
+                value={lastname}
+                onChange={(e) => {
+                  handleUserInput(e, "lastname");
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
             <input
               type="text"
               className="form-control"
-              placeholder="First name"
-              name="firstname"
-              value={firstname}
+              placeholder="Address"
+              name="address"
+              value={address}
               onChange={(e) => {
-                handleUserInput(e, "firstname");
+                handleUserInput(e, "address");
               }}
             />
           </div>
 
-          <div className="mb-3 col-6">
+          <div className="row">
+            <div className="mb-3 col-6">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="City"
+                name="city"
+                value={city}
+                onChange={(e) => {
+                  handleUserInput(e, "city");
+                }}
+              />
+            </div>
+            <div className="mb-3 col-6">
+              <select
+                onChange={(e) => {
+                  setProvince(e.target.value);
+                }}
+                className="form-control"
+              >
+                {listProvinces()}
+                
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="mb-3 col-6">
+              <input
+                type="text"
+                maxLength={7}
+                className="form-control"
+                placeholder="Postal Code"
+                name="postalcode"
+                value={postalcode}
+                onChange={(e) => {
+                  handleUserInput(e, "postalcode");
+                }}
+              />
+            </div>
+
+            <div className="mb-3 col-6">
+              <input
+                type="tel"
+                className="form-control"
+                placeholder="Phone"
+                name="phone"
+                value={phone}
+                onChange={(e) => {
+                  handleUserInput(e, "phone");
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
             <input
-              type="text"
+              type="email"
               className="form-control"
-              placeholder="Last name"
-              name="lastname"
-              value={lastname}
+              placeholder="Email"
+              name="email"
+              value={email}
               onChange={(e) => {
-                handleUserInput(e, "lastname");
+                handleUserInput(e, "email");
               }}
             />
           </div>
-        </div>
 
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Address"
-            name="address"
-            value={address}
-            onChange={(e) => {
-              handleUserInput(e, "address");
-            }}
-          />
-        </div>
-
-        <div className="row">
-          <div className="mb-3 col-6">
+          <div className="mb-3">
             <input
-              type="text"
+              type="password"
               className="form-control"
-              placeholder="City"
-              name="city"
-              value={city}
+              placeholder="Password"
+              name="password"
+              value={password}
               onChange={(e) => {
-                handleUserInput(e, "city");
+                handleUserInput(e, "password");
               }}
             />
           </div>
-          <div className="mb-3 col-6">
-            <select className="form-control">
-              <option> QC</option>
-              <option> ON</option>
-              <option> AB</option>
-              <option> MB</option>
-              <option> SK</option>
-              <option> NL</option>
-              <option> NS</option>
-              <option> YT</option>
-              <option> BC</option>
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="mb-3 col-6">
+
+          <div className="mb-3">
+            <center>
+              <label>Date of birth</label>
+            </center>
             <input
-              type="text"
-              maxLength={7}
+              type="date"
               className="form-control"
-              placeholder="Postal Code"
-              name="postalcode"
-              value={postalcode}
+              name="birthday"
+              value={birthday}
               onChange={(e) => {
-                handleUserInput(e, "postalcode");
+                handleUserInput(e, "birthday");
               }}
             />
           </div>
 
-          <div className="mb-3 col-6">
-            <input
-              type="tel"
-              className="form-control"
-              placeholder="Phone"
-              name="phone"
-              value={phone}
-              onChange={(e) => {
-                handleUserInput(e, "phone");
-              }}
-            />
+          <div className="panel panel-default">
+            <FormErrors formErrors={formErrors} />
           </div>
-        </div>
 
-        <div className="mb-3">
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email"
-            name="email"
-            value={email}
-            onChange={(e) => {
-              handleUserInput(e, "email");
-            }}
-          />
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={(e) => {
-              handleUserInput(e, "password");
-            }}
-          />
-        </div>
-
-        <div className="mb-3">
-          <center>
-            <label>Date of birth</label>
-          </center>
-          <input
-            type="date"
-            className="form-control"
-            name="birthday"
-            value={birthday}
-            onChange={(e) => {
-              handleUserInput(e, "birthday");
-            }}
-          />
-        </div>
-
-        <div className="panel panel-default">
-          <FormErrors formErrors={formErrors} />
-        </div>
-
-        <div className="d-grid">
-          <button
-            disabled={!formValid}
-            type="submit"
-            className="btn btn-warning"
-          >
-            Confirm
-          </button>
-        </div>
-      </form>
-
-    </div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          </>
+          <div className="d-grid">
+            <button type="submit" className="btn btn-warning">
+              SAVE CHANGES
+            </button>
+          </div>
+        </form>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </>
   );
 };
 export default EditProfile;

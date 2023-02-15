@@ -151,12 +151,12 @@ const Cart = () => {
               <>
                 <div className="row CartCard align-items-center">
                   <img
-                    className="d-none d-md-block col-md-3 col-lg-4 col-xl-4 col-sm-1 CartImage"
+                    className="col-1 col-sm-1 col-md-3 col-lg-4 col-xl-4 CartImage"
                     alt="product"
                     src={currentProd.Image}
                   />
 
-                  <div className="col-xs-6 col-lg-4 col-md-3  col-xl-4 col-sm-6 ">
+                  <div className="col-6  col-sm-6 col-md-3 col-lg-4 col-xl-4 ">
                     <h3 className="CartTitle">{currentProd.Title}</h3>
 
                     <h3 className="CartPrice">{currentProd.Price}$</h3>

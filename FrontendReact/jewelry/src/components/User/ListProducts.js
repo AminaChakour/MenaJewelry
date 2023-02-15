@@ -101,7 +101,7 @@ const ListProducts = (props) => {
     <>
       {loading ? (
         <div className="loader">
-          <ReactLoading type="cylon" color="gray" height={667} width={400} />
+          <ReactLoading type="cylon" color="#EADDCA" height={667} width={400} />
         </div>
       ) : (
         <div>
