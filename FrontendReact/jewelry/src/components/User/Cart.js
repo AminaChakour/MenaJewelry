@@ -6,7 +6,7 @@ import ReactLoading from "react-loading";
 import Swal from "sweetalert2";
 import { RiDeleteBin3Fill } from "react-icons/ri";
 import { MdRemoveShoppingCart } from "react-icons/md";
-import {SiCashapp } from "react-icons/si";
+import { SiCashapp } from "react-icons/si";
 
 const Cart = () => {
   if (ReactSession.get("idUser") === null) {
@@ -80,7 +80,7 @@ const Cart = () => {
           console.log(res.status);
         }
       });
-      //setLoading(false);
+    //setLoading(false);
   };
 
   useEffect(() => {
@@ -119,6 +119,29 @@ const Cart = () => {
     window.location.href = "/paypal";
   };
 
+  const listQuantities = (currentProductId) => {
+    var qts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const currentProductQuantity = cartItems[
+      cartItems.findIndex(
+        (p) => p.ProductId == currentProductId
+      )
+    ].Quantity;
+
+    
+    return qts.map((quantity,index) => {
+      if (index == 0) {
+        if (String(quantity) !== currentProductQuantity)  {
+          return [<option> {currentProductQuantity}</option>, <option> {String(quantity)}</option>];
+        }
+        else{
+          return <option> {currentProductQuantity}</option>
+        }
+      }
+      if (String(quantity) !== currentProductQuantity) {
+        return <option> {String(quantity)}</option>;
+      }
+    });
+  };
   return (
     <>
       {loading ? (
@@ -135,10 +158,11 @@ const Cart = () => {
         <div>
           <div className="row align-items-center CartHeader">
             <button className="col-6 CartEmpty" onClick={() => EmptyCart()}>
-              EMPTY CART &nbsp;&nbsp;<MdRemoveShoppingCart size={25}/>
-              </button>
+              EMPTY CART &nbsp;&nbsp;
+              <MdRemoveShoppingCart size={25} />
+            </button>
             <button className="col-6 CartCheckout" onClick={() => CheckOut()}>
-              PROCEED TO CHECKOUT <SiCashapp size={25}/>
+              PROCEED TO CHECKOUT <SiCashapp size={25} />
             </button>
           </div>
           <div className="row align-items-center CartSubtotal">
@@ -168,7 +192,7 @@ const Cart = () => {
                           QuantityChange(e.target.value, currentProd)
                         }
                       >
-                        <option>
+                        {/*<option>
                           {
                             cartItems[
                               cartItems.findIndex(
@@ -176,12 +200,8 @@ const Cart = () => {
                               )
                             ].Quantity
                           }
-                        </option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        </option>*/}
+                        {listQuantities(currentProd.ProductId)}
                       </select>
                     </h3>
                   </div>
@@ -189,7 +209,14 @@ const Cart = () => {
                   <div className="CartIconsDiv col-xs-4 col-lg-4 col-md-4  col-xl-4 col-sm-4 ">
                     <RiDeleteBin3Fill
                       onClick={() =>
-                        DeleteCart(cartItems[cartItems.findIndex((p) => p.ProductId == currentProd.ProductId)].CartId,  currentProd.ProductId)
+                        DeleteCart(
+                          cartItems[
+                            cartItems.findIndex(
+                              (p) => p.ProductId == currentProd.ProductId
+                            )
+                          ].CartId,
+                          currentProd.ProductId
+                        )
                       }
                       size={50}
                       color="gray"
@@ -202,7 +229,9 @@ const Cart = () => {
           })}
         </div>
       )}
-      {prods.length == 0 && <div className="EmptyCart">C A R T  &nbsp;&nbsp; E M P T Y </div>}
+      {prods.length == 0 && (
+        <div className="EmptyCart">C A R T &nbsp;&nbsp; E M P T Y </div>
+      )}
 
       <br />
       <br />

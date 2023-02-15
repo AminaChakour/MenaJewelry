@@ -228,6 +228,24 @@ const SignUp = () => {
       });
   }
 
+
+  const listProvinces = () => {
+    var prvs = ["ON", "QC", "AB", "MB", "SK", "NL", "NB", "YT", "BC"];
+    return prvs.map((current, index) => {
+      if (index == 0) {
+        if (current !== province) {
+          return [<option> {province}</option>, <option> {current}</option>];
+        }
+        else{
+          return <option> {province}</option>
+        }
+      }
+      if (current !== province) {
+        return <option> {current}</option>;
+      }
+    });
+  };
+
   return (
     <>
     <div className="registerStyle">
@@ -293,16 +311,7 @@ const SignUp = () => {
                 }}
                 className="form-control"
               >
-                <option> {province} </option>
-                <option> QC</option>
-                <option> ON</option>
-                <option> AB</option>
-                <option> MB</option>
-                <option> SK</option>
-                <option> NL</option>
-                <option> NS</option>
-                <option> YT</option>
-                <option> BC</option>
+               {listProvinces()}
               </select>
           </div>
         </div>

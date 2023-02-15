@@ -238,27 +238,22 @@ const EditProfile = () => {
       });
   }
 
-  const listProvinces = () =>{
-
- 
-    var prvs = ["ON","QC","AB","MB","SK","NL","NB","YT","BC"];
-    return(
-      
-      prvs.map((current,index)=>{
-        if(index == 0){
-          if(current !== province){
-            return [<option> {province}</option>, <option> {current}</option>]
-           
-          }
+  const listProvinces = () => {
+    var prvs = ["ON", "QC", "AB", "MB", "SK", "NL", "NB", "YT", "BC"];
+    return prvs.map((current, index) => {
+      if (index == 0) {
+        if (current !== province) {
+          return [<option> {province}</option>, <option> {current}</option>];
         }
-        if(current !== province){
-          return <option> {current}</option>
+        else{
+          return <option>{province}</option>
         }
-
-      })
-      
-    )
-  }
+      }
+      if (current !== province) {
+        return <option> {current}</option>;
+      }
+    });
+  };
 
   return (
     <>
@@ -328,7 +323,6 @@ const EditProfile = () => {
                 className="form-control"
               >
                 {listProvinces()}
-                
               </select>
             </div>
           </div>
