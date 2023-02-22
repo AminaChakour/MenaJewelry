@@ -5,7 +5,7 @@ import { ReactSession } from "react-client-session";
 
 import { storage } from "../General/firebase";
 import { ref, uploadBytes,getDownloadURL } from "firebase/storage";
-import { v4 } from "uuid";
+import { v4 } from "uuid";   //genere des id uniques
 
 const AddProduct = () => {
   if (ReactSession.get("userEmail") !== "admin@gmail.com") {
@@ -13,18 +13,16 @@ const AddProduct = () => {
   }
 
   const [Title, setTitle] = useState("");
-  //const [ProductId, setProductId] = useState('')
   const [Description, setDescription] = useState("");
   const [Price, setPrice] = useState("");
   const [Stock, setStock] = useState("");
   const [Image, setImage] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
-  //const imageListRef = ref(storage,  "images/")
 
   const uploadImage = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);  //on donne un nom a limage+ id generé
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {   //snapshot retourne lrl de limage et le stocke dans set image
       getDownloadURL(snapshot.ref).then((url) => {
         setImage(url);
       });
@@ -108,7 +106,7 @@ const AddProduct = () => {
             multiple={false}
             className="form-control"
             placeholder="Image"
-            onChange={(e) => setImageUpload(e.target.files[0])}
+            onChange={(e) => setImageUpload(e.target.files[0])} //0 takes the first image
           />
           
         </div>

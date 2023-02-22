@@ -17,7 +17,7 @@ const ListProducts = (props) => {
   const [loading, setLoading] = useState(false);
   const [Products, setProducts] = useState([]);
   const [SearchText, SetSearchText] = useState("");
-  const [SearchedProducts, SetSearchedProducts] = useState([]);
+  const [SearchedProducts,  SetSearchedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(6);
   const [nPages, setnPages] = useState(0);

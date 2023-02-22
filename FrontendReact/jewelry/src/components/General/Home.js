@@ -21,7 +21,6 @@ const Home = () => {
       });
       setImages(shuffle(images));
 
-      console.log("result : ", images);
       setLoading(false);
     });
   }, []);
@@ -72,8 +71,8 @@ const Home = () => {
           >
             <Carousel.Item interval={2000}>
               <img
-                className="imgCarousel d-block w-100"
-                src={Images[0]}
+                className="imgCarousel d-block w-100" 
+                src={Images[0]}        
                 alt="First slide"
               />
               <Carousel.Caption>

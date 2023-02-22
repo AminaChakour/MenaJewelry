@@ -5,7 +5,7 @@ import ReactLoading from "react-loading";
 export default class LogOut extends Component {
   
 
-  componentDidMount() { //on start
+  componentDidMount() { 
 
     ReactSession.set("fullname", null);
     ReactSession.set("idUser", null);

@@ -29,6 +29,7 @@ import Orders from './components/User/Orders'
 import SelectedOrder from './components/User/SelectedOrder'
 
 import { ReactSession } from "react-client-session";  
+import KommunicateChat from './chat.js';
 
 ReactSession.setStoreType("localStorage"); // like cookies
 
@@ -67,6 +68,12 @@ function App() {
        
           </Routes>
         </div>
+
+        <div>
+          <KommunicateChat/>
+        </div>
+
+       
     
 
       </div>

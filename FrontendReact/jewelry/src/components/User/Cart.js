@@ -27,7 +27,7 @@ const Cart = () => {
     var carts = [];
     axios
       .get("http://127.0.0.1:8000/cart/" + ReactSession.get("idUser"))
-      .then((res) => {
+      .then((res)  => {
         const data = res.data;
         setCartItems(data);
         carts = data;
@@ -121,11 +121,7 @@ const Cart = () => {
 
   const listQuantities = (currentProductId) => {
     var qts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const currentProductQuantity = cartItems[
-      cartItems.findIndex(
-        (p) => p.ProductId == currentProductId
-      )
-    ].Quantity;
+    const currentProductQuantity = cartItems[cartItems.findIndex((p) => p.ProductId == currentProductId )].Quantity;
 
     
     return qts.map((quantity,index) => {

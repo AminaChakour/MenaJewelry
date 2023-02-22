@@ -18,7 +18,7 @@ export default function App() {
           <MDBRow className='mt-3'>
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
-                <MDBIcon icon="gem" className="me-3" />
+              
                 K A I - J E W E L S
               </h6>
               <p>
@@ -54,18 +54,18 @@ export default function App() {
             <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
               <p>
-                <MDBIcon icon="home" className="me-2" />
+              
                 Canada, Montreal
               </p>
               <p>
-                <MDBIcon icon="envelope" className="me-3" />
+                
                 kaijewelry@contact.com
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" /> + 1 514 222 4455
+                + 1 514 222 4455
               </p>
               <p>
-                <MDBIcon icon="print" className="me-3" /> + 1 514 222 4455
+               + 1 514 222 4455
               </p>
             </MDBCol>
           </MDBRow>

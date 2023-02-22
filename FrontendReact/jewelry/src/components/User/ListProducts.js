@@ -72,7 +72,7 @@ const ListProducts = (props) => {
 
   useEffect(() => {
     setLoading(true);
-    console.log("search submitted");
+
 
     SetSearchedProducts(
       Products.filter((prod) =>
@@ -86,7 +86,7 @@ const ListProducts = (props) => {
     // setter localStorage.setItem('SelectedProductId', id);
     // getter localStorage.getItem('SelectedProductId');
     ReactSession.set("SelectedProductId", id);
-    console.log("ff", ReactSession.get("SelectedProductId"));
+
     window.location.href = "./productDetails";
   }
 
@@ -185,9 +185,8 @@ const ListProducts = (props) => {
                 {pageNumbers.map((pgNumber) => (
                   <li
                     key={pgNumber}
-                    className={`page-item ${
-                      currentPage === pgNumber ? "active" : ""
-                    }`}
+                    className={`page-item ${currentPage === pgNumber ? "active" : ""}`}
+              
                   >
                     <a
                       onClick={() => setCurrentPage(pgNumber)}

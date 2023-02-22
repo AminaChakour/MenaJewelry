@@ -14,8 +14,8 @@ const firebase = {
   };
   
   // Initialize Firebase
-  const app = initializeApp(firebase);
-  export const storage = getStorage(app);
+  const app = initializeApp(firebase);  //Creates and initializes a @firebase/app#FirebaseApp instance.
+  export const storage = getStorage(app);  //Gets a FirebaseStorage instance 
 
 
   export default storage;

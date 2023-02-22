@@ -182,7 +182,7 @@ def ProductsByIdsApi(request):
 
 
 @csrf_exempt
-def OrdersApi(request,id):
+def OrdersApi(request,id=0):
 
     if request.method=='GET':
         orders= Order.objects.filter(UserId=id)
