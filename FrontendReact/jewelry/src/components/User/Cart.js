@@ -112,11 +112,21 @@ const Cart = () => {
         LoadData();
       }
     });
+
+    console.log('aaaaa',cartItems.length)
   };
 
   const CheckOut = () => {
-    ReactSession.set("Subtotal", Subtotal);
-    window.location.href = "/paypal";
+
+    if(prods.length>0)
+    {
+      ReactSession.set("Subtotal", Subtotal);
+      window.location.href = "/paypal";
+    }
+   
+
+    
+
   };
 
   const listQuantities = (currentProductId) => {
@@ -157,7 +167,7 @@ const Cart = () => {
               EMPTY CART &nbsp;&nbsp;
               <MdRemoveShoppingCart size={25} />
             </button>
-            <button className="col-6 CartCheckout" onClick={() => CheckOut()}>
+            <button className="col-6 CartCheckout" disabled={prods.length == 0}   onClick={() => CheckOut()}>
               PROCEED TO CHECKOUT <SiCashapp size={25} />
             </button>
           </div>
