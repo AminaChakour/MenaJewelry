@@ -108,12 +108,13 @@ const ListProducts = (props) => {
           <div className="row searchBarDiv">
             <input
               value={SearchText}
-              placeholder="SEARCH"
+              placeholder="S E A R C H"
               onChange={(e) => SetSearchText(e.target.value)}
               type="search"
               id="form1"
               className="searchBar form-control"
             />
+             
           </div>
 
           <div className="row align-items-center">
@@ -144,7 +145,9 @@ const ListProducts = (props) => {
                       </div>
                     </>
                   );
-                })
+                }
+                 )
+                
               : SearchedProducts.map((currentProd) => {
                   return (
                     <>

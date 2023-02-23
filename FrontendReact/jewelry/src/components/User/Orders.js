@@ -26,13 +26,8 @@ const Orders = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    console.log(ReactSession.get("idUser"));
-    console.log(ReactSession.get("userEmail"));
-    console.log(ReactSession.get("fullname"));
-
     axios.get("http://127.0.0.1:8000/orders/"+ ReactSession.get("idUser")).then((res) => {
       setOrders(res.data);
-      console.log("result : ", Orders);
 
       setLastRec(currentPage * recordsPerPage);
       setFirstRec(currentPage * recordsPerPage - recordsPerPage);
@@ -72,7 +67,6 @@ const Orders = (props) => {
 
   useEffect(() => {
     setLoading(true);
-    console.log("search submitted");
 
     SetSearchedOrders(
       Orders.filter((ord) =>

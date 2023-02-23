@@ -17,7 +17,6 @@ const Success = () => {
   const [loading, setLoading] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [orderTotal, setOrderTotal] = useState(0);
-  const [orderNumber, setOrderNumber] = useState("");
   const [purchaseDate, setPurchaseDate] = useState("");
   const [fullName, setFullName] = useState("");
   const [OrderId, setOrderId] = useState(0);
@@ -28,14 +27,6 @@ const Success = () => {
     setFullName(ReactSession.get("fullname"));
     setOrderTotal(ReactSession.get("Total"));
     setPurchaseDate(new Date().toLocaleString().replace(",", ""));
-    const dt = new Date().toLocaleString().replace(",", "");
-    setOrderNumber(
-      "KAI-" +
-        ReactSession.get("fullname")[0] +
-        ReactSession.get("fullname")[1] +
-        "-" +
-        dt.replace("/", "-").replace("/", "-").replace(" ", "-")
-    );
     setUserEmail(ReactSession.get("userEmail"));
   }, []);
 
@@ -46,14 +37,11 @@ const Success = () => {
     .then((res) =>{
         const data = res.data;
         let status = data.status;
-        console.log("st",status)
 
         if(status==="success"){
 
             setOrderId(data.info.OrderId);
-            console.log('ff',data.info.OrderId)
             document.getElementById("btnSubmit").click();
-            //reactsession true
             LoadData();
 
         }
@@ -148,13 +136,13 @@ const Success = () => {
           <input type="hidden" value={userEmail} name="toEmail" />
           <input type="hidden" value={fullName} name="fullName" />
           <input type="hidden" value={orderTotal} name="orderTotal" />
-          <input type="hidden" value={orderNumber} name="orderNumber" />
           <input type="submit" className="btnSubmit" id="btnSubmit" />
         </form>
 
 
-        
-        <h3> Email sent successfully, check orders for order details. Thank you.</h3>
+        <div className="PurchaseSuccess">
+        <h3 className="PurchaseSuccess"> Email sent successfully, check orders for order details. Thank you.</h3>
+        </div>
         </div>
       
       )}

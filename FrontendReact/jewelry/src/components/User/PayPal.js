@@ -33,8 +33,8 @@ const PayPal = () => {
 
     return (
       <PayPalButtons
-        className="paypalDiv"
-        createOrder={(data, actions) => {
+        className="paypalDiv" 
+        createOrder={(data, actions) => {     //setup a onetime payment
           return actions.order.create({
             purchase_units: [
               {
@@ -46,7 +46,7 @@ const PayPal = () => {
             ],
           });
         }}
-        onApprove={(data, actions) => {
+        onApprove={(data, actions) => {      //transaction is complete
           return actions.order.capture().then((details) => {
             
             ReactSession.set('Total',prixTotal)
