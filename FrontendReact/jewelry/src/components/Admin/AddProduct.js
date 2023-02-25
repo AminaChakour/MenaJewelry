@@ -32,21 +32,26 @@ const AddProduct = () => {
 
   useEffect(() => {
     if (Image.length > 0)
+
       axios
         .post("http://127.0.0.1:8000/product", {
           Title,
           Description,
           Price,
           Stock,
-          Image,
+          Image
         })
         .then((res) => {
-          Swal.fire({
-            title: "Success",
-            text: res.data,
-            icon: "success",
-            confirmButtonText: "Ok",
-          });
+          if(res.data ==="Added Successfully")
+          {
+            Swal.fire({
+              title: "Success",
+              text: "Added successfully",
+              icon: "success",
+              confirmButtonText: "Ok"
+            });
+          }
+        
         });
   }, [Image]);
 

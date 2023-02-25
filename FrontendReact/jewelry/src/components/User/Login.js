@@ -53,7 +53,7 @@ const LogIn = () => {
   function errorClass(error) {
     return error.length === 0 ? "" : "has-error";
   }
-  
+
   function sleep(milliseconds) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
@@ -64,110 +64,111 @@ const LogIn = () => {
     axios
       .post(
         "http://127.0.0.1:8000/login",
-        JSON.stringify({
-          email,
-          password,
-        })
+   
+          {email,
+          password}
+        
       )
       .then((res) => {
         const data = res.data;
-        console.log(data);
-        ReactSession.set("idUser", data.UserId);
-        ReactSession.set("userEmail", data.email);
-        ReactSession.set("fullname", data.firstname + " " + data.lastname);
+        if (data !== "Failed") {
+          ReactSession.set("idUser", data.UserId);
+          ReactSession.set("userEmail", data.email);
+          ReactSession.set("fullname", data.firstname + " " + data.lastname);
 
-        console.log(ReactSession.get("userEmail"));
-        Swal.fire({
-          title: "Success",
-          text: "Welcome " + data.firstname + ".",
-          icon: "success",
-          timer: 3000
-        });
-        if (ReactSession.get("userEmail") === "admin@gmail.com") {
-          sleep(2000).then((r) => {
-            window.location.href = "/editproducts";
+          Swal.fire({
+            title: "Success",
+            text: "Welcome " + data.firstname + ".",
+            icon: "success",
+            timer: 3000,
           });
-          
-        }
-        else
-        {
-          sleep(2000).then((r) => {
-            window.location.href = "/products";
-          });
-        }
 
-        
-        
+          if (ReactSession.get("userEmail") === "admin@gmail.com") {
+            sleep(2000).then((r) => {
+              window.location.href = "/editproducts";
+            });
+          } else {
+            sleep(2000).then((r) => {
+              window.location.href = "/products";
+            });
+          }
+        } else {
+          Swal.fire({
+            title: "Incorrect password or email",
+            text: "Try again !",
+            icon: "error",
+            timer: 3000,
+          });
+        }
       });
   }
 
   return (
     <>
-    <div className="loginStyle">
-      <form onSubmit={handleSubmit}>
-        <div className={`mb-3 ${errorClass(formErrors.email)}`}>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email..."
-            value={email}
-            name="email"
-            onChange={(e) => {
-              handleUserInput(e, "email");
-            }}
-          />
-        </div>
+      <div className="loginStyle">
+        <form onSubmit={handleSubmit}>
+          <div className={`mb-3 ${errorClass(formErrors.email)}`}>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email..."
+              value={email}
+              name="email"
+              onChange={(e) => {
+                handleUserInput(e, "email");
+              }}
+            />
+          </div>
 
-        <div className={`mb-3 ${errorClass(formErrors.password)}`}>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password..."
-            name="password"
-            value={password}
-            onChange={(e) => {
-              handleUserInput(e, "password");
-            }}
-          />
-        </div>
+          <div className={`mb-3 ${errorClass(formErrors.password)}`}>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password..."
+              name="password"
+              value={password}
+              onChange={(e) => {
+                handleUserInput(e, "password");
+              }}
+            />
+          </div>
 
-        <div className="panel panel-default">
-          <FormErrors formErrors={formErrors} />
-        </div>
+          <div className="panel panel-default">
+            <FormErrors formErrors={formErrors} />
+          </div>
 
-        <div className="d-grid">
-          <button
-            disabled={!formValid}
-            type="submit"
-            className="btn btn-warning"
-          >
-            LOG IN
-          </button>
-        </div>
-        <div className="mb-3 divcreateacc">
-          <a id="createaccountlink" href="/signup">
-            CREATE AN ACCOUNT
-          </a>
-        </div>
-      </form>
-     
-    </div>
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
-     <br />
+          <div className="d-grid">
+            <button
+              disabled={!formValid}
+              type="submit"
+              className="btn btn-warning"
+            >
+              LOG IN
+            </button>
+          </div>
+          <div className="mb-3 divcreateacc">
+            <a id="createaccountlink" href="/signup">
+              CREATE AN ACCOUNT
+            </a>
+          </div>
+        </form>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 };

@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   /*background-image: url("./wallpaper2.jpg");
   background-repeat: no-repeat;
@@ -116,11 +115,11 @@ html,
   font-weight: 400;
 }
 
-.btn-warning{
-color:white !important;
-background-color:#a39f69 !important;
-border:inset !important;
-border-color: #a39f69 !important ;
+.btn-warning {
+  color: white !important;
+  background-color: #a39f69 !important;
+  border: inset !important;
+  border-color: #a39f69 !important ;
 }
 
 .divcreateacc {
@@ -145,26 +144,22 @@ border-color: #a39f69 !important ;
   cursor: pointer;
 }
 
-
-
 .col-4 {
   width: 420px !important;
   margin-left: 110px;
-  margin-right:50px;
+  margin-right: 50px;
   margin-top: 130px !important;
 }
 
 .ProductListImages {
   height: 100%;
   width: 100%;
-
 }
 
 .ProductListImages:hover {
   border-color: #b5ad7f;
   border-style: inset;
   border-width: 5px;
-  
 }
 
 /*
@@ -179,18 +174,14 @@ height: 450px;
   margin-top: 2% !important;
   height: 755px !important;
   width: 90% !important;
-  border:double;
-
+  border: double;
 }
 .selectedProdImage {
-  margin-top:5%;
-  height: 750px ;
-  width: 750px ;
+  margin-top: 5%;
+  height: 750px;
+  width: 750px;
   cursor: pointer;
- 
 }
-
-
 
 .titleProd {
   font-family: monospace;
@@ -223,148 +214,128 @@ height: 450px;
   font-family: monospace;
   font-size: larger;
   font-weight: bold;
-  text-transform:uppercase;
+  text-transform: uppercase;
   margin-bottom: 5px !important;
-  border-top:none !important;
-  border-bottom:none !important;
+  border-top: none !important;
+  border-bottom: none !important;
   border-radius: 0 !important;
 }
-.form-control:focus{
+.form-control:focus {
   border-color: #bdb37a !important;
-
 }
 
 .Carousel {
-  margin: auto;
-  margin-top: 5%;
-  width: 600px !important;
-  height: 600px !important;
-  border-style: double;
+
+  margin-left: 0%;
+  margin-right: 0%;
+  width: 902px !important;
+  height: 870px !important;
 }
 
 .imgCarousel {
-  margin: auto;
-
+  
+  margin-left: 0%;
+  margin-right: 0%;
+  padding:0px;
   width: 100% !important;
   height: 100% !important;
 }
 
-
-.ProductDetails{
-
+.ProductDetails {
   font-family: monospace;
-  color:rgb(150, 143, 87);
-  margin:auto;
+  color: rgb(150, 143, 87);
+  margin: auto;
 }
 
-.btn-warning{
+.btn-warning {
   border-radius: 0 !important;
 }
 
-
-.paginationNav{
-
+.paginationNav {
   margin-top: 10%;
 }
 
-.pagination > li > a
-{
-    background-color: white;
-    color: #b9b187;
-    border-radius: 0 !important;
+.pagination > li > a {
+  background-color: white;
+  color: #b9b187;
+  border-radius: 0 !important;
 }
 
 .pagination > li > a:focus,
 .pagination > li > a:hover,
 .pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #c7c392;
-    background-color: #eee;
-    border-color: #ddd;
+.pagination > li > span:hover {
+  color: #c7c392;
+  background-color: #eee;
+  border-color: #ddd;
 }
 
-.pagination > .active > a
-{
-    color: white;
-    background-color: #d8d3a6 !Important;
-    border: solid 1px #aba675 !Important;
+.pagination > .active > a {
+  color: white;
+  background-color: #d8d3a6 !important;
+  border: solid 1px #aba675 !important;
 }
 
-.pagination > .active > a:hover
-{
-    background-color: #d8d3a6 !Important;
-    border: solid 1px #aba675;
+.pagination > .active > a:hover {
+  background-color: #d8d3a6 !important;
+  border: solid 1px #aba675;
 }
 
-.loader{
-
-  margin:auto !important;
+.loader {
+  margin: auto !important;
   margin-top: 5% !important;
   text-align: center !important;
   justify-content: center !important;
 }
 
-.CartCard{
-  margin-left:2% !important;
-  width:95%;
+.CartCard {
+  margin-left: 2% !important;
+  width: 95%;
   background-color: rgb(252, 248, 242);
-  margin-top:2% !important;
+  margin-top: 2% !important;
   border-style: solid;
-  border-color:rgb(194, 179, 134) !important;
+  border-color: rgb(194, 179, 134) !important;
   border-width: 1px;
-  height:300px !important;
+  height: 300px !important;
   border-radius: 50px;
 }
 
-.CartImage{
-
-  height:100%;
-  width:350px !important;
+.CartImage {
+  height: 100%;
+  width: 350px !important;
   padding: 0.5rem;
   border-radius: 50px;
 }
 
-.CartIconsDiv{
-
-  clear:right !important;
-  float:right;
-}
-
-.CartIcons{
-
+.CartIconsDiv {
   clear: right !important;
-  float:right;
+  float: right;
 }
 
-.CartIcons:hover{
+.CartIcons {
+  clear: right !important;
+  float: right;
+}
 
- 
+.CartIcons:hover {
   cursor: pointer;
-  color:rgb(231, 35, 35) !important;
+  color: rgb(231, 35, 35) !important;
 }
 
-.btnEditProd{
-  width:100% !important;
-  margin:auto !important;
+.btnEditProd {
+  width: 100% !important;
+  margin: auto !important;
 
   background-color: rgb(178, 171, 142) !important;
-  border:none;
+  border: none;
   color: whitesmoke;
-
 }
-
-
-
-
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
-
 
 /* Modal */
 .overlay {
@@ -385,7 +356,7 @@ height: 450px;
   background-color: #ffffff;
   box-shadow: 0px 0px 10000px 0px rgba(255, 255, 255, 0.75);
   border-radius: 30px;
-  border:solid;
+  border: solid;
   border-color: #aba675;
   border-width: 1px;
   cursor: default;
@@ -393,7 +364,6 @@ height: 450px;
 
 img {
   object-fit: cover;
-
 }
 
 .modalRight {
@@ -421,7 +391,7 @@ img {
 }
 .btnContainer button {
   width: 100%;
-  margin: .5rem;
+  margin: 0.5rem;
   padding: 16px 0;
   /* border: none; */
   border: 1px solid #411b57;
@@ -431,11 +401,10 @@ img {
 .btnPrimary {
   background-color: rgb(178, 171, 142);
   color: white;
-  
-  border:solid;
-  border-color:rgb(178, 171, 142) !important;
-  border-radius: 40px;
 
+  border: solid;
+  border-color: rgb(178, 171, 142) !important;
+  border-radius: 40px;
 }
 
 .btnOutline {
@@ -443,8 +412,8 @@ img {
   background-color: white;
   color: rgb(178, 171, 142);
 
-  border:solid;
-  border-color:rgb(178, 171, 142) !important;
+  border: solid;
+  border-color: rgb(178, 171, 142) !important;
   border-radius: 40px;
 }
 
@@ -471,64 +440,55 @@ img {
   }
 }
 
-
-.ModalImage{
-
-  height:100%;
-  margin-top:2% !important;
+.ModalImage {
+  height: 100%;
+  margin-top: 2% !important;
   padding: 1rem;
-  width:350px !important;
+  width: 350px !important;
   border-radius: 50%;
-
 }
 
-.CartHeader{
+.CartHeader {
   margin-top: 1% !important;
   background-color: rgb(142, 102, 102);
   border-radius: 20px;
-  height:60px;
-  width:90%;
+  height: 60px;
+  width: 90%;
   text-align: center;
   margin: auto !important;
   text-align: center !important;
-
 }
-.CartSubtotal{
+.CartSubtotal {
   margin: auto !important;
   margin-top: 1% !important;
   background-color: wheat;
   border-radius: 20px;
-  border:none;
+  border: none;
   font-weight: bolder;
-  height:50px;
-  width:50%;
-  color:rgb(72,72,72);
+  height: 50px;
+  width: 50%;
+  color: rgb(72, 72, 72);
   text-align: center;
   text-align: center !important;
-
 }
-.CartEmpty{
+.CartEmpty {
   text-align: center;
   background-color: rgb(144, 112, 112);
   color: white;
-  height:100%;
+  height: 100%;
   border-radius: 20px;
   font-weight: bolder;
-  border:none;
-
+  border: none;
 }
 
-
-.CartCheckout{
+.CartCheckout {
   font-weight: bolder;
   background-color: rgb(144, 112, 112);
   color: white;
-  height:100%;
+  height: 100%;
   border-radius: 20px;
-  border:none;
+  border: none;
   border-left: solid;
-
-
 }
 
 .paypalDiv {
@@ -538,31 +498,27 @@ img {
   text-align: center;
 }
 
-
 .EmptyCart {
   width: 50%;
-  height:300px;
+  height: 300px;
   text-align: justify;
   margin: auto;
   margin-top: 20%;
   text-align: center;
-  font-size:xx-large;
+  font-size: xx-large;
   color: rgb(63, 63, 63);
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.btnSubmit{
-
+.btnSubmit {
   display: none;
 }
-
 
 .OrdersCard {
   margin-top: 100px;
   height: 150px !important;
   cursor: pointer;
-  border:solid;
+  border: solid;
   border-color: #b5ad7f;
 }
 
@@ -571,16 +527,14 @@ img {
   font-weight: bold;
   text-transform: uppercase;
   font-size: large;
-  height:8px;
-  width:100%;
+  height: 8px;
+  width: 100%;
   margin-top: 30px !important;
   text-transform: uppercase;
-
 }
 .dateOrder {
   font-family: monospace;
   font-size: medium;
-  
 }
 
 .totalOrder {
@@ -588,62 +542,56 @@ img {
   font-size: large;
   font-weight: bolder;
   text-align: center;
-  height:8px;
-  background-color: #b5ad7f ;
+  height: 8px;
+  background-color: #b5ad7f;
   text-transform: uppercase;
 }
 
+.OrderDetailsCard {
+  margin: auto !important;
 
-
-.OrderDetailsCard{
-  margin:auto !important;
-   
-  
-  width:80%;
+  width: 80%;
   background-color: rgb(252, 248, 242);
-  margin-top:1% !important;
+  margin-top: 1% !important;
   border-style: solid;
-  border-color:rgb(194, 179, 134) !important;
+  border-color: rgb(194, 179, 134) !important;
   border-width: 1px;
-  height:150px !important;
-
+  height: 150px !important;
 }
 
-.OrderDetailsImage{
-
-  height:100%;
-  width:150px !important;
+.OrderDetailsImage {
+  height: 100%;
+  width: 150px !important;
   padding: 0.5rem;
 }
-.OrderDetailsTitle{
-
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.OrderDetailsTitle {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   padding: 1rem;
   text-transform: uppercase;
 }
 
-.OrderDetailsQuantity{
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.OrderDetailsQuantity {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   padding: 1rem;
   text-transform: uppercase;
-
 }
-.OrderDetailsPrice{
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.OrderDetailsPrice {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   padding: 1rem;
   text-transform: uppercase;
-
 }
 
-
-
-.PurchaseSuccess{
+.PurchaseSuccess {
   margin-top: 20%;
-  color:gray;
+  color: gray;
   font-weight: lighter;
-  font-family:  'Trebuchet MS';
-  
+  font-family: "Trebuchet MS";
+}
 
-
-
+.imghome {
+  width: 100%;
+  height: 500px;
 }

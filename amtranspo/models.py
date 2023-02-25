@@ -18,7 +18,7 @@ class User(models.Model):
   
 
 class Product(models.Model):
-    ProductId = models.AutoField(primary_key=True)
+    ProductId = models.CharField(max_length=50,primary_key=True)
     Title = models.CharField(max_length=50)
     Description = models.CharField(max_length=500,blank=True) 
     Price = models.CharField(max_length=10)

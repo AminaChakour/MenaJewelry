@@ -24,12 +24,14 @@ def productsApi(request,id=0):
         return JsonResponse(product_serializer.data,safe=False)
 
     elif request.method=='POST':
-        product_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
+        product_data=JSONParser().parse(request) 
+        products= Product.objects.all()
+        product_serializer0 = ProductSerializer(products,many=True)
+        product_data['ProductId'] = int(product_serializer0.data[-1]['ProductId']) + 1
         product_serializer = ProductSerializer(data=product_data)
         if product_serializer.is_valid():
-            product_serializer.save()         # save to mongodb
+            product_serializer.save()
             return JsonResponse("Added Successfully",safe=False)
-            
         return JsonResponse("Failed to Add",safe=False)
 
     elif request.method=='PUT':
@@ -51,10 +53,15 @@ def productsApi(request,id=0):
 @csrf_exempt
 def loginApi(request,id=0):
     if request.method=='POST':
-        user_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
-        user=User.objects.get(email=user_data['email'])
+        user_data=JSONParser().parse(request) 
+        try:
+            user=User.objects.get(email=user_data['email'],password=user_data['password'])
+        except:
+            return JsonResponse("Failed",safe=False)
+
         user_serializer=UserSerializer(user,many=False)
         return JsonResponse(user_serializer.data,safe=False)
+
         
 
 
@@ -200,7 +207,6 @@ def OrdersApi(request,id=0):
             return JsonResponse(data,safe=False)
         data = {"status": "failed" }
         return JsonResponse(data,safe=False)
-
 
 
 @csrf_exempt
