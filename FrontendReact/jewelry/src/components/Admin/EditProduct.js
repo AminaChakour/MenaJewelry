@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import Swal from "sweetalert2";
 import { MdEdit } from "react-icons/md";
-
+import { RiDeleteBin3Fill } from "react-icons/ri";
 import { ReactSession } from "react-client-session";
 import ReactLoading from "react-loading";
 import Modal from "./Modal.js";
@@ -13,11 +13,11 @@ const ListProducts = (props) => {
     window.location.href = "/home";
   }
   const [openModal, setOpenModal] = useState(false);
-  const [prodToEdit,setProdToEdit] = useState([])
+  const [prodToEdit, setProdToEdit] = useState([]);
   const [loading, setLoading] = useState(false);
   const [Products, setProducts] = useState([]);
   const [SearchText, SetSearchText] = useState("");
-  const [SearchedProducts,  SetSearchedProducts] = useState([]);
+  const [SearchedProducts, SetSearchedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(6);
   const [nPages, setnPages] = useState(0);
@@ -30,50 +30,38 @@ const ListProducts = (props) => {
     indexOfLastRecord - recordsPerPage
   );
 
-
-    
   function sleep(milliseconds) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
-   const handleUpdate = (newProductData) =>{
+  const handleUpdate = (newProductData) => {
+    axios.put("http://127.0.0.1:8000/product", newProductData).then((res) => {
+      const data = res.data;
 
-    axios.put("http://127.0.0.1:8000/product", 
-    newProductData )
-    .then((res) => {
+      if (data.status === "success") {
+        Swal.fire({
+          title: "Success",
+          text: "Product updated !",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      } else if (data.status === "error") {
+        Swal.fire({
+          title: "Error !",
+          text: "Try again",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      }
 
-    const data = res.data;
-
-        if (data.status === "success") {
-          Swal.fire({
-            title: "Success",
-            text:  "Product updated !",
-            icon: "success",
-            confirmButtonText: "Ok",
-          });
-        
-          
-          
-        } else if (data.status === "error") {
-          Swal.fire({
-            title: "Error !",
-            text: "Try again",
-            icon: "error",
-            confirmButtonText: "Ok",
-          });
-        } 
-
-        sleep(2000).then((r) => {
-            window.location.href = "/editproducts";
-          });
-
-    })
-
-   }
+      sleep(2000).then((r) => {
+        window.location.href = "/editproducts";
+      });
+    });
+  };
   useEffect(() => {
     setLoading(true);
     axios.get("http://127.0.0.1:8000/product").then((res) => {
       setProducts(res.data);
-
 
       setLastRec(currentPage * recordsPerPage);
       setFirstRec(currentPage * recordsPerPage - recordsPerPage);
@@ -84,7 +72,6 @@ const ListProducts = (props) => {
           currentPage * recordsPerPage
         )
       );
-
 
       setnPages(Math.ceil(Products.length / recordsPerPage));
 
@@ -114,7 +101,6 @@ const ListProducts = (props) => {
   useEffect(() => {
     setLoading(true);
 
-
     SetSearchedProducts(
       Products.filter((prod) =>
         prod.Title.toLowerCase()
@@ -132,18 +118,42 @@ const ListProducts = (props) => {
     if (currentPage !== 1) setCurrentPage(currentPage - 1);
   };
 
-  const handleModal= (CURRENTprod) => {
-    setProdToEdit(CURRENTprod)
-    setOpenModal(true)
+  const handleModal = (CURRENTprod) => {
+    setProdToEdit(CURRENTprod);
+    setOpenModal(true);
   };
-  useEffect(()=> {
-    if(openModal===false){
-        setProdToEdit([])
-
+  useEffect(() => {
+    if (openModal === false) {
+      setProdToEdit([]);
     }
+  }, [openModal]);
 
-  },[openModal])
- 
+  const handleDelete = (ProductId) => {
+    axios
+      .delete("http://127.0.0.1:8000/product/"+ ProductId)
+      .then((res) => {
+        const data = res.data;
+
+        if (data === "success") {
+
+          setCurrentRecords(currentRecords.filter((p) => p.ProductId !==ProductId))
+
+          Swal.fire({
+            title: "Success",
+            text: "Product deleted !",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        } else if (data === "error") {
+          Swal.fire({
+            title: "Error !",
+            text: "Try again",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
+  };
   return (
     <>
       {loading ? (
@@ -169,12 +179,19 @@ const ListProducts = (props) => {
                   return (
                     <>
                       <div className="col-4 ProductCard">
-                      <button
+                        <button
+                          className="btnDeleteProd"
+                          onClick={() => handleDelete(currentProd.ProductId)}
+                        >
+                          <RiDeleteBin3Fill size={30} />
+                        </button>
+                        <button
                           className="btnEditProd"
                           onClick={() => handleModal(currentProd)}
                         >
                           <MdEdit size={30} />
                         </button>
+
                         <img
                           className="ProductListImages"
                           alt="y"
@@ -190,13 +207,12 @@ const ListProducts = (props) => {
                         <h3 className="priceProd align-items-center">
                           {currentProd.Price}$
                         </h3>
-                      
+
                         <Modal
                           open={openModal}
                           onClose={() => setOpenModal(false)}
                           onSave={(newProd) => handleUpdate(newProd)}
                           prod={prodToEdit}
-                                                
                         />
                       </div>
                     </>
@@ -207,6 +223,12 @@ const ListProducts = (props) => {
                     <>
                       <div className="col-4 ProductCard">
                       <button
+                          className="btnDeleteProd"
+                          onClick={() => handleDelete(currentProd.ProductId)}
+                        >
+                          <RiDeleteBin3Fill size={30} />
+                        </button>
+                        <button
                           className="btnEditProd"
                           onClick={() => handleModal(currentProd)}
                         >
@@ -227,12 +249,12 @@ const ListProducts = (props) => {
                         <h3 className="priceProd align-items-center">
                           {currentProd.Price}$
                         </h3>
-                       
+
                         <Modal
-                            open={openModal}
-                            onClose={() => setOpenModal(false)}
-                            onSave={(newProd) => handleUpdate(newProd)}
-                            prod={prodToEdit}
+                          open={openModal}
+                          onClose={() => setOpenModal(false)}
+                          onSave={(newProd) => handleUpdate(newProd)}
+                          prod={prodToEdit}
                         />
                       </div>
                     </>

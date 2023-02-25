@@ -326,9 +326,19 @@ height: 450px;
   width: 100% !important;
   margin: auto !important;
 
-  background-color: rgb(178, 171, 142) !important;
+  background-color: rgb(226, 216, 184) !important;
   border: none;
-  color: whitesmoke;
+  color: rgb(140, 146, 105);
+}
+
+
+.btnDeleteProd {
+  width: 100% !important;
+  margin: auto !important;
+
+  background-color: rgb(243, 237, 237) !important;
+  border: none;
+  color: rgb(140, 146, 105);
 }
 
 * {

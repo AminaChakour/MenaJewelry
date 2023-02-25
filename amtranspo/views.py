@@ -12,9 +12,18 @@ from amtranspo.serializers import OrderSerializer,OrderDetailsSerializer,UserSer
 @csrf_exempt
 def SelectedProductApi(request,id=0):
     if request.method=='GET':
+
         product= Product.objects.get(ProductId=id)
         product_serializer = ProductSerializer(product,many=False)
         return JsonResponse(product_serializer.data,safe=False)
+    
+    elif request.method=='DELETE':
+        try:
+            product=Product.objects.get(ProductId=id)
+            product.delete()
+            return JsonResponse("success",safe=False)
+        except:
+            return JsonResponse("error",safe=False)
 
 @csrf_exempt
 def productsApi(request,id=0):
@@ -26,8 +35,8 @@ def productsApi(request,id=0):
     elif request.method=='POST':
         product_data=JSONParser().parse(request) 
         products= Product.objects.all()
-        product_serializer0 = ProductSerializer(products,many=True)
-        product_data['ProductId'] = int(product_serializer0.data[-1]['ProductId']) + 1
+        product_serializer0 = ProductSerializer(products,many=True) # get prods 
+        product_data['ProductId'] = int(product_serializer0.data[-1]['ProductId']) + 1 # get id of last prod in list and increment by 1
         product_serializer = ProductSerializer(data=product_data)
         if product_serializer.is_valid():
             product_serializer.save()
@@ -45,10 +54,6 @@ def productsApi(request,id=0):
         data = {"status": "error"}
         return JsonResponse("Failed to Update",safe=False)
 
-    elif request.method=='DELETE':
-        product=Product.objects.get(ProductId=id)
-        product.delete()
-        return JsonResponse("Deleted successfully",safe=False)
 
 @csrf_exempt
 def loginApi(request,id=0):
