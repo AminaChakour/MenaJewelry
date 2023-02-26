@@ -59,7 +59,7 @@ def productsApi(request,id=0):
             data = {"status": "success" , "info": product_data}
             return JsonResponse(data,safe=False)
         data = {"status": "error"}
-        return JsonResponse("Failed to Update",safe=False)
+        return JsonResponse(data,safe=False)
 
 
 @csrf_exempt

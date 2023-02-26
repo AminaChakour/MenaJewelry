@@ -11,12 +11,13 @@ const Modal = ({ open, onClose, onSave, prod }) => {
   const [ProductId, setProductId] = useState("");
   const [Image, setImage] = useState("");
   const [Stock, setStock] = useState("");
+  const [Category, setCategory] = useState("");
 
   useEffect(() => {
     setDescription(prod.Description);
     setPrice(prod.Price);
     setStock(prod.Stock);
-
+    setCategory(prod.Category);
     setTitle(prod.Title);
     setProductId(prod.ProductId);
     setImage(prod.Image);
@@ -44,6 +45,7 @@ const Modal = ({ open, onClose, onSave, prod }) => {
       "Price": Price,
       "Description": Description,
       "Stock" : Stock,
+      "Category" : Category,
       "Image":Image
     });
 
