@@ -67,7 +67,7 @@ def loginApi(request,id=0):
     if request.method=='POST':
         user_data=JSONParser().parse(request) 
         try:
-            user=User.objects.get(email=user_data['email'],password=user_data['password'])
+            user=User.objects.get(email=user_data['email'])
         except:
             return JsonResponse("Failed",safe=False)
 
@@ -109,9 +109,17 @@ def userApi(request,id=0):
     
     elif request.method=='POST':
         user_data=JSONParser().parse(request)  #get data coming from axios react and format it to json
-        user_serializer = UserSerializer(data=user_data)
+       
         userExists = User.objects.filter(email=user_data['email'])  #check if there is a user with this email in the db
+        #increment id
+        users= User.objects.all()
+        user_serializer0 = UserSerializer(users,many=True) 
+        if len(user_serializer0.data) == 0:
+            user_data['UserId'] = 1
+        else:
+            user_data['UserId'] = int(user_serializer0.data[-1]['UserId']) + 1 # get id of last userin list and increment by 1
 
+        user_serializer = UserSerializer(data=user_data)
         if len(userExists)>0 :
             data = {"status": "exists" }
             return JsonResponse(data,safe=False)

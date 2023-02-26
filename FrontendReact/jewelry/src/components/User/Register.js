@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { FormErrors } from "./FormErrors";
 import { ReactSession } from "react-client-session";
+import bcrypt from 'bcryptjs';
 
 
 const SignUp = () => {
@@ -19,7 +20,7 @@ const SignUp = () => {
   const [province, setProvince] = useState("QC");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password0, setPassword] = useState("");
 
   const [formErrors, setFormErrors] = useState({
     lastname: "",
@@ -30,7 +31,7 @@ const SignUp = () => {
     city: "",
     phone: "",
     email: "",
-    password: "",
+    password0: "",
   });
   const [lastnameValid, setLastnameValid] = useState(false);
   const [firstnameValid, setFirstnameValid] = useState(false);
@@ -71,7 +72,7 @@ const SignUp = () => {
       case "phone":
         setPhone(val);
         break;
-      case "password":
+      case "password0":
         setPassword(val);
         break;
       case "province":
@@ -101,7 +102,7 @@ const SignUp = () => {
         emailValid1 = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         fieldValidationErrors.email = emailValid1 ? "" : " is invalid";
         break;
-      case "password":
+      case "password0":
         passwordValid1 = value.length >= 8;
         fieldValidationErrors.password = passwordValid1 ? "" : " is too short";
         break;
@@ -180,6 +181,10 @@ const SignUp = () => {
   }
   function handleSubmit(e) {
     e.preventDefault();
+
+
+    //encrypt password 
+    var password= bcrypt.hashSync(password0,10);
 
     axios
       .post(
@@ -362,10 +367,10 @@ const SignUp = () => {
             type="password"
             className="form-control"
             placeholder="Password"
-            name="password"
-            value={password}
+            name="password0"
+            value={password0}
             onChange={(e) => {
-              handleUserInput(e, "password");
+              handleUserInput(e, "password0");
             }}
           />
         </div>

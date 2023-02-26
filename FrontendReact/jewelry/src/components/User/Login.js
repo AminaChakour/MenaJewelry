@@ -4,6 +4,7 @@ import { FormErrors } from "./FormErrors";
 import { useState } from "react";
 import axios from "axios";
 import { ReactSession } from "react-client-session";
+import bcrypt from 'bcryptjs';
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -58,20 +59,40 @@ const LogIn = () => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
 
+  function compareAsync(param1, param2) {
+    return new Promise(function(resolve, reject) {
+        bcrypt.compare(param1, param2, function(err, res) {
+            if (err) {
+                 reject(err);
+            } else {
+                 resolve(res);
+            }
+        });
+    });
+}
+
   function handleSubmit(e) {
     e.preventDefault();
 
     axios
       .post(
-        "http://127.0.0.1:8000/login",
-   
-          {email,
-          password}
+        "http://127.0.0.1:8000/login",{email}
         
       )
-      .then((res) => {
+      .then(async (res) => {
         const data = res.data;
-        if (data !== "Failed") {
+
+        const hashedPass = data.password;
+        //var match = false; //false
+        console.log("hashed", hashedPass)
+        console.log("pass", password)
+
+     
+        const match = await compareAsync(password,hashedPass); 
+
+
+
+        if (match) {
           ReactSession.set("idUser", data.UserId);
           ReactSession.set("userEmail", data.email);
           ReactSession.set("fullname", data.firstname + " " + data.lastname);

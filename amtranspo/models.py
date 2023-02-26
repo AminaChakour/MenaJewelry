@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class User(models.Model):
-    UserId = models.AutoField(primary_key=True)
+    UserId = models.CharField(max_length=50,primary_key=True)
     lastname = models.CharField(max_length=50)
     firstname = models.CharField(max_length=50) 
     birthday = models.CharField(max_length=50)
