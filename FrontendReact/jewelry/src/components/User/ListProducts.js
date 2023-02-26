@@ -10,12 +10,14 @@ const ListProducts = (props) => {
   const [loading, setLoading] = useState(false);
   const [Products, setProducts] = useState([]);
   const [SearchText, SetSearchText] = useState("");
+  const [SortBy, SetSortBy] = useState("ALL PRODUCTS");
   const [SearchedProducts, SetSearchedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(6);
   const [nPages, setnPages] = useState(0);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [currentRecords, setCurrentRecords] = useState([]);
+
   const [indexOfLastRecord, setLastRec] = useState(
     currentPage * recordsPerPage
   );
@@ -66,17 +68,18 @@ const ListProducts = (props) => {
         currentPage * recordsPerPage
       )
     );
-    console.log("current", currentRecords);
+
     setLoading(false);
   }, [currentPage]);
 
   useEffect(() => {
     setLoading(true);
 
-
     SetSearchedProducts(
       Products.filter((prod) =>
-        prod.Title.toLowerCase().trim().includes(SearchText.toLowerCase().trim())
+        prod.Title.toLowerCase()
+          .trim()
+          .includes(SearchText.toLowerCase().trim())
       )
     );
     setLoading(false);
@@ -114,12 +117,54 @@ const ListProducts = (props) => {
               id="form1"
               className="searchBar form-control"
             />
-             
+
+            <select
+              className="SortBy"
+              onChange={(e) => SetSortBy(e.target.value)}
+            >
+              <option>ALL PRODUCTS</option>
+              <option>NECKLACES</option>
+              <option>RINGS</option>
+              <option>EARRINGS</option>
+            </select>
           </div>
 
           <div className="row align-items-center">
-            {SearchText.length === 0
-              ? currentRecords.map((currentProd) => {
+            {SortBy !== "ALL PRODUCTS" && SearchText.length===0
+              ? Products
+                  .filter(
+                    (p) => p.Category.toLowerCase() === SortBy.toLowerCase()
+                  )
+                  .map((currentProd) => {
+                    return (
+                      <>
+                        <div
+                          onClick={() => {
+                            redirectToSelected(currentProd.ProductId);
+                          }}
+                          className="col-4 ProductCard"
+                        >
+                          <img
+                            className="ProductListImages"
+                            alt="y"
+                            src={currentProd.Image}
+                          />
+                          <br />
+
+                          <h3 className="titleProd align-items-center">
+                            {currentProd.Title}
+                          </h3>
+
+                          <h3 className="priceProd align-items-center">
+                            {currentProd.Price}$
+                          </h3>
+                        </div>
+                      </>
+                    );
+                  })
+              : (SearchText.length === 0 && SortBy==="ALL PRODUCTS")
+              ? currentRecords.map((currentProd) => 
+              {
                   return (
                     <>
                       <div
@@ -145,9 +190,40 @@ const ListProducts = (props) => {
                       </div>
                     </>
                   );
-                }
-                 )
-                
+                })
+                :
+                (SortBy !== "ALL PRODUCTS" && SearchText.length>0)
+                ? SearchedProducts
+                    .filter(
+                      (p) => p.Category.toLowerCase() === SortBy.toLowerCase()
+                    )
+                    .map((currentProd) => {
+                      return (
+                        <>
+                          <div
+                            onClick={() => {
+                              redirectToSelected(currentProd.ProductId);
+                            }}
+                            className="col-4 ProductCard"
+                          >
+                            <img
+                              className="ProductListImages"
+                              alt="y"
+                              src={currentProd.Image}
+                            />
+                            <br />
+  
+                            <h3 className="titleProd align-items-center">
+                              {currentProd.Title}
+                            </h3>
+  
+                            <h3 className="priceProd align-items-center">
+                              {currentProd.Price}$
+                            </h3>
+                          </div>
+                        </>
+                      );
+                    })
               : SearchedProducts.map((currentProd) => {
                   return (
                     <>
@@ -177,7 +253,7 @@ const ListProducts = (props) => {
                 })}
           </div>
 
-          {SearchText.length === 0 && (
+          {(SearchText.length === 0 && SortBy==="ALL PRODUCTS")&& (
             <nav className="paginationNav" aria-label="Page navigation example">
               <ul className="pagination justify-content-center">
                 <li className="page-item">
@@ -188,8 +264,9 @@ const ListProducts = (props) => {
                 {pageNumbers.map((pgNumber) => (
                   <li
                     key={pgNumber}
-                    className={`page-item ${currentPage === pgNumber ? "active" : ""}`}
-              
+                    className={`page-item ${
+                      currentPage === pgNumber ? "active" : ""
+                    }`}
                   >
                     <a
                       onClick={() => setCurrentPage(pgNumber)}
