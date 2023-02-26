@@ -174,7 +174,9 @@ height: 450px;
   margin-top: 2% !important;
   height: 755px !important;
   width: 90% !important;
-  border: double;
+  margin-bottom:50% !important;
+  border-style: groove;
+
 }
 .selectedProdImage {
   margin-top: 5%;
@@ -225,7 +227,6 @@ height: 450px;
 }
 
 .Carousel {
-
   margin-left: 0%;
   margin-right: 0%;
   width: 902px !important;
@@ -233,10 +234,9 @@ height: 450px;
 }
 
 .imgCarousel {
-  
   margin-left: 0%;
   margin-right: 0%;
-  padding:0px;
+  padding: 0px;
   width: 100% !important;
   height: 100% !important;
 }
@@ -246,7 +246,25 @@ height: 450px;
   color: rgb(150, 143, 87);
   margin: auto;
 }
+.QuantityDetailsStyle {
+  font-family: monospace;
+  color: rgb(150, 143, 87);
 
+}
+.btnAddToCart{
+  position: absolute;
+  right:    0;
+  bottom:   0;
+  width:40%;
+  height:40px;
+  margin-top: 30%;
+  margin-bottom:30px;
+  margin-right:140px;
+  border:#a39f69;
+  border-width:1px;
+  color:white;
+  background-color: #a39f69 !important;
+}
 .btn-warning {
   border-radius: 0 !important;
 }
@@ -322,23 +340,32 @@ height: 450px;
   color: rgb(231, 35, 35) !important;
 }
 
-.btnEditProd {
-  width: 100% !important;
-  margin: auto !important;
-
-  background-color: rgb(226, 216, 184) !important;
-  border: none;
-  color: rgb(140, 146, 105);
+.container {
+  position: relative;
 }
-
-
-.btnDeleteProd {
-  width: 100% !important;
-  margin: auto !important;
-
-  background-color: rgb(243, 237, 237) !important;
-  border: none;
-  color: rgb(140, 146, 105);
+.container img {
+  display: block;
+  width: 100%;
+}
+.container .btnDeleteProd {
+  color: #a39f69;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  border:none;
+  right:0;
+  margin-right:20px;
+  margin-bottom: 5px;
+  padding:10px 10px;
+  
+}
+.container .btnEditProd {
+  color: #a39f69;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  border:none;
+  float:left;
 }
 
 * {

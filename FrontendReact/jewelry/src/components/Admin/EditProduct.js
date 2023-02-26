@@ -179,24 +179,28 @@ const ListProducts = (props) => {
                   return (
                     <>
                       <div className="col-4 ProductCard">
+                        
+                        
+
+                        <div className="container">
+                        <img
+                       
+                          alt="y"
+                          src={currentProd.Image}
+                        />
                         <button
                           className="btnDeleteProd"
                           onClick={() => handleDelete(currentProd.ProductId)}
                         >
-                          <RiDeleteBin3Fill size={30} />
+                          <RiDeleteBin3Fill size={40} />
                         </button>
                         <button
                           className="btnEditProd"
                           onClick={() => handleModal(currentProd)}
                         >
-                          <MdEdit size={30} />
+                          <MdEdit size={40} />
                         </button>
-
-                        <img
-                          className="ProductListImages"
-                          alt="y"
-                          src={currentProd.Image}
-                        />
+                        </div>
 
                         <br />
 

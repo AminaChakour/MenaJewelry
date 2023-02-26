@@ -59,11 +59,11 @@ const SelectedProd = () => {
   return (
     <div className="row SelectedProductCard">
       <img
-        className="col-xl-6 col-md-12 col-xs-12 selectedProdImage"
+        className="col-12 col-md-6 col-xl-6 col-lg-6 selectedProdImage"
         alt="y"
         src={Product.Image}
       />
-      <div className="col-6">
+      <div className="col-12 col-xl-6 col-lg-6 col-md-6">
         <h1 className="ProductDetails">Item : {Product.Title}</h1>
         <br />
         <h4 className="ProductDetails">Description : {Product.Description}</h4>
@@ -72,24 +72,43 @@ const SelectedProd = () => {
         <br />
         <h4 className="ProductDetails">Price : {Product.Price}$</h4>
         <br />
-        <h4>Quantity : </h4>
-        <select onChange={(e)=>setQuantity(e.target.value)}>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+        <div className="row">
+          <h4 className="col-3 QuantityDetailsStyle">Quantity </h4>
+          <select className="col-2" onChange={(e)=>setQuantity(e.target.value)}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+       
         <br />
         <button
           onClick={() => {
             addToCart(Product.ProductId);
           }}
-          className="btn btn-warning"
+          className="btnAddToCart"
         >
           ADD TO CART
         </button>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <br />
       <br />
       <br />
