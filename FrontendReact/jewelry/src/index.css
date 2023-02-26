@@ -366,7 +366,7 @@ height: 450px;
   width: 100%;
 }
 .container .btnDeleteProd {
-  color: #a39f69;
+  color: #2e2e2c;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
@@ -375,15 +375,20 @@ height: 450px;
   margin-right:20px;
   margin-bottom: 5px;
   padding:10px 10px;
+  opacity:90%;
   
 }
 .container .btnEditProd {
-  color: #a39f69;
+  color: #2e2e2c;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
+  right:0;
   border:none;
-  float:left;
+  margin-right:20px;
+  margin-bottom: 60px;
+  padding:10px 10px;
+  opacity:90%;
 }
 
 * {

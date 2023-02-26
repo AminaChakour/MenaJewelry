@@ -192,13 +192,13 @@ const ListProducts = (props) => {
                           className="btnDeleteProd"
                           onClick={() => handleDelete(currentProd.ProductId)}
                         >
-                          <RiDeleteBin3Fill size={40} />
+                          <RiDeleteBin3Fill size={30} />
                         </button>
                         <button
                           className="btnEditProd"
                           onClick={() => handleModal(currentProd)}
                         >
-                          <MdEdit size={40} />
+                          <MdEdit size={30} />
                         </button>
                         </div>
 
@@ -226,7 +226,13 @@ const ListProducts = (props) => {
                   return (
                     <>
                       <div className="col-4 ProductCard">
-                      <button
+                      <div className="container">
+                        <img
+                       
+                          alt="y"
+                          src={currentProd.Image}
+                        />
+                        <button
                           className="btnDeleteProd"
                           onClick={() => handleDelete(currentProd.ProductId)}
                         >
@@ -238,11 +244,7 @@ const ListProducts = (props) => {
                         >
                           <MdEdit size={30} />
                         </button>
-                        <img
-                          className="ProductListImages"
-                          alt="y"
-                          src={currentProd.Image}
-                        />
+                        </div>
 
                         <br />
 
