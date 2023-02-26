@@ -64,13 +64,15 @@ const SelectedProd = () => {
         src={Product.Image}
       />
       <div className="col-6">
-        <h1 className="ProductDetails">{Product.Title}</h1>
+        <h1 className="ProductDetails">Item : {Product.Title}</h1>
         <br />
-        <h4 className="ProductDetails">{Product.Description}</h4>
+        <h4 className="ProductDetails">Description : {Product.Description}</h4>
         <br />
-        <h4 className="ProductDetails">{Product.Price}$</h4>
+        <h4 className="ProductDetails">Category : {Product.Category}</h4>
         <br />
-        <h4> Quantity</h4>
+        <h4 className="ProductDetails">Price : {Product.Price}$</h4>
+        <br />
+        <h4>Quantity : </h4>
         <select onChange={(e)=>setQuantity(e.target.value)}>
           <option>1</option>
           <option>2</option>

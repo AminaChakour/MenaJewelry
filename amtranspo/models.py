@@ -23,6 +23,7 @@ class Product(models.Model):
     Description = models.CharField(max_length=500,blank=True) 
     Price = models.CharField(max_length=10)
     Stock=models.CharField(max_length=10)
+    Category=models.CharField(max_length=20)
     Image = models.CharField(max_length=1000)
 
 

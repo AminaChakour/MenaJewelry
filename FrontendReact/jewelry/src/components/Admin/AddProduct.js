@@ -16,6 +16,7 @@ const AddProduct = () => {
   const [Description, setDescription] = useState("");
   const [Price, setPrice] = useState("");
   const [Stock, setStock] = useState("");
+  const [Category, setCategory] = useState("Necklace");
   const [Image, setImage] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
 
@@ -39,6 +40,7 @@ const AddProduct = () => {
           Description,
           Price,
           Stock,
+          Category,
           Image
         })
         .then((res) => {
@@ -102,6 +104,16 @@ const AddProduct = () => {
             placeholder="Stock"
             onChange={(e) => setStock(e.target.value)}
           />
+        </div>
+
+        
+        <div className="mb-3">
+          <select   className="form-control" onChange={(e) => setCategory(e.target.value)}>
+            <option>Necklaces</option>
+            <option>Rings</option>
+            <option>Earrings</option>
+          </select>
+        
         </div>
 
         <div className="mb-3">

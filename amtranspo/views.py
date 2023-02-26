@@ -18,12 +18,15 @@ def SelectedProductApi(request,id=0):
         return JsonResponse(product_serializer.data,safe=False)
     
     elif request.method=='DELETE':
-        try:
-            product=Product.objects.get(ProductId=id)
-            product.delete()
-            return JsonResponse("success",safe=False)
-        except:
+        product=Product.objects.get(ProductId=id)
+        if not product:
             return JsonResponse("error",safe=False)
+        else:
+            try:
+                print(product.delete())
+                return JsonResponse("success",safe=False)
+            except:
+                return JsonResponse("error",safe=False)
 
 @csrf_exempt
 def productsApi(request,id=0):
@@ -36,7 +39,11 @@ def productsApi(request,id=0):
         product_data=JSONParser().parse(request) 
         products= Product.objects.all()
         product_serializer0 = ProductSerializer(products,many=True) # get prods 
-        product_data['ProductId'] = int(product_serializer0.data[-1]['ProductId']) + 1 # get id of last prod in list and increment by 1
+        if len(product_serializer0.data) == 0:
+            product_data['ProductId'] = 1
+        else:
+            product_data['ProductId'] = int(product_serializer0.data[-1]['ProductId']) + 1 # get id of last prod in list and increment by 1
+
         product_serializer = ProductSerializer(data=product_data)
         if product_serializer.is_valid():
             product_serializer.save()
