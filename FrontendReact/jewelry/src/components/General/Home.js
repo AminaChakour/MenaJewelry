@@ -6,7 +6,6 @@ import { CiSearch } from "react-icons/ci";
 import Carousel from "react-bootstrap/Carousel";
 import ReactLoading from "react-loading";
 
-
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [Images, setImages] = useState([]);
@@ -67,115 +66,139 @@ const Home = () => {
         ) : (
           <>
             <img className="imghome" src="home.jpg" />
+            <div className="hometext">
+              <p>
+                FINE JEWELRY AND TIMELESS DAINTY THINGS.
+              </p>
+            </div>
+            <div className="row">
+              <Carousel
+                className="Carousel col-6 col-xl-6"
+                activeIndex={index}
+                onSelect={handleSelect}
+                //fade
+              >
+                <Carousel.Item interval={2000}>
+                  <img
+                    className="imgCarousel d-block w-100"
+                    src={Images[0]}
+                    alt="First slide"
+                  />
+                  <Carousel.Caption>
+                    <p>K A I </p>
+                  </Carousel.Caption>
+                </Carousel.Item>
 
-          <div className="row">
-          <Carousel
-              className="Carousel col-6 col-xl-6"
-              activeIndex={index}
-              onSelect={handleSelect}
-              //fade
-            >
-              <Carousel.Item interval={2000}>
-                <img
-                  className="imgCarousel d-block w-100"
-                  src={Images[0]}
-                  alt="First slide"
-                />
-                <Carousel.Caption>
-                  <p>K A I </p>
-                </Carousel.Caption>
-              </Carousel.Item>
+                <Carousel.Item interval={2000}>
+                  <img
+                    className=" imgCarousel d-block w-100"
+                    src={Images[1]}
+                    alt="Second slide"
+                  />
 
-              <Carousel.Item interval={2000}>
-                <img
-                  className=" imgCarousel d-block w-100"
-                  src={Images[1]}
-                  alt="Second slide"
-                />
+                  <Carousel.Caption>
+                    <p>K A I</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
 
-                <Carousel.Caption>
-                  <p>K A I</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+                <Carousel.Item interval={2000}>
+                  <img
+                    className="imgCarousel d-block w-100"
+                    src={Images[2]}
+                    alt="Third slide"
+                  />
+                  <Carousel.Caption>
+                    <p>K A I</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
 
-              <Carousel.Item interval={2000}>
-                <img
-                  className="imgCarousel d-block w-100"
-                  src={Images[2]}
-                  alt="Third slide"
-                />
-                <Carousel.Caption>
-                  <p>K A I</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+                <Carousel.Item interval={2000}>
+                  <img
+                    className="imgCarousel d-block w-100"
+                    src={Images[3]}
+                    alt="Fourth slide"
+                  />
+                  <Carousel.Caption>
+                    <p>K A I</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
 
-              <Carousel.Item interval={2000}>
-                <img
-                  className="imgCarousel d-block w-100"
-                  src={Images[3]}
-                  alt="Fourth slide"
-                />
-                <Carousel.Caption>
-                  <p>K A I</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
+              <Carousel
+                className="Carousel col-6 col-xl-6"
+                activeIndex={index}
+                onSelect={handleSelect}
+                //fade
+              >
+                <Carousel.Item interval={2000}>
+                  <img
+                    className="imgCarousel d-block w-100"
+                    src={Images[1]}
+                    alt="First slide"
+                  />
+                  <Carousel.Caption>
+                    <p>J E W E L R Y</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
 
+                <Carousel.Item interval={2000}>
+                  <img
+                    className=" imgCarousel d-block w-100"
+                    src={Images[2]}
+                    alt="Second slide"
+                  />
 
-            <Carousel
-              className="Carousel col-6 col-xl-6"
-              activeIndex={index}
-              onSelect={handleSelect}
-              //fade
-            >
-              <Carousel.Item interval={2000}>
-                <img
-                  className="imgCarousel d-block w-100"
-                  src={Images[1]}
-                  alt="First slide"
-                />
-                <Carousel.Caption>
-                  <p>J E W E L R Y</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+                  <Carousel.Caption>
+                    <p>J E W E L R Y</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
 
-              <Carousel.Item interval={2000}>
-                <img
-                  className=" imgCarousel d-block w-100"
-                  src={Images[2]}
-                  alt="Second slide"
-                />
+                <Carousel.Item interval={2000}>
+                  <img
+                    className="imgCarousel d-block w-100"
+                    src={Images[3]}
+                    alt="Third slide"
+                  />
+                  <Carousel.Caption>
+                    <p>J E W E L R Y</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
 
-                <Carousel.Caption>
-                  <p>J E W E L R Y</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+                <Carousel.Item interval={2000}>
+                  <img
+                    className="imgCarousel d-block w-100"
+                    src={Images[0]}
+                    alt="Fourth slide"
+                  />
+                  <Carousel.Caption>
+                    <p>J E W E L R Y</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
+            </div>
 
-              <Carousel.Item interval={2000}>
-                <img
-                  className="imgCarousel d-block w-100"
-                  src={Images[3]}
-                  alt="Third slide"
-                />
-                <Carousel.Caption>
-                  <p>J E W E L R Y</p>
-                </Carousel.Caption>
-              </Carousel.Item>
+            <div className="hometext">
+              <p>
+               
+                <strong>MORE THAN JEWELRY, UNLEASH YOUR FEMININITY.</strong>
+              </p>
+            </div>
+            <div className="row">
+              <div className=" col-4 HomeCatDiv ">
+                <img className="HomeCatImg" src="earr1.jpg" alt="Earrings" />
+                <p className="hometext">EARRINGS</p>
+              </div>
 
-              <Carousel.Item interval={2000}>
-                <img
-                  className="imgCarousel d-block w-100"
-                  src={Images[0]}
-                  alt="Fourth slide"
-                />
-                <Carousel.Caption>
-                  <p>J E W E L R Y</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
+              <div className=" col-4  ">
+                <img className="HomeCatImg" src="h1.png" alt="Rings" />
+                <p className="hometext">RINGS</p>
+              </div>
 
-          </div>
-           
+              <div className=" col-4 ">
+                <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
+                <p className="hometext">NECKLACES</p>
+              </div>
+            </div>
           </>
         )}
 

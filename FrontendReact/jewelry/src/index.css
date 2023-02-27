@@ -656,3 +656,24 @@ img {
   height: 500px;
 }
 
+.hometext{
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+  font-family: monospace;
+  font-size:x-large;
+  font-weight: bolder;
+  text-align: center;
+
+}
+
+.HomeCatImg{
+
+  width:550px;
+  height:800px;
+}
+
+.HomeCatDiv{
+
+  margin-left:40px;
+}
