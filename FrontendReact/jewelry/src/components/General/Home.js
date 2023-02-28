@@ -68,8 +68,12 @@ const Home = () => {
             <img className="imghome" src="home.jpg" />
             <div className="hometext">
               <p>
+              PEARLS, BEADS AND GOLD TO SWOON OVER.
+              <br/>
                 FINE JEWELRY AND TIMELESS DAINTY THINGS.
               </p>
+
+              <button  type="submit" className="btnimg btn-warning"> SHOP NOW </button>
             </div>
             <div className="row">
               <Carousel
@@ -182,6 +186,8 @@ const Home = () => {
                
                 <strong>MORE THAN JEWELRY, UNLEASH YOUR FEMININITY.</strong>
               </p>
+              <button  type="submit" className="btnimg btn-warning"> SHOP NOW </button>
+
             </div>
             <div className="row">
               <div className=" col-4 HomeCatDiv ">

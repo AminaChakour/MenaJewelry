@@ -245,6 +245,8 @@ height: 450px;
 }
 
 .Carousel {
+    margin-top: 90px !important;
+
   margin-left: 0%;
   margin-right: 0%;
   width: 902px !important;
@@ -653,13 +655,13 @@ img {
 
 .imghome {
   width: 100%;
-  height: 500px;
+  height: 600px;
 }
 
 .hometext{
   margin-top: 5%;
   margin-bottom: 5%;
-
+  letter-spacing: 0.2rem;
   font-family: monospace;
   font-size:x-large;
   font-weight: bolder;
@@ -676,4 +678,39 @@ img {
 .HomeCatDiv{
 
   margin-left:40px;
+}
+
+.btnimg{
+  position: absolute;
+  right:    0;
+  bottom:   0;
+  width:20%;
+  height:60px;
+  margin-top: 30%;
+  margin-bottom:-50px;
+  margin-right:710px;
+
+  border:#a39f69;
+  border-style:none;
+  border-width:1px;
+  color:white;
+  background-color: #080807 !important;
+}
+
+.webcamDiv{
+
+  margin:auto;
+  width:200px;
+  height:200px;
+  margin-bottom: -80px;
+}
+.webcam{
+  width:100%;
+  border-style: double;
+  height:100%;
+
+}
+.hideWebcam{
+  border-color: red;
+  display: none !important;
 }
