@@ -49,6 +49,12 @@ const Home = () => {
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
+    const redirect = (cat) => {
+      
+      ReactSession.set("Category", cat);
+
+      window.location.href = "/products";
+    }
 
     //spinningBubbles cylon cubes spin bubbles
     return (
@@ -186,21 +192,29 @@ const Home = () => {
                
                 <strong>MORE THAN JEWELRY, UNLEASH YOUR FEMININITY.</strong>
               </p>
-              <button  type="submit" className="btnimg btn-warning"> SHOP NOW </button>
+              <button type="button" className="btnimg btn-warning"> SHOP NOW </button>
 
             </div>
-            <div className="row">
-              <div className=" col-4 HomeCatDiv ">
+            <div
+             className="row category"
+            >
+              <div className=" col-4 HomeCatDiv" onClick={() => {
+                         redirect("Earrings");
+                        }}>
                 <img className="HomeCatImg" src="earr1.jpg" alt="Earrings" />
                 <p className="hometext">EARRINGS</p>
               </div>
 
-              <div className=" col-4  ">
+              <div className=" col-4 "  onClick={() => {
+              redirect("Rings");
+            }}>
                 <img className="HomeCatImg" src="h1.png" alt="Rings" />
                 <p className="hometext">RINGS</p>
               </div>
 
-              <div className=" col-4 ">
+              <div className=" col-4 "  onClick={() => {
+              redirect("Necklaces");
+            }}>
                 <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
                 <p className="hometext">NECKLACES</p>
               </div>

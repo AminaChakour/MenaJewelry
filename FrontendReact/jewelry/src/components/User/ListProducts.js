@@ -28,14 +28,17 @@ const ListProducts = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    console.log(ReactSession.get("idUser"));
-    console.log(ReactSession.get("userEmail"));
-    console.log(ReactSession.get("fullname"));
+    if(ReactSession.get("Category").length > 0){
+
+      SetSortBy(ReactSession.get("Category").toUpperCase())
+      ReactSession.set("Category","")
+
+    }
+    
 
     axios.get("http://127.0.0.1:8000/product").then((res) => {
       setProducts(res.data);
-      console.log("result : ", Products);
-
+    
       setLastRec(currentPage * recordsPerPage);
       setFirstRec(currentPage * recordsPerPage - recordsPerPage);
 
@@ -45,7 +48,7 @@ const ListProducts = (props) => {
           currentPage * recordsPerPage
         )
       );
-      console.log("current", currentRecords);
+
 
       setnPages(Math.ceil(Products.length / recordsPerPage));
 
@@ -100,6 +103,21 @@ const ListProducts = (props) => {
     if (currentPage !== 1) setCurrentPage(currentPage - 1);
   };
 
+  const categoryList =()=>{
+
+    var cats=["ALL PRODUCTS", "NECKLACES", "EARRINGS", "RINGS"];
+    return cats.map((category)=>{
+        if (category!==SortBy){
+          return <option>{category}</option>
+        }
+
+      })
+
+    
+
+  }
+
+
   return (
     <>
       {loading ? (
@@ -122,10 +140,8 @@ const ListProducts = (props) => {
               className="SortBy"
               onChange={(e) => SetSortBy(e.target.value)}
             >
-              <option>ALL PRODUCTS</option>
-              <option>NECKLACES</option>
-              <option>RINGS</option>
-              <option>EARRINGS</option>
+              <option>{SortBy}</option>
+              {categoryList()}
             </select>
           </div>
 

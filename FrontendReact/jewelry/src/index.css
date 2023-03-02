@@ -714,3 +714,8 @@ img {
   border-color: red;
   display: none !important;
 }
+
+.category{
+  cursor: pointer;
+
+}
