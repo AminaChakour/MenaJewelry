@@ -16,7 +16,8 @@ urlpatterns=[
     url(r'^orders/([0-9]+)$',views.OrdersApi),
     url(r'^orderDetails/([0-9]+)$',views.OrderDetailsApi),
     url(r'^orderDetails$',views.OrderDetailsApi),
-    url(r'^GetOrderById/([0-9]+)$',views.OrderByIdApi)
+    url(r'^GetOrderById/([0-9]+)$',views.OrderByIdApi),
+    url(r'^faceRecognition$',views.faceRecognitionApi)
 
 
 

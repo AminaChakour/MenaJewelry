@@ -12,6 +12,8 @@ const firebase = {
     messagingSenderId: "1020962769028",
     appId: "1:1020962769028:web:86189c5ab332387574dad1"
   };
+
+
   
   // Initialize Firebase
   const app = initializeApp(firebase);  //Creates and initializes a @firebase/app#FirebaseApp instance.

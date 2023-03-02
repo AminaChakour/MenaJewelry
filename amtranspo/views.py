@@ -258,3 +258,14 @@ def OrderByIdApi(request,id=0):
         orders= Order.objects.get(OrderId=id)
         order_serializer = OrderSerializer(orders,many=False)
         return JsonResponse(order_serializer.data,safe=False)
+    
+@csrf_exempt
+def faceRecognitionApi(request,id=0):
+    if request.method=='POST':
+        Images=JSONParser().parse(request) 
+        print(Images)
+     
+
+
+
+        return JsonResponse("OK",safe=False)

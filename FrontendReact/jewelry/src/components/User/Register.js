@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 import { useState, useRef } from "react";
 import axios from "axios";
@@ -6,6 +6,14 @@ import { FormErrors } from "./FormErrors";
 import { ReactSession } from "react-client-session";
 import bcrypt from "bcryptjs";
 import Webcam from "react-webcam";
+import { storage } from "../General/firebase";
+import {
+  ref,
+  uploadBytes,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
+import { v4 } from "uuid"; //genere des id uniques
 
 const SignUp = () => {
   if (ReactSession.get("userEmail") === "admin@gmail.com") {
@@ -24,6 +32,7 @@ const SignUp = () => {
   const [photoId, setPhotoId] = useState("");
   const [webcamPhoto, setWebcamPhoto] = useState("");
   const [takePhoto, setTakePhoto] = useState(false);
+  const webRef = useRef(null);
 
   const [formErrors, setFormErrors] = useState({
     lastname: "",
@@ -251,11 +260,59 @@ const SignUp = () => {
     });
   };
 
+  const CapturePhoto = async () => {
+    const img = webRef.current.getScreenshot();
+
+    try {
+      const storageRef = ref(storage, "images/" + "webcam_" + v4());
+      uploadString(storageRef, img, "data_url").then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setWebcamPhoto(url);
+        });
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    setTakePhoto(false);
+  };
+
+  const uploadPhotoId = (img) => {
+    const imageRef = ref(storage, `images/${"PhotoId_" + v4()}`);
+    uploadBytes(imageRef, img).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setPhotoId(url);
+      });
+    });
+  };
+
+  useEffect(() => {
+    if (webcamPhoto.length > 0 && photoId.length > 0) {
+      axios
+        .post("http://127.0.0.1:8000/faceRecognition", { photoId, webcamPhoto })
+        .then((res) => {
+          const data = res.data;
+
+          console.log(data);
+        });
+    }
+  }, [webcamPhoto]);
+
   return (
-    <>
+    <div className="bgSignup">
       {takePhoto ? (
         <div className="webcamDiv">
-          <Webcam className="webcam" />
+          <Webcam
+            screenshotFormat="image/jpeg"
+            className="webcam"
+            ref={webRef}
+          />
+          <input
+            type="button"
+            className="form-control"
+            value="CAPTURE"
+            onClick={() => CapturePhoto()}
+          />
         </div>
       ) : (
         ""
@@ -408,17 +465,16 @@ const SignUp = () => {
               multiple={false}
               className="form-control"
               placeholder="Image"
-              onChange={(e) => console.log(e.target.files[0])} //0 takes the first image
+              onChange={(e) => uploadPhotoId(e.target.files[0])} //0 takes the first image
             />
           </div>
 
           <div className="mb-3">
-           
             <input
               type="button"
               className="form-control"
               value="Take photo"
-              onClick={(e) => setTakePhoto(!takePhoto)} //0 takes the first image
+              onClick={() => setTakePhoto(true)}
             />
           </div>
 
@@ -445,7 +501,7 @@ const SignUp = () => {
       <br />
       <br />
       <br />
-    </>
+    </div>
   );
 };
 
