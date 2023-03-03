@@ -22,6 +22,8 @@ const EditProfile = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password0, setPassword] = useState("");
+  const [photoId, setPhotoId] = useState("");
+  const [webcamPhoto, setWebcamPhoto] = useState("");
 
   const [formErrors, setFormErrors] = useState({
     lastname: "",
@@ -62,6 +64,8 @@ const EditProfile = () => {
           setEmail(data.email);
           setPhone(data.phone);
           setPassword(data.password);
+          setPhotoId(data.photoId);
+          setWebcamPhoto(data.webcamPhoto);
         }
       });
   }, []);
@@ -202,6 +206,7 @@ const EditProfile = () => {
     e.preventDefault();
 
     var password = bcrypt.hashSync(password0, 10);
+   
     axios
       .put(
         "http://127.0.0.1:8000/editprofile",
@@ -216,7 +221,9 @@ const EditProfile = () => {
           province,
           phone,
           email,
-          password
+          password,
+          photoId,
+          webcamPhoto
         })
       )
       .then((res) => {
