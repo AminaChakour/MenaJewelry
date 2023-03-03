@@ -293,6 +293,8 @@ const SignUp = () => {
     });
   };
 
+
+
   useEffect(() => {
     
     if (webcamPhoto.length > 0 && photoId.length > 0) {
@@ -337,7 +339,7 @@ const SignUp = () => {
     }
 
     setLoading(false)
-  }, [webcamPhoto]);
+  }, [webcamPhoto,photoId]);
 
   return (
     <>

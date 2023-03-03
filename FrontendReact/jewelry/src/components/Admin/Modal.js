@@ -73,6 +73,7 @@ const Modal = ({ open, onClose, onSave, prod }) => {
             />
             Price
             <input
+            type= "number"
               onChange={(e) => {
                 setPrice(e.target.value);
               }}
