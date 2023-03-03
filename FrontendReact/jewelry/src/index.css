@@ -69,11 +69,9 @@ html,
   width: 500px;
   margin: auto;
   margin-top: 5%;
-
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
-  border-radius: 15px;
   transition: all 0.3s;
 }
 
@@ -85,18 +83,15 @@ html,
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
-  border-radius: 15px;
   transition: all 0.3s;
 }
 .addproductStyle {
   width: 500px;
   margin: auto;
   margin-top: 5%;
-
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 40px 55px 45px 55px;
-  border-radius: 15px;
   transition: all 0.3s;
 }
 .auth-wrapper .form-control:focus {
@@ -117,10 +112,12 @@ html,
 
 .btn-warning {
   color: white !important;
-  background-color: #a39f69 !important;
-  border: inset !important;
-  border-color: #a39f69 !important ;
+  background-color: #bfbb8b !important;
+  border-radius: 0 !important;
+  border:none !important;
+  font-weight: bolder !important;
 }
+
 
 .divcreateacc {
   text-align: center;
@@ -243,6 +240,10 @@ height: 450px;
 .form-control:focus {
   border-color: #bdb37a !important;
 }
+.form-control
+{
+  border-radius: 0% !important;
+}
 
 .Carousel {
     margin-top: 90px !important;
@@ -284,9 +285,6 @@ height: 450px;
   border-width:1px;
   color:white;
   background-color: #a39f69 !important;
-}
-.btn-warning {
-  border-radius: 0 !important;
 }
 
 .paginationNav {

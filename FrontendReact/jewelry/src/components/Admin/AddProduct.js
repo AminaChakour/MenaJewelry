@@ -130,7 +130,7 @@ const AddProduct = () => {
 
         <div className="d-grid">
           <button type="submit" className="btn btn-warning">
-            ADD
+            A D D
           </button>
         </div>
       </form>
