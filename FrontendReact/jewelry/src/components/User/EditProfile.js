@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { ReactSession } from "react-client-session";
+import bcrypt from "bcryptjs";
 
 import { FormErrors } from "./FormErrors";
 
@@ -20,7 +21,7 @@ const EditProfile = () => {
   const [province, setProvince] = useState("QC");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password0, setPassword] = useState("");
 
   const [formErrors, setFormErrors] = useState({
     lastname: "",
@@ -31,7 +32,7 @@ const EditProfile = () => {
     city: "",
     phone: "",
     email: "",
-    password: "",
+    password0: "",
   });
   const [lastnameValid, setLastnameValid] = useState(false);
   const [firstnameValid, setFirstnameValid] = useState(false);
@@ -93,7 +94,7 @@ const EditProfile = () => {
       case "phone":
         setPhone(val);
         break;
-      case "password":
+      case "password0":
         setPassword(val);
         break;
       case "province":
@@ -122,9 +123,9 @@ const EditProfile = () => {
         emailValid1 = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
         fieldValidationErrors.email = emailValid1 ? "" : " is invalid";
         break;
-      case "password":
+      case "password0":
         passwordValid1 = value.length >= 8;
-        fieldValidationErrors.password = passwordValid1 ? "" : " is too short";
+        fieldValidationErrors.password0 = passwordValid1 ? "" : " is too short";
         break;
       case "firstname":
         firstnameValid1 = value.length > 1 && value.match(/[a-z]/i);
@@ -200,6 +201,7 @@ const EditProfile = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
+    var password = bcrypt.hashSync(password0, 10);
     axios
       .put(
         "http://127.0.0.1:8000/editprofile",
@@ -214,7 +216,7 @@ const EditProfile = () => {
           province,
           phone,
           email,
-          password,
+          password
         })
       )
       .then((res) => {
@@ -253,6 +255,9 @@ const EditProfile = () => {
         return <option> {current}</option>;
       }
     });
+
+    
+
   };
 
   return (
@@ -373,10 +378,10 @@ const EditProfile = () => {
               type="password"
               className="form-control"
               placeholder="Password"
-              name="password"
-              value={password}
+              name="password0"
+              value={password0}
               onChange={(e) => {
-                handleUserInput(e, "password");
+                handleUserInput(e, "password0");
               }}
             />
           </div>
