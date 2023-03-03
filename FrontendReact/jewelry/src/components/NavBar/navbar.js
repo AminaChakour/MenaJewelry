@@ -91,3 +91,26 @@ margin-top:20px;
 
 
 `
+
+
+export const NavPhoto=styled.div`
+
+display:flex;
+align-items:center;
+margin-left:20px;
+margin-right:-95px;
+width:70px;
+height:70px;
+margin-top:5px;
+text-decoration:none;
+color:#AEAA80;
+border-radius:100%;
+&:hover{
+    transition:all 0.2s ease-in-out;
+    background:aliceblue;
+    color:#948D48;
+
+}
+
+
+`

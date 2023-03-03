@@ -213,6 +213,8 @@ const SignUp = () => {
           phone,
           email,
           password,
+          photoId,
+          webcamPhoto
         })
       )
       .then((res) => {
@@ -263,7 +265,7 @@ const SignUp = () => {
   };
 
   const CapturePhoto = async () => {
-    setLoading(true)
+    //setLoading(true)
     const img = webRef.current.getScreenshot();
 
     try {

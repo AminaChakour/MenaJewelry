@@ -96,6 +96,7 @@ const LogIn = () => {
           ReactSession.set("idUser", data.UserId);
           ReactSession.set("userEmail", data.email);
           ReactSession.set("fullname", data.firstname + " " + data.lastname);
+          ReactSession.set("webcamPhoto", data.webcamPhoto);
 
           Swal.fire({
             title: "Success",

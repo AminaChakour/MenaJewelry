@@ -43,18 +43,20 @@ const Home = () => {
     return array;
   }
 
+  const redirect = (cat) => {
+    ReactSession.set("Category", cat);
+
+    window.location.href = "/products";
+  };
+
+
   function ControlledCarousel() {
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
-    const redirect = (cat) => {
-      
-      ReactSession.set("Category", cat);
-
-      window.location.href = "/products";
-    }
+    
 
     //spinningBubbles cylon cubes spin bubbles
     return (
@@ -74,12 +76,21 @@ const Home = () => {
             <img className="imghome" src="home.jpg" />
             <div className="hometext">
               <p>
-              PEARLS, BEADS AND GOLD TO SWOON OVER.
-              <br/>
+                PEARLS, BEADS AND GOLD TO SWOON OVER.
+                <br />
                 FINE JEWELRY AND TIMELESS DAINTY THINGS.
               </p>
 
-              <button  type="submit" className="btnimg btn-warning"> SHOP NOW </button>
+              <button
+                onClick={() => {
+                  redirect("ALL PRODUCTS");
+                }}
+           
+                className="btnShopNow"
+              >
+            
+                SHOP NOW
+              </button>
             </div>
             <div className="row">
               <Carousel
@@ -189,32 +200,40 @@ const Home = () => {
 
             <div className="hometext">
               <p>
-               
                 <strong>MORE THAN JEWELRY, UNLEASH YOUR FEMININITY.</strong>
               </p>
-              <button type="button" className="btnimg btn-warning"> SHOP NOW </button>
-
+              <button type="button" className="btnShopNow">
+           
+                SHOP NOW
+              </button>
             </div>
-            <div
-             className="row category"
-            >
-              <div className=" col-4 HomeCatDiv" onClick={() => {
-                         redirect("Earrings");
-                        }}>
+            <div className="row category">
+              <div
+                className=" col-4 HomeCatDiv"
+                onClick={() => {
+                  redirect("Earrings");
+                }}
+              >
                 <img className="HomeCatImg" src="earr1.jpg" alt="Earrings" />
                 <p className="hometext">EARRINGS</p>
               </div>
 
-              <div className=" col-4 "  onClick={() => {
-              redirect("Rings");
-            }}>
+              <div
+                className=" col-4 "
+                onClick={() => {
+                  redirect("Rings");
+                }}
+              >
                 <img className="HomeCatImg" src="h1.png" alt="Rings" />
                 <p className="hometext">RINGS</p>
               </div>
 
-              <div className=" col-4 "  onClick={() => {
-              redirect("Necklaces");
-            }}>
+              <div
+                className=" col-4 "
+                onClick={() => {
+                  redirect("Necklaces");
+                }}
+              >
                 <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
                 <p className="hometext">NECKLACES</p>
               </div>

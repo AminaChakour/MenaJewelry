@@ -16,7 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
             'province',
             'phone',
             'email',
-            'password')
+            'password',
+            'photoId',
+            'webcamPhoto')
 
 
 class ProductSerializer(serializers.ModelSerializer):

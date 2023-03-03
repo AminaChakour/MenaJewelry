@@ -5,6 +5,7 @@ import {
   NavMenu,
   NavBtn,
   NavBtnLink,
+  NavPhoto,
   NavImg,
   NavCart,
 } from "./navbar";
@@ -15,6 +16,13 @@ const Navbar = () => {
   return (
     <div>
       <Nav>
+
+      {ReactSession.get("fullname") !==null && (
+            <NavPhoto>
+               <img className="imgUserNav" src={ReactSession.get("webcamPhoto")!==null?ReactSession.get("webcamPhoto"):"./user.png"} alt="photo" />
+            </NavPhoto>
+          )}
+      
         <NavMenu>
           <NavLink to="/home" activeStyle>
             HOME

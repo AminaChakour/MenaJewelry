@@ -163,7 +163,7 @@ const Orders = (props) => {
                 })}
           </div>
 
-          {SearchText.length === 0 && (
+          {(SearchText.length === 0 && Orders.length >0 )&& (
             <nav className="paginationNav" aria-label="Page navigation example">
               <ul className="pagination justify-content-center">
                 <li className="page-item">
@@ -197,6 +197,10 @@ const Orders = (props) => {
             </nav>
           )}
         </div>
+      )}
+
+{Orders.length == 0 && (
+        <div className="EmptyCart">N O &nbsp;&nbsp;O R D E R S &nbsp;&nbsp;Y E T</div>
       )}
       <br />
       <br />
