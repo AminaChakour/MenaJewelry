@@ -7,6 +7,7 @@ import { ReactSession } from "react-client-session";
 import bcrypt from "bcryptjs";
 import Webcam from "react-webcam";
 import { storage } from "../General/firebase";
+import ReactLoading from "react-loading";
 import {
   ref,
   uploadBytes,
@@ -33,6 +34,7 @@ const SignUp = () => {
   const [webcamPhoto, setWebcamPhoto] = useState("");
   const [takePhoto, setTakePhoto] = useState(false);
   const webRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const [formErrors, setFormErrors] = useState({
     lastname: "",
@@ -261,12 +263,14 @@ const SignUp = () => {
   };
 
   const CapturePhoto = async () => {
+    setLoading(true)
     const img = webRef.current.getScreenshot();
 
     try {
       const storageRef = ref(storage, "images/" + "webcam_" + v4());
       uploadString(storageRef, img, "data_url").then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
+          setTakePhoto(false);
           setWebcamPhoto(url);
         });
       });
@@ -274,234 +278,283 @@ const SignUp = () => {
       console.log(e);
     }
 
-    setTakePhoto(false);
+    
   };
 
   const uploadPhotoId = (img) => {
     const imageRef = ref(storage, `images/${"PhotoId_" + v4()}`);
     uploadBytes(imageRef, img).then((snapshot) => {
+      // firebase function
       getDownloadURL(snapshot.ref).then((url) => {
-        setPhotoId(url);
+        setPhotoId(url); //url
       });
     });
   };
 
   useEffect(() => {
+    
     if (webcamPhoto.length > 0 && photoId.length > 0) {
       axios
         .post("http://127.0.0.1:8000/faceRecognition", { photoId, webcamPhoto })
         .then((res) => {
           const data = res.data;
 
-          console.log(data);
+          if (data === "MATCH") 
+          {
+            Swal.fire({
+              title: "Success",
+              text: "The photos match!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
+            
+          } 
+          else if (data === "NO MATCH") 
+          {
+            Swal.fire({
+              title: "NO MATCH!",
+              text: "Sorry, the two people from the photos don't match",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+          }
+          else
+          {
+            Swal.fire({
+              title: "Error !",
+              text: "Try again",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+
+
+          }
+
+
         });
     }
+
+    setLoading(false)
   }, [webcamPhoto]);
 
   return (
-    <div className="bgSignup">
-      {takePhoto ? (
-        <div className="webcamDiv">
-          <Webcam
-            screenshotFormat="image/jpeg"
-            className="webcam"
-            ref={webRef}
-          />
-          <input
-            type="button"
-            className="form-control"
-            value="CAPTURE"
-            onClick={() => CapturePhoto()}
+    <>
+      {loading ? (
+        <div className="loader">
+          <ReactLoading
+            className="loader"
+            type="cylon"
+            color="#EADDCA"
+            height={667}
+            width={400}
           />
         </div>
       ) : (
-        ""
+        <div>
+          {takePhoto ? (
+            <div className="webcamDiv">
+              <Webcam
+                screenshotFormat="image/jpeg"
+                className="webcam"
+                ref={webRef}
+              />
+              <input
+                type="button"
+                className="form-control"
+                value="CAPTURE"
+                onClick={() => CapturePhoto()}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
+          <div className="registerStyle">
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="mb-3 col-6">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="First name"
+                    name="firstname"
+                    value={firstname}
+                    onChange={(e) => {
+                      handleUserInput(e, "firstname");
+                    }}
+                  />
+                </div>
+
+                <div className="mb-3 col-6">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Last name"
+                    name="lastname"
+                    value={lastname}
+                    onChange={(e) => {
+                      handleUserInput(e, "lastname");
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Address"
+                  name="address"
+                  value={address}
+                  onChange={(e) => {
+                    handleUserInput(e, "address");
+                  }}
+                />
+              </div>
+
+              <div className="row">
+                <div className="mb-3 col-6">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="City"
+                    name="city"
+                    value={city}
+                    onChange={(e) => {
+                      handleUserInput(e, "city");
+                    }}
+                  />
+                </div>
+                <div className="mb-3 col-6">
+                  <select
+                    onChange={(e) => {
+                      setProvince(e.target.value);
+                    }}
+                    className="form-control"
+                  >
+                    {listProvinces()}
+                  </select>
+                </div>
+              </div>
+              <div className="row">
+                <div className="mb-3 col-6">
+                  <input
+                    type="text"
+                    maxLength={7}
+                    className="form-control"
+                    placeholder="Postal Code"
+                    name="postalcode"
+                    value={postalcode}
+                    onChange={(e) => {
+                      handleUserInput(e, "postalcode");
+                    }}
+                  />
+                </div>
+
+                <div className="mb-3 col-6">
+                  <input
+                    type="tel"
+                    className="form-control"
+                    placeholder="Phone"
+                    name="phone"
+                    value={phone}
+                    onChange={(e) => {
+                      handleUserInput(e, "phone");
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => {
+                    handleUserInput(e, "email");
+                  }}
+                />
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  name="password0"
+                  value={password0}
+                  onChange={(e) => {
+                    handleUserInput(e, "password0");
+                  }}
+                />
+              </div>
+
+              <div className="mb-3">
+                <center>
+                  <label>DATE OF BIRTH</label>
+                </center>
+                <input
+                  type="date"
+                  className="form-control"
+                  name="birthday"
+                  value={birthday}
+                  onChange={(e) => {
+                    handleUserInput(e, "birthday");
+                  }}
+                />
+              </div>
+
+              <div className="mb-3">
+                <center>
+                  <label>PHOTO ID</label>
+                </center>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple={false}
+                  className="form-control"
+                  placeholder="Image"
+                  onChange={(e) => uploadPhotoId(e.target.files[0])} //0 takes the first image
+                />
+              </div>
+
+              <div className="mb-3">
+                <input
+                  type="button"
+                  className="form-control"
+                  value="Take photo"
+                  onClick={() => setTakePhoto(true)}
+                />
+              </div>
+
+              <div className="panel panel-default">
+                <FormErrors formErrors={formErrors} />
+              </div>
+
+              <div className="d-grid">
+                <button
+                  disabled={!formValid}
+                  type="submit"
+                  className="btn btn-warning"
+                >
+                  SIGN UP
+                </button>
+              </div>
+            </form>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
       )}
-
-      <div className="registerStyle">
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="mb-3 col-6">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="First name"
-                name="firstname"
-                value={firstname}
-                onChange={(e) => {
-                  handleUserInput(e, "firstname");
-                }}
-              />
-            </div>
-
-            <div className="mb-3 col-6">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Last name"
-                name="lastname"
-                value={lastname}
-                onChange={(e) => {
-                  handleUserInput(e, "lastname");
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Address"
-              name="address"
-              value={address}
-              onChange={(e) => {
-                handleUserInput(e, "address");
-              }}
-            />
-          </div>
-
-          <div className="row">
-            <div className="mb-3 col-6">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="City"
-                name="city"
-                value={city}
-                onChange={(e) => {
-                  handleUserInput(e, "city");
-                }}
-              />
-            </div>
-            <div className="mb-3 col-6">
-              <select
-                onChange={(e) => {
-                  setProvince(e.target.value);
-                }}
-                className="form-control"
-              >
-                {listProvinces()}
-              </select>
-            </div>
-          </div>
-          <div className="row">
-            <div className="mb-3 col-6">
-              <input
-                type="text"
-                maxLength={7}
-                className="form-control"
-                placeholder="Postal Code"
-                name="postalcode"
-                value={postalcode}
-                onChange={(e) => {
-                  handleUserInput(e, "postalcode");
-                }}
-              />
-            </div>
-
-            <div className="mb-3 col-6">
-              <input
-                type="tel"
-                className="form-control"
-                placeholder="Phone"
-                name="phone"
-                value={phone}
-                onChange={(e) => {
-                  handleUserInput(e, "phone");
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Email"
-              name="email"
-              value={email}
-              onChange={(e) => {
-                handleUserInput(e, "email");
-              }}
-            />
-          </div>
-
-          <div className="mb-3">
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Password"
-              name="password0"
-              value={password0}
-              onChange={(e) => {
-                handleUserInput(e, "password0");
-              }}
-            />
-          </div>
-
-          <div className="mb-3">
-            <center>
-              <label>DATE OF BIRTH</label>
-            </center>
-            <input
-              type="date"
-              className="form-control"
-              name="birthday"
-              value={birthday}
-              onChange={(e) => {
-                handleUserInput(e, "birthday");
-              }}
-            />
-          </div>
-
-          <div className="mb-3">
-            <center>
-              <label>PHOTO ID</label>
-            </center>
-            <input
-              type="file"
-              accept="image/*"
-              multiple={false}
-              className="form-control"
-              placeholder="Image"
-              onChange={(e) => uploadPhotoId(e.target.files[0])} //0 takes the first image
-            />
-          </div>
-
-          <div className="mb-3">
-            <input
-              type="button"
-              className="form-control"
-              value="Take photo"
-              onClick={() => setTakePhoto(true)}
-            />
-          </div>
-
-          <div className="panel panel-default">
-            <FormErrors formErrors={formErrors} />
-          </div>
-
-          <div className="d-grid">
-            <button
-              disabled={!formValid}
-              type="submit"
-              className="btn btn-warning"
-            >
-              SIGN UP
-            </button>
-          </div>
-        </form>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-    </div>
+    </>
   );
 };
 

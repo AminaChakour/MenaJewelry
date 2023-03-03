@@ -1,11 +1,14 @@
+from __future__ import print_function, unicode_literals
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-
+from PIL import Image
+import requests
+from facepplib import FacePP, exceptions
 from amtranspo.models import User,Product,SCart,Order,OrderDetails
 from amtranspo.serializers import OrderSerializer,OrderDetailsSerializer,UserSerializer,ProductSerializer,CartSerializer
-# Create your views here.
+
 
 
 
@@ -259,13 +262,59 @@ def OrderByIdApi(request,id=0):
         order_serializer = OrderSerializer(orders,many=False)
         return JsonResponse(order_serializer.data,safe=False)
     
+
+
+
+# define face comparing function
+def face_comparing(app, Image1, Image2):
+    
+    cmp_ = app.compare.get(image_url1 = Image1,image_url2 = Image2)
+
+
+    # Comparing Photos
+    if cmp_.confidence > 70:
+        status ='MATCH'
+        print(status)
+    else:
+        status='NO MATCH'
+        print(status)
+
+    return status
+
+
+
 @csrf_exempt
 def faceRecognitionApi(request,id=0):
     if request.method=='POST':
         Images=JSONParser().parse(request) 
-        print(Images)
-     
+        photoId_url = Images["photoId"]
+        webcamPhoto_url = Images["webcamPhoto"]
+
+        #photoId = Image.open(requests.get(photoId_url,stream=True).raw)
+        #webcamPhoto = Image.open(requests.get(webcamPhoto_url,stream=True).raw)
+        
+
+        # api details
+        api_key ='xQLsTmMyqp1L2MIt7M3l0h-cQiy0Dwhl'
+        api_secret ='TyBSGw8NBEP9Tbhv_JbQM18mIlorY6-D'
+        try:
+            
+            # call api
+            app_ = FacePP(api_key = api_key,
+                        api_secret = api_secret)
+            
+            
+            # Pair 1
+            image1 = photoId_url
+            image2 = webcamPhoto_url
+            status = face_comparing(app_, image1, image2)
+            
+    
+
+        except exceptions.BaseFacePPError as e:
+            status='ERROR'
+            print('Error:', e)
 
 
 
-        return JsonResponse("OK",safe=False)
+        return JsonResponse(status,safe=False)
