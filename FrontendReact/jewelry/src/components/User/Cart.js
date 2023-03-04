@@ -164,16 +164,16 @@ const Cart = () => {
         <div>
           <div className="row align-items-center CartHeader">
             <button className="col-6 CartEmpty" onClick={() => EmptyCart()}>
-              EMPTY CART &nbsp;&nbsp;
+              E M P T Y &nbsp; C A R T &nbsp;&nbsp;
               <MdRemoveShoppingCart size={25} />
             </button>
             <button className="col-6 CartCheckout" disabled={prods.length == 0}   onClick={() => CheckOut()}>
-              PROCEED TO CHECKOUT <SiCashapp size={25} />
+              P R O C E E D &nbsp;  T O &nbsp; C H E C K O U T <SiCashapp size={25} />
             </button>
           </div>
           <div className="row align-items-center CartSubtotal">
             <button className="col-12 CartSubtotal">
-              SUBTOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {Subtotal}
+              S U B T O T A L &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $ {Subtotal}
             </button>
           </div>
           {prods.map((currentProd) => {

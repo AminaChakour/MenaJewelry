@@ -93,6 +93,7 @@ const LogIn = () => {
           Swal.fire({
             title: "Success",
             text: "Welcome " + data.firstname + ".",
+            confirmButtonColor: "#DAAD98",
             icon: "success",
             timer: 3000,
           });
@@ -109,6 +110,8 @@ const LogIn = () => {
         } else {
           Swal.fire({
             title: "Incorrect password or email",
+            confirmButtonColor: "#DAAD98",
+
             text: "Try again !",
             icon: "error",
             timer: 3000,
@@ -118,6 +121,8 @@ const LogIn = () => {
       else{
         Swal.fire({
           title: "Email does not exist",
+          confirmButtonColor: "#DAAD98",
+
           text: "Try again !",
           icon: "error",
           timer: 3000,
@@ -135,7 +140,7 @@ const LogIn = () => {
             <input
               type="email"
               className="form-control"
-              placeholder="Email..."
+              placeholder="Email"
               value={email}
               name="email"
               onChange={(e) => {
@@ -148,7 +153,7 @@ const LogIn = () => {
             <input
               type="password"
               className="form-control"
-              placeholder="Password..."
+              placeholder="Password"
               name="password"
               value={password}
               onChange={(e) => {
@@ -167,7 +172,7 @@ const LogIn = () => {
               type="submit"
               className="btn btn-warning"
             >
-              LOG IN
+              L O G &nbsp; I N
             </button>
           </div>
           <div className="mb-3 divcreateacc">

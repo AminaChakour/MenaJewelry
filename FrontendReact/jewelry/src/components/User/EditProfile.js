@@ -271,7 +271,7 @@ const EditProfile = () => {
     <>
       <div className="registerStyle">
         <form onSubmit={handleSubmit}>
-          <h3>EDIT PROFILE</h3>
+          <h3>E D I T &nbsp; P R O F I L E</h3>
 
           <div className="row">
             <div className="mb-3 col-6">
@@ -414,7 +414,7 @@ const EditProfile = () => {
 
           <div className="d-grid">
             <button type="submit" className="btn btn-warning">
-              SAVE CHANGES
+              S A V E &nbsp; C H A N G E S
             </button>
           </div>
         </form>

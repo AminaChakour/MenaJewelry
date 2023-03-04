@@ -511,7 +511,6 @@ img {
 .CartHeader {
   margin-top: 1% !important;
   background-color: rgb(142, 102, 102);
-  border-radius: 20px;
   height: 60px;
   width: 90%;
   text-align: center;
@@ -522,7 +521,6 @@ img {
   margin: auto !important;
   margin-top: 1% !important;
   background-color: wheat;
-  border-radius: 20px;
   border: none;
   font-weight: bolder;
   height: 50px;
@@ -546,7 +544,7 @@ img {
   background-color: rgb(144, 112, 112);
   color: white;
   height: 100%;
-  border-radius: 20px;
+
   border: none;
   border-left: solid;
 }

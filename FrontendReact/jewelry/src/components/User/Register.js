@@ -543,7 +543,7 @@ const SignUp = () => {
                   type="submit"
                   className="btn btn-warning"
                 >
-                  SIGN UP
+                  S I G N &nbsp; U P
                 </button>
               </div>
             </form>
