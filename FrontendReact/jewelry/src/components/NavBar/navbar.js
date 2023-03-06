@@ -3,7 +3,7 @@ import { NavLink as Link } from 'react-router-dom';
 
 export const Nav = styled.nav`
     background-color: #fff;
-    height: 80px;
+    height: 120px;
     display: flex;
     justify-content: space-between;
     z-index: 10;
@@ -53,6 +53,8 @@ margin:auto;
 export const NavImg=styled.div`
 display:flex;
 align-items:center;
+height:100%;
+
 
 @media screen and (max-width:750px){
     
@@ -76,12 +78,12 @@ display:flex;
 align-items:center;
 margin-left:-100px;
 margin-right:30px;
-width:40px;
-height:40px;
+width:70px;
+height:70px;
 text-decoration:none;
 color:#AEAA80;
 border-radius:100%;
-margin-top:20px;
+margin-top:25px;
 &:hover{
     transition:all 0.2s ease-in-out;
     background:aliceblue;
@@ -101,7 +103,7 @@ margin-left:20px;
 margin-right:-95px;
 width:70px;
 height:70px;
-margin-top:5px;
+margin-top:25px;
 text-decoration:none;
 color:#AEAA80;
 border-radius:100%;

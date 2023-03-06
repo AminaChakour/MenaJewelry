@@ -48,7 +48,7 @@ const Navbar = () => {
               </NavLink>
             )}
           <NavImg>
-            <img src="Logo.png" alt="Logo image" />
+            <img src="Mena.png" className="logo" alt="Logo image" />
           </NavImg>
           {ReactSession.get("idUser") == null && (
             <NavLink to="/signup" activeStyle>
@@ -90,7 +90,7 @@ const Navbar = () => {
 
         {ReactSession.get("userEmail") !== "admin@gmail.com" &&  ReactSession.get("idUser") !== null && (
         <NavCart to="/cart" activeStyle>
-          <HiOutlineShoppingBag size={35} />
+          <HiOutlineShoppingBag size={50} />
         </NavCart>
         )}
       </Nav>
