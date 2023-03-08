@@ -263,13 +263,15 @@ height: 450px;
 }
 
 .ProductDetails {
-  font-family: monospace;
+  font-family:'Gill Sans';
   color: rgb(150, 143, 87);
+  color:#494948;
   margin: auto;
 }
 .QuantityDetailsStyle {
-  font-family: monospace;
-  color: rgb(150, 143, 87);
+  font-family:'Gill Sans';
+  color:#494948;
+ 
 
 }
 .btnAddToCart{

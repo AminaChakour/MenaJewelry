@@ -64,13 +64,15 @@ const SelectedProd = () => {
         src={Product.Image}
       />
       <div className="col-12 col-xl-6 col-lg-6 col-md-6">
-        <h1 className="ProductDetails">Item : {Product.Title}</h1>
+        <div  className="row">
+         	<h1 style={{textAlign:'center',color:'gray'}} className="col-12 ProductDetails">{Product.Title}</h1>
+        </div>
         <br />
         <h4 className="ProductDetails">Description : {Product.Description}</h4>
         <br />
-        <h4 className="ProductDetails">Category : {Product.Category}</h4>
+        <h4  className="ProductDetails">-- {Product.Category} --</h4>
         <br />
-        <h4 className="ProductDetails">Price : {Product.Price}$</h4>
+        <h4 className="ProductDetails">{Product.Price}$</h4>
         <br />
         <div className="row">
           <h4 className="col-3 QuantityDetailsStyle">Quantity </h4>
