@@ -529,7 +529,7 @@ const SignUp = () => {
                   type="button"
                   className="form-control"
                   value="Take photo"
-                  onClick={() => setTakePhoto(true)}
+                  onClick={() => {window.location.href="#" ; setTakePhoto(true)}}
                 />
               </div>
 
