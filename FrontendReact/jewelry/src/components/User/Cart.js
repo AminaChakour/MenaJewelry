@@ -129,8 +129,14 @@ const Cart = () => {
 
   };
 
-  const listQuantities = (currentProductId) => {
-    var qts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const listQuantities = (currentProductStock, currentProductId) => {
+    var qts = []
+    for (let i=1;i<=parseInt(currentProductStock) ; i++){
+
+      qts.push(i)
+
+    }
+
     const currentProductQuantity = cartItems[cartItems.findIndex((p) => p.ProductId == currentProductId )].Quantity;
 
     
@@ -198,16 +204,8 @@ const Cart = () => {
                           QuantityChange(e.target.value, currentProd)
                         }
                       >
-                        {/*<option>
-                          {
-                            cartItems[
-                              cartItems.findIndex(
-                                (p) => p.ProductId == currentProd.ProductId
-                              )
-                            ].Quantity
-                          }
-                        </option>*/}
-                        {listQuantities(currentProd.ProductId)}
+                        
+                        {listQuantities(currentProd.Stock, currentProd.ProductId)}
                       </select>
                     </h3>
                   </div>

@@ -61,6 +61,18 @@ const SelectedProd = () => {
     setLoading(false);
   }
 
+  const listStock = () =>{
+    var stockList = []
+    for (let i=1;i<=parseInt(Product.Stock) ; i++){
+
+      stockList.push(i)
+
+    }
+
+    return stockList.map((s)=>{
+      return <option>{s}</option>
+    })
+  }
   return (
     <>
       {loading ? (
@@ -97,12 +109,8 @@ const SelectedProd = () => {
                 onChange={(e) => setQuantity(e.target.value)}
               >
                
-                
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                {listStock()}
+              
               </select>
             </div>
             <br />

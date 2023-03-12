@@ -76,7 +76,6 @@ html,
 }
 
 .registerStyle {
- 
   max-width: 500px;
   margin: auto;
   margin-top: 5%;
@@ -114,10 +113,9 @@ html,
   color: white !important;
   background-color: #bfbb8b !important;
   border-radius: 0 !important;
-  border:none !important;
+  border: none !important;
   font-weight: bolder !important;
 }
-
 
 .divcreateacc {
   text-align: center;
@@ -171,9 +169,8 @@ height: 450px;
   margin-top: 2% !important;
   height: 755px !important;
   width: 90% !important;
-  margin-bottom:50% !important;
+  margin-bottom: 50% !important;
   border-style: groove;
-
 }
 .selectedProdImage {
   margin-top: 5%;
@@ -205,16 +202,16 @@ height: 450px;
   border-width: 1px;
 }
 
-.SortBy{
+.SortBy {
   margin: auto !important;
   text-align: center !important;
   margin-top: 5px !important;
-  color:gray;
+  color: gray;
   letter-spacing: 0.2em;
   width: 600px !important;
   font-family: monospace;
-  font-size:large;
-  font-weight:lighter;
+  font-size: large;
+  font-weight: lighter;
   text-transform: uppercase;
   margin-bottom: 5px !important;
   border-top: none !important;
@@ -240,13 +237,12 @@ height: 450px;
 .form-control:focus {
   border-color: #bdb37a !important;
 }
-.form-control
-{
+.form-control {
   border-radius: 0% !important;
 }
 
 .Carousel {
-    margin-top: 90px !important;
+  margin-top: 90px !important;
 
   margin-left: 0%;
   margin-right: 0%;
@@ -263,29 +259,27 @@ height: 450px;
 }
 
 .ProductDetails {
-  font-family:'Gill Sans';
+  font-family: "Gill Sans";
   color: rgb(150, 143, 87);
-  color:#494948;
+  color: #494948;
   margin: auto;
 }
 .QuantityDetailsStyle {
-  font-family:'Gill Sans';
-  color:#494948;
- 
-
+  font-family: "Gill Sans";
+  color: #494948;
 }
-.btnAddToCart{
+.btnAddToCart {
   position: absolute;
-  right:    0;
-  bottom:   0;
-  width:40%;
-  height:40px;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  height: 40px;
   margin-top: 30%;
-  margin-bottom:30px;
-  margin-right:140px;
-  border:#a39f69;
-  border-width:1px;
-  color:white;
+  margin-bottom: 30px;
+  margin-right: 140px;
+  border: #a39f69;
+  border-width: 1px;
+  color: white;
   background-color: #a39f69 !important;
 }
 
@@ -329,20 +323,18 @@ height: 450px;
 .CartCard {
   margin-left: 2% !important;
   width: 95%;
-  background-color: rgb(252, 248, 242);
+  background-color: rgb(237, 234, 229);
   margin-top: 2% !important;
   border-style: solid;
-  border-color: rgb(194, 179, 134) !important;
+  border-color: rgb(223, 217, 199) !important;
   border-width: 1px;
   height: 300px !important;
-  border-radius: 50px;
 }
 
 .CartImage {
   height: 100%;
   width: 350px !important;
   padding: 0.5rem;
-  border-radius: 50px;
 }
 
 .CartIconsDiv {
@@ -372,25 +364,24 @@ height: 450px;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
-  border:none;
-  right:0;
-  margin-right:20px;
+  border: none;
+  right: 0;
+  margin-right: 20px;
   margin-bottom: 5px;
-  padding:10px 10px;
-  opacity:90%;
-  
+  padding: 10px 10px;
+  opacity: 90%;
 }
 .container .btnEditProd {
   color: #2e2e2c;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
-  right:0;
-  border:none;
-  margin-right:20px;
+  right: 0;
+  border: none;
+  margin-right: 20px;
   margin-bottom: 60px;
-  padding:10px 10px;
-  opacity:90%;
+  padding: 10px 10px;
+  opacity: 90%;
 }
 
 * {
@@ -512,7 +503,7 @@ img {
 
 .CartHeader {
   margin-top: 1% !important;
-  background-color: rgb(142, 102, 102);
+  background-color: rgb(237, 234, 229);
   height: 60px;
   width: 90%;
   text-align: center;
@@ -522,29 +513,28 @@ img {
 .CartSubtotal {
   margin: auto !important;
   margin-top: 1% !important;
-  background-color: wheat;
-  border: none;
+  background-color: transparent;
   font-weight: bolder;
   height: 50px;
   width: 50%;
   color: rgb(72, 72, 72);
   text-align: center;
   text-align: center !important;
+
 }
 .CartEmpty {
   text-align: center;
-  background-color: rgb(144, 112, 112);
-  color: white;
+  background-color: rgb(237, 234, 229);
+  color: rgb(67, 67, 67);
   height: 100%;
-  border-radius: 20px;
   font-weight: bolder;
   border: none;
 }
 
 .CartCheckout {
   font-weight: bolder;
-  background-color: rgb(144, 112, 112);
-  color: white;
+  background-color: rgb(237, 234, 229);
+  color: rgb(92, 92, 92);
   height: 100%;
 
   border: none;
@@ -643,8 +633,7 @@ img {
   padding: 1rem;
   text-transform: uppercase;
 }
-
-.PurchaseSuccess {
+details .PurchaseSuccess {
   margin-top: 20%;
   color: gray;
   font-weight: lighter;
@@ -656,73 +645,59 @@ img {
   height: 600px;
 }
 
-.hometext{
+.hometext {
   margin-top: 3%;
   margin-bottom: 1%;
   letter-spacing: 0.2rem;
   font-family: monospace;
-  font-size:x-large;
+  font-size: x-large;
   font-weight: bolder;
   text-align: center;
-
 }
 
-.HomeCatImg{
-
-  width:550px;
-  height:800px;
+.HomeCatImg {
+  width: 550px;
+  height: 800px;
   cursor: pointer;
 }
 
-.HomeCatDiv{
+.HomeCatDiv {
   cursor: pointer;
-  margin-left:40px;
+  margin-left: 40px;
 }
 
-.btnShopNow{
-  margin:auto;
-  width:20%;
-  height:60px;
+.btnShopNow {
+  margin: auto;
+  width: 20%;
+  height: 60px;
   margin-top: 30px;
-  color:white;
+  color: white;
   background-color: #080807 !important;
 }
 
-.webcamDiv{
-
-  margin:auto;
-  width:200px;
-  height:250px;
+.webcamDiv {
+  margin: auto;
+  width: 200px;
+  height: 250px;
   margin-bottom: -80px;
 }
-.webcam{
-  width:100%;
+.webcam {
+  width: 100%;
   border-style: double;
-  height:200px;
-
+  height: 200px;
 }
 
-
-.imgUserNav{
-
-  width:100%;
-  height:100%;
-  border-radius:100px;
+.imgUserNav {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
 }
 
-
-.logo
-{
-
-  width:250px;
-  height:120px;
-
-
-
-
+.logo {
+  width: 250px;
+  height: 120px;
 }
 
-.OutOfStock{
-
-  color:red;
+.OutOfStock {
+  color: red;
 }
