@@ -68,6 +68,16 @@ const Success = () => {
               });
         })
 
+
+        axios.put("http://127.0.0.1:8000/product",
+        {"ProductId":prod.ProductId, "Title":prod.Title, "Description": prod.Description, "Price": prod.Price,  "Stock":parseInt(prod.Stock)-parseInt(cartItems[cartItems.findIndex((p) => p.ProductId == prod.ProductId)].Quantity),"Category":prod.Category,"Image" :prod.Image})
+       .then((res)=>{
+
+        console.log(res.data.status)
+       })
+
+
+
     });
   }, [prods]);
 
