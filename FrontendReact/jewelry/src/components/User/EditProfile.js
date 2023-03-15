@@ -269,7 +269,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <div className="registerStyle">
+      <div className="EditProfileStyle">
         <form onSubmit={handleSubmit}>
           <h3>E D I T &nbsp; P R O F I L E</h3>
 

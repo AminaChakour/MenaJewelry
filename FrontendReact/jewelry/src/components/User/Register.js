@@ -367,7 +367,7 @@ const SignUp = () => {
               />
               <input
                 type="button"
-                className="form-control"
+                className="captureBtn form-control"
                 value="CAPTURE"
                 onClick={() => CapturePhoto()}
               />

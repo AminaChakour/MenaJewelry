@@ -210,7 +210,7 @@ const Cart = () => {
                     </h3>
                   </div>
 
-                  <div className="CartIconsDiv col-xs-4 col-lg-4 col-md-4  col-xl-4 col-sm-4 ">
+                  <div className="CartIconsDiv col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4  ">
                     <RiDeleteBin3Fill
                       onClick={() =>
                         DeleteCart(

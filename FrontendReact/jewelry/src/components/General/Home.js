@@ -212,39 +212,44 @@ const Home = () => {
             
                 SHOP NOW
               </button>
+          
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <div className="row category">
               <div
-                className=" col-4 HomeCatDiv"
+                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatDiv"
                 onClick={() => {
                   redirect("Earrings");
                 }}
               >
-                 <p className="hometext">EARRINGS</p>
+                
                 <img className="HomeCatImg" src="earr1.jpg" alt="Earrings" />
-               
+                <p className="hometext">EARRINGS</p>
               </div>
 
               <div
-                className="col-4 HomeCatDiv"
+                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatDiv"
                 onClick={() => {
                   redirect("Rings");
                 }}
               >
-                 <p className="hometext">RINGS</p>
+                 
                 <img className="HomeCatImg" src="h1.png" alt="Rings" />
-               
+               <p className="hometext">RINGS</p>
               </div>
 
               <div
-                className="col-4 HomeCatDiv"
+                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatDiv"
                 onClick={() => {
                   redirect("Necklaces");
                 }}
               >
-                <p className="hometext">NECKLACES</p>
+               
                 <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
-                
+                 <p className="hometext">NECKLACES</p>
               </div>
             </div>
           </>
