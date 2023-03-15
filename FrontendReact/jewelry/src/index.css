@@ -167,16 +167,15 @@ height: 450px;
 .SelectedProductCard {
   margin: auto !important;
   margin-top: 2% !important;
-  height: 755px !important;
+  height: 40%;
   width: 90% !important;
-  margin-bottom: 50% !important;
+  margin-bottom: 5% !important;
   border-style: groove;
+  background-color: rgb(237, 234, 229);
+ 
 }
 .selectedProdImage {
-  margin-top: 5%;
-  height: 750px;
-  width: 750px;
-  cursor: pointer;
+  
 }
 
 .titleProd {
@@ -601,7 +600,7 @@ img {
   margin: auto !important;
 
   width: 80%;
-  background-color: rgb(252, 248, 242);
+  background-color: rgb(237, 234, 229);
   margin-top: 1% !important;
   border-style: solid;
   border-color: rgb(194, 179, 134) !important;
@@ -694,7 +693,7 @@ details .PurchaseSuccess {
 }
 
 .logo {
-  width: 210px;
+  width: 300px;
   height: 100px;
   margin-left: 5%;
   margin-right: 5%;

@@ -73,7 +73,7 @@ const Home = () => {
           </div>
         ) : (
           <>
-            <img className="imghome" src="home.jpg" />
+            <img className="imghome" src="home.png" />
             <div className="hometext">
               <p>
                 PEARLS, BEADS AND GOLD TO SWOON OVER.

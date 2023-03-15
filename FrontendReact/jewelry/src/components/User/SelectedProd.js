@@ -18,9 +18,10 @@ const SelectedProd = () => {
       )
       .then((res) => {
         setProduct(res.data);
+        setLoading(false);
       });
 
-    setLoading(false);
+    
   }, []);
 
   function addToCart(ProductId) {
@@ -71,6 +72,7 @@ const SelectedProd = () => {
 
     }
 
+    
     return stockList.map((s)=>{
       return <option>{s}</option>
     })
@@ -79,7 +81,7 @@ const SelectedProd = () => {
     <>
       {loading ? (
         <div className="loader">
-          <ReactLoading type="cylon" color="#EADDCA" height={667} width={400} />
+          <ReactLoading className="loader" type="cylon" color="#EADDCA" height={667} width={400} />
         </div>
       ) : (
         <div className="row SelectedProductCard">
