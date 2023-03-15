@@ -551,7 +551,9 @@ img {
 }
 
 .OrdersCard {
-  margin-top: 100px;
+  margin-top: 50px !important;
+  margin-left: 50px !important;
+  width:400px !important;
   height: 150px !important;
   cursor: pointer;
   border: solid;
@@ -585,14 +587,13 @@ img {
 
 .OrderDetailsCard {
   margin: auto !important;
-
   width: 80%;
   background-color: rgb(237, 234, 229);
-  margin-top: 1% !important;
+  margin-top: 50px !important;
   border-style: solid;
   border-color: rgb(194, 179, 134) !important;
   border-width: 1px;
-  height: 150px !important;
+  height: 10% !important;
 }
 
 .OrderDetailsImage {

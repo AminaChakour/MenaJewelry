@@ -64,7 +64,7 @@ const SelectedOrder = () => {
               <>
                 <div className="row OrderDetailsCard">
                   <img
-                    className="col-1 col-sm-1 col-md-3 col-lg-4 col-xl-4  OrderDetailsImage"
+                    className="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1  OrderDetailsImage"
                     alt="product"
                     src={currentProd.Image}
                   />
@@ -74,7 +74,7 @@ const SelectedOrder = () => {
                     <h3 className="OrderDetailsQuantity">Qty {currentProd.Quantity}</h3>
                   </div>
 
-                  <div className="col-1 col-sm-1 col-md-1 col-lg-2  col-xl-2 ">
+                  <div className="col-5 col-sm-5 col-md-3 col-lg-3  col-xl-3 ">
                     <h3 className="OrderDetailsPrice">{currentProd.Price}$ x {currentProd.Quantity}</h3>
                   </div>
 

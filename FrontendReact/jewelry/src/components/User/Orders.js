@@ -103,7 +103,7 @@ const Orders = (props) => {
           <div className="row searchBarDiv">
             <input
               value={SearchText}
-              placeholder="SEARCH"
+              placeholder="SEARCH BY DATE"
               onChange={(e) => SetSearchText(e.target.value)}
               type="search"
               id="form1"
@@ -120,7 +120,7 @@ const Orders = (props) => {
                         onClick={() => {
                           redirectToSelected(currentOrder.OrderId);
                         }}
-                        className="col-4 OrdersCard"
+                        className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4  OrdersCard"
                       >
                        
                        <h3 className="titleOrder align-items-center">
@@ -144,7 +144,7 @@ const Orders = (props) => {
                         onClick={() => {
                           redirectToSelected(currentOrder.OrderId);
                         }}
-                        className="col-4 OrdersCard"
+                        className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 OrdersCard"
                       >
                       
                       <h3 className="titleOrder align-items-center">

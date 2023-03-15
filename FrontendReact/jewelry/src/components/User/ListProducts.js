@@ -160,7 +160,7 @@ const ListProducts = (props) => {
                           onClick={() => {
                             redirectToSelected(currentProd.ProductId);
                           }}
-                          className="col-4 ProductCard"
+                          className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ProductCard"
                         >
                           <img
                             className="ProductListImages"
@@ -222,7 +222,7 @@ const ListProducts = (props) => {
                             onClick={() => {
                               redirectToSelected(currentProd.ProductId);
                             }}
-                            className="col-4 ProductCard"
+                            className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ProductCard"
                           >
                             <img
                               className="ProductListImages"
@@ -249,7 +249,7 @@ const ListProducts = (props) => {
                         onClick={() => {
                           redirectToSelected(currentProd.ProductId);
                         }}
-                        className="col-4 ProductCard"
+                        className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ProductCard"
                       >
                         <img
                           className="ProductListImages"
