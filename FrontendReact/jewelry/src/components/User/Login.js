@@ -93,7 +93,7 @@ const LogIn = () => {
           Swal.fire({
             title: "Success",
             text: "Welcome " + data.firstname + ".",
-            confirmButtonColor: "#DAAD98",
+            confirmButtonColor: "#D2D4AF",
             icon: "success",
             timer: 3000,
           });
@@ -110,7 +110,7 @@ const LogIn = () => {
         } else {
           Swal.fire({
             title: "Incorrect password or email",
-            confirmButtonColor: "#DAAD98",
+            confirmButtonColor: "#D2D4AF",
 
             text: "Try again !",
             icon: "error",
@@ -121,7 +121,7 @@ const LogIn = () => {
       else{
         Swal.fire({
           title: "Email does not exist",
-          confirmButtonColor: "#DAAD98",
+          confirmButtonColor: "#D2D4AF",
 
           text: "Try again !",
           icon: "error",

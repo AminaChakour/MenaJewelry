@@ -106,7 +106,7 @@ const Home = () => {
                     alt="First slide"
                   />
                   <Carousel.Caption>
-                    <p>K A I </p>
+                    <p>M E N A</p>
                   </Carousel.Caption>
                 </Carousel.Item>
 
@@ -118,7 +118,7 @@ const Home = () => {
                   />
 
                   <Carousel.Caption>
-                    <p>K A I</p>
+                    <p>M E N A</p>
                   </Carousel.Caption>
                 </Carousel.Item>
 
@@ -129,7 +129,7 @@ const Home = () => {
                     alt="Third slide"
                   />
                   <Carousel.Caption>
-                    <p>K A I</p>
+                    <p>M E N A</p>
                   </Carousel.Caption>
                 </Carousel.Item>
 
@@ -140,7 +140,7 @@ const Home = () => {
                     alt="Fourth slide"
                   />
                   <Carousel.Caption>
-                    <p>K A I</p>
+                    <p>M E N A</p>
                   </Carousel.Caption>
                 </Carousel.Item>
               </Carousel>

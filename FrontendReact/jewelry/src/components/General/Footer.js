@@ -19,10 +19,10 @@ export default function App() {
             <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>
               
-                K A I - J E W E L S
+                M E N A - J E W E L S
               </h6>
               <p>
-              Kai Jewelry
+              mena Jewelry
               </p>
             </MDBCol>
 
@@ -59,7 +59,7 @@ export default function App() {
               </p>
               <p>
                 
-                kaijewelry@contact.com
+                  menajewelry@contact.com
               </p>
               <p>
                 + 1 514 222 4455
@@ -75,7 +75,7 @@ export default function App() {
       <div className='text-center p-4' style={{ backgroundColor: '#F1F1E9' }}>
         © 2023 Copyright<h1></h1>
         <a className='text-reset fw-bold' href='/home'>
-             K A I
+             M E N A
         </a>
       </div>
     </MDBFooter>

@@ -694,8 +694,10 @@ details .PurchaseSuccess {
 }
 
 .logo {
-  width: 250px;
-  height: 120px;
+  width: 210px;
+  height: 100px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .OutOfStock {

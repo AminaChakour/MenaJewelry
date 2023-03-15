@@ -310,6 +310,7 @@ const SignUp = () => {
               text: "The photos match!",
               icon: "success",
               confirmButtonText: "Ok",
+              confirmButtonColor: "#D2D4AF",
             });
             
           } 
@@ -320,6 +321,7 @@ const SignUp = () => {
               text: "Sorry, the two people from the photos don't match",
               icon: "error",
               confirmButtonText: "Ok",
+              confirmButtonColor: "#D2D4AF",
             });
           }
           else
@@ -329,6 +331,7 @@ const SignUp = () => {
               text: "Try again",
               icon: "error",
               confirmButtonText: "Ok",
+              confirmButtonColor: "#D2D4AF",
             });
 
 

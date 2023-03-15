@@ -47,6 +47,7 @@ const SelectedProd = () => {
             text: "Item added to cart !",
             icon: "success",
             confirmButtonText: "Ok",
+            confirmButtonColor: "#D2D4AF",
           });
         } else if (data.status === "error") {
           Swal.fire({
@@ -54,6 +55,7 @@ const SelectedProd = () => {
             text: "Try again",
             icon: "error",
             confirmButtonText: "Ok",
+            confirmButtonColor: "#D2D4AF",
           });
         }
       });
