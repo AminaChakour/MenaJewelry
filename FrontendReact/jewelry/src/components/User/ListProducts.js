@@ -57,8 +57,9 @@ const ListProducts = (props) => {
           ...Array(Math.ceil(res.data.length / recordsPerPage) + 1).keys(),
         ].slice(1)
       );
+      setLoading(false);
     });
-    setLoading(false);
+   
   }, []);
 
   useEffect(() => {
@@ -89,6 +90,7 @@ const ListProducts = (props) => {
   }, [SearchText]);
 
   function redirectToSelected(id) {
+    setLoading(true)
     // setter localStorage.setItem('SelectedProductId', id);
     // getter localStorage.getItem('SelectedProductId');
     ReactSession.set("SelectedProductId", id);
@@ -122,7 +124,7 @@ const ListProducts = (props) => {
     <>
       {loading ? (
         <div className="loader">
-          <ReactLoading type="cylon" color="#EADDCA" height={667} width={400} />
+          <ReactLoading className="loader" type="cylon" color="#EADDCA" height={667} width={400} />
         </div>
       ) : (
         <div>
@@ -187,7 +189,7 @@ const ListProducts = (props) => {
                         onClick={() => {
                           redirectToSelected(currentProd.ProductId);
                         }}
-                        className="col-4 ProductCard"
+                        className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ProductCard"
                       >
                         <img
                           className="ProductListImages"

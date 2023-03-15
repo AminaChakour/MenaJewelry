@@ -202,8 +202,14 @@ const Home = () => {
               <p>
                 <strong>MORE THAN JEWELRY, UNLEASH YOUR FEMININITY.</strong>
               </p>
-              <button type="button" className="btnShopNow">
+              <button
+                onClick={() => {
+                  redirect("ALL PRODUCTS");
+                }}
            
+                className="btnShopNow"
+              >
+            
                 SHOP NOW
               </button>
             </div>
@@ -214,28 +220,31 @@ const Home = () => {
                   redirect("Earrings");
                 }}
               >
+                 <p className="hometext">EARRINGS</p>
                 <img className="HomeCatImg" src="earr1.jpg" alt="Earrings" />
-                <p className="hometext">EARRINGS</p>
+               
               </div>
 
               <div
-                className=" col-4 "
+                className="col-4 HomeCatDiv"
                 onClick={() => {
                   redirect("Rings");
                 }}
               >
+                 <p className="hometext">RINGS</p>
                 <img className="HomeCatImg" src="h1.png" alt="Rings" />
-                <p className="hometext">RINGS</p>
+               
               </div>
 
               <div
-                className=" col-4 "
+                className="col-4 HomeCatDiv"
                 onClick={() => {
                   redirect("Necklaces");
                 }}
               >
-                <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
                 <p className="hometext">NECKLACES</p>
+                <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
+                
               </div>
             </div>
           </>
