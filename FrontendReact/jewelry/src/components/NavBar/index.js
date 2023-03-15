@@ -48,7 +48,7 @@ const Navbar = () => {
               </NavLink>
             )}
           <NavImg>
-            <img src="44.png" className="logo" alt="Logo image" />
+            <img src="logo.png" className="logo" alt="Logo image" />
           </NavImg>
           {ReactSession.get("idUser") == null && (
             <NavLink to="/signup" activeStyle>
