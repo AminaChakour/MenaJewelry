@@ -66,7 +66,7 @@ const Home = () => {
             <ReactLoading
               className="loader"
               type="cylon"
-              color="#EADDCA"
+              color="#B0B290"
               height={667}
               width={400}
             />
@@ -94,7 +94,7 @@ const Home = () => {
             </div>
             <div className="row">
               <Carousel
-                className="Carousel col-6 col-xl-6"
+                className="Carousel col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
                 activeIndex={index}
                 onSelect={handleSelect}
                 //fade
@@ -146,7 +146,7 @@ const Home = () => {
               </Carousel>
 
               <Carousel
-                className="Carousel col-6 col-xl-6"
+                className="Carousel col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
                 activeIndex={index}
                 onSelect={handleSelect}
                 //fade
@@ -219,38 +219,28 @@ const Home = () => {
             <br/>
             <br/>
             <div className="row category">
-              <div
-                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatDiv"
-                onClick={() => {
-                  redirect("Earrings");
-                }}
-              >
+           
                 
-                <img className="HomeCatImg" src="earr1.jpg" alt="Earrings" />
-                <p className="hometext">EARRINGS</p>
-              </div>
-
-              <div
-                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatDiv"
-                onClick={() => {
-                  redirect("Rings");
-                }}
-              >
+                <img  onClick={() => {
+                  redirect("Earrings");
+                }} className="HomeCatImg col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" src="earr1.jpg" alt="Earrings" />
+             
+          
+          
                  
-                <img className="HomeCatImg" src="h1.png" alt="Rings" />
-               <p className="hometext">RINGS</p>
-              </div>
-
-              <div
-                className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatDiv"
-                onClick={() => {
-                  redirect("Necklaces");
-                }}
-              >
+                <img onClick={() => {
+                  redirect("Rings");
+                }} className="HomeCatImg col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" src="h1.png" alt="Rings" />
                
-                <img className="HomeCatImg" src="n1.png" alt="Necklaces" />
-                 <p className="hometext">NECKLACES</p>
-              </div>
+           
+
+           
+               
+                <img  onClick={() => {
+                  redirect("Necklaces");
+                }} className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 HomeCatImg" src="n1.png" alt="Necklaces" />
+                
+           
             </div>
           </>
         )}

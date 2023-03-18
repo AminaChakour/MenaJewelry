@@ -244,9 +244,8 @@ html,
 
 .Carousel {
   margin-top: 50px !important;
+  margin-bottom: 50px !important;
 
-  width: 724px !important;
-  height: 870px !important;
 }
 
 .imgCarousel {
@@ -655,8 +654,7 @@ details .PurchaseSuccess {
 }
 
 .HomeCatImg {
-  width: 485px;
-  height: 800px;
+
   cursor: pointer;
   border:solid;
   border-color: white;
@@ -665,7 +663,7 @@ details .PurchaseSuccess {
 
 .HomeCatDiv {
   cursor: pointer;
-  margin-left: 0px;
+
 }
 
 .btnShopNow {
