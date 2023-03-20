@@ -41,7 +41,7 @@ export default function App() {
               </p>
               <p>
                 <a href='/products' className='text-reset'>
-                  Necklaces
+                  Shop
                 </a>
               </p>
               <p>

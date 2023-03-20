@@ -145,12 +145,24 @@ const Success = () => {
         <form name="myForm" ref={form} onSubmit={sendEmail}>
           <input type="hidden" value={userEmail} name="toEmail" />
           <input type="hidden" value={fullName} name="fullName" />
+
           <input type="hidden" value={orderTotal} name="orderTotal" />
           <input type="submit" className="btnSubmit" id="btnSubmit" />
         </form>
 
 
         <div className="PurchaseSuccess">
+        <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />  <br />
+      <br />
+      <br />
+      <br />
+      <br />
         <h3 className="PurchaseSuccess"> Email sent successfully, check orders for order details. Thank you.</h3>
         </div>
         </div>

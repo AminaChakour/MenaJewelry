@@ -35,6 +35,7 @@ const SignUp = () => {
   const [takePhoto, setTakePhoto] = useState(false);
   const webRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [photosMatch,setPhotosMatch] = useState(false);
 
   const [formErrors, setFormErrors] = useState({
     lastname: "",
@@ -305,6 +306,7 @@ const SignUp = () => {
 
           if (data === "MATCH") 
           {
+            setPhotosMatch(true)
             Swal.fire({
               title: "Success",
               text: "The photos match!",
@@ -316,6 +318,7 @@ const SignUp = () => {
           } 
           else if (data === "NO MATCH") 
           {
+            setPhotosMatch(false)
             Swal.fire({
               title: "NO MATCH!",
               text: "Sorry, the two people from the photos don't match",
@@ -326,6 +329,7 @@ const SignUp = () => {
           }
           else
           {
+            setPhotosMatch(false)
             Swal.fire({
               title: "Error !",
               text: "Try again",
@@ -542,7 +546,7 @@ const SignUp = () => {
 
               <div className="d-grid">
                 <button
-                  disabled={!formValid}
+                  disabled={!formValid || !photosMatch}
                   type="submit"
                   className="btn btn-warning"
                 >
