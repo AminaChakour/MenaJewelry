@@ -27,11 +27,11 @@ const ListProducts = (props) => {
 
   useEffect(() => {
     setLoading(true);
-
-    if(ReactSession.get("Category").length > 0){
+    
+    if(ReactSession.get("Category")!==null ){
 
       SetSortBy(ReactSession.get("Category").toUpperCase())
-      ReactSession.set("Category","")
+      ReactSession.set("Category",null)
 
     }
     
